@@ -1,0 +1,113 @@
+@import "../../../../../styles/variables";
+
+.head {
+  width: 100%;
+  margin: 2rem auto;
+  border: 1px rgba(0, 0, 0, 0.2) solid;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  @include desktop {
+    width: 80%;
+  }
+}
+
+.headInner {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 0.3rem;
+  @include desktop {
+    padding: 2rem;
+    grid-template-columns: 1fr 1.5fr;
+    grid-gap: 0.6rem;
+  }
+}
+.profileImg {
+  height: 200px;
+}
+
+.name {
+  margin-bottom: 0.5rem;
+
+  font-size: 1.5rem;
+  color: $primaryBlue;
+  @include desktop {
+    font-size: 1.6rem;
+  }
+}
+
+.price {
+  font-size: 0.8rem;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  color: $primaryGolden;
+  @include tablet {
+    font-size: 0.9rem;
+  }
+}
+
+.subCat {
+  margin-bottom: 1rem;
+  a {
+    text-decoration: none;
+    color: crimson;
+    font-size: 1rem;
+    @include tablet {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.location {
+  margin-bottom: 1rem;
+  a {
+    text-decoration: none;
+    color: $lightBlue;
+    font-size: 0.9rem;
+    font-style: italic;
+    @include tablet {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.revRating {
+  font-size: 0.8rem;
+  display: inline-grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 0.6rem;
+  align-items: center;
+  @include desktop {
+    font-size: 1rem;
+    grid-template-columns: 1fr 2.5fr;
+  }
+}
+
+.claim {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background-color: $orange;
+  color: #fff;
+  border-radius: 20%;
+  font-size: 0.8rem;
+  cursor: pointer;
+  &:hover {
+    font-size: 0.9rem;
+  }
+}
+
+.imageContainer {
+  justify-self: center;
+  align-self: center;
+  max-width: 80%;
+
+  @include tablet {
+    max-width: 60%;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.reviewClaim {
+  text-align: center;
+}

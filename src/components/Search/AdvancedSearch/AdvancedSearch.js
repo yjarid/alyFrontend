@@ -1,0 +1,136 @@
+import React, { useState, useEffect, useContext, useRef } from "react"
+import { GET_BUSINESSES } from "../../../qraphQl/businessType"
+import { useLazyQuery } from "@apollo/react-hooks"
+import AdvanceFilter from "../../UI/AdvanceFilter/AdvanceFilter"
+import styles from "./AdvancedSearch.module.scss"
+import Spinner from "../../UI/Spinner/Spinner"
+import { CSSTransition } from "react-transition-group"
+import slideDown from "../../../cssTransition/slideDown.module.scss"
+import Page from "../../Page/Page"
+import { DispatchContext } from "../../../Context"
+import MapResultPage from "../../MapResultPage/MapResultPage"
+import TopBar from "../../TopBar/TopBar"
+
+export default function AdvancedSearch() {
+  const appDispatch = useContext(DispatchContext)
+  const [showFilter, setShowFilter] = useState(false)
+  const [zoom, setZoom] = useState(8)
+  const [bound, setBound] = useState([])
+  const [price, setPrice] = useState(null)
+  const [neighborhood, setNeighborhood] = useState(null)
+  const [neighName, setNeighName] = useState(null)
+  const [city, setCity] = useState(null)
+  const [cityName, setCityName] = useState(null)
+  const [subCat, setSubCat] = useState([])
+  const [cat, setCat] = useState("restaurant")
+
+  let [getBusiness, { data, error, loading }] = useLazyQuery(GET_BUSINESSES, { fetchPolicy: "network-only" })
+
+  const dataFinal = typeof data != "undefined" ? data.businesses : []
+
+  useEffect(() => {
+    fetchBus()
+    setShowFilter(false)
+  }, [bound[0], price, neighName, JSON.stringify(subCat), cityName, cat])
+
+  useEffect(() => {
+    if (error) {
+      appDispatch({ type: "flashMessage", value: { message: "Something went wrong", type: "error" } })
+    }
+  }, [error])
+
+  const onFilter = (initNeighborhood, initSubCat, initCity, initCat, initPrice) => {
+    setBound([])
+    setNeighName(null)
+    setCityName(null)
+    setSubCat([])
+    if (initNeighborhood) {
+      let parseNeigh = JSON.parse(initNeighborhood)
+      setNeighborhood(parseNeigh)
+      setNeighName(parseNeigh.name)
+      setZoom(13)
+    } else {
+      // if neigh is not defined filter with city
+      let parseCity = JSON.parse(initCity)
+      setCity(parseCity)
+      setCityName(parseCity.name)
+      setZoom(11)
+    }
+
+    if (initSubCat.length > 0) {
+      setSubCat(initSubCat)
+    }
+
+    if (initCat) {
+      setCat(initCat)
+    }
+
+    if (initPrice) {
+      setPrice(initPrice)
+    }
+  }
+
+  const fetchBus = () => {
+    let variab = {}
+    let limit = 20
+
+    // PART PRICE
+    if (price) {
+      variab = { ...variab, price }
+    }
+
+    // PART LOCATION
+    if (neighborhood) {
+      variab = { ...variab, neighborhood: neighborhood.neigh }
+    } else {
+      // if neigh is not efine we will filter by city
+      if (city) {
+        variab = { ...variab, city: city.name }
+      }
+    }
+
+    // PART BOUND
+    if (bound.length > 0) {
+      variab = { ...variab, bound }
+    }
+
+    // PART CATEGORY
+    if (subCat.length > 0) {
+      variab = { ...variab, subCat }
+
+      if (zoom < 14) {
+      }
+    }
+
+    if (cat) {
+      variab = { ...variab, cat }
+    }
+
+    getBusiness({ variables: { ...variab, limit } })
+  }
+
+  const mapBounds2 = bounds => {
+    console.log(bounds)
+    setBound(bounds)
+  }
+
+  return (
+    <>
+      <TopBar />
+      <div>
+        <div className={styles.showFilterBtn} onClick={() => setShowFilter(!showFilter)}>
+          Advanced Filter
+        </div>
+
+        <CSSTransition timeout={400} in={showFilter} classNames={slideDown} unmountOnExit>
+          <AdvanceFilter onFilter={onFilter} parentCat={cat ? cat : "restaurant"} />
+        </CSSTransition>
+      </div>
+
+      <Page title="Advanced Search" withTopBar={false}>
+        {loading && <Spinner />}
+        <MapResultPage businesses={dataFinal} location={neighborhood || city} mapBounds2={mapBounds2} zoom={zoom} />
+      </Page>
+    </>
+  )
+}

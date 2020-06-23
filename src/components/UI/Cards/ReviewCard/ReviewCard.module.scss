@@ -1,0 +1,113 @@
+@import "../../../../styles/variables";
+
+.revContainer {
+  margin: 0 auto 2rem auto;
+  border: 1px rgba(0, 0, 0, 0.2) solid;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+
+  @include tablet {
+    width: 90%;
+  }
+}
+
+.revContainerInner {
+  padding: 0.3rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 0.6rem;
+  @include desktop {
+    width: 80%;
+    padding: 1rem;
+  }
+}
+
+.revContainerAvatar {
+  justify-self: center;
+  align-self: center;
+  width: 4rem;
+  @include tablet {
+    width: 6rem;
+  }
+  img {
+    width: 4rem;
+    @include tablet {
+      width: 6rem;
+    }
+  }
+}
+
+.revAuth {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0.2rem auto;
+  a {
+    text-decoration: none;
+  }
+
+  @include tablet {
+    font-size: 1.5rem;
+  }
+}
+.date {
+  font-size: 0.8rem;
+  @include tablet {
+    font-size: 1rem;
+  }
+}
+
+.revChips {
+  margin-bottom: 0.25rem;
+}
+
+.location {
+  margin-bottom: 0.25rem;
+  a {
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: crimson;
+    font-style: italic;
+    @include tablet {
+      font-size: 1rem;
+    }
+  }
+}
+
+.revDesc {
+  font-size: 0.9rem;
+  width: 95%;
+  margin: 1rem auto;
+  @include tablet {
+    font-size: 1rem;
+    width: 80%;
+    margin: 1rem auto 2rem auto;
+  }
+}
+
+.revRating {
+  display: inline-grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 0.6rem;
+  align-items: center;
+}
+
+.clap {
+  max-width: 4rem;
+  margin: 0.7rem auto;
+}
+
+.report {
+  font-size: 0.75rem;
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.reportbtn {
+  color: #fff;
+  padding: 0.1rem 0.5rem;
+  border-radius: 20%;
+  background-color: chocolate;
+  &:hover {
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+}

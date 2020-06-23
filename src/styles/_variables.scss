@@ -1,0 +1,24 @@
+$primaryBlue: #186bff;
+$darkBlue: #0920e8;
+$lightBlue: #0996e8;
+
+$primaryGolden: #b37900;
+$lightGolden: #ffb757;
+
+$orange: #ff4d30;
+$green: #82b307;
+$titleGreen: #8fad88;
+$crimson: crimson;
+
+// Media
+
+@mixin tablet {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}

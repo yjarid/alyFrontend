@@ -1,0 +1,104 @@
+@import "../../../../../styles/variables";
+
+.revContainer {
+   margin-bottom: 1rem;
+  box-shadow: 0 2px 4px 0 rgba(gray, 0.4), 0 3px 10px 0 rgba(gray, 0.3);
+}
+
+
+.revContainerInner {
+  padding: 0.3rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 0.6rem;
+  @include desktop {
+    width: 90%;
+    padding: 1rem;
+  }
+}
+
+.revContainerAvatar {
+  justify-self: center;
+  align-self: center;
+  width: 4rem;
+  @include tablet {
+    width: 6rem;
+  }
+  img {
+    width: 4rem;
+    @include tablet {
+      width: 6rem;
+    }
+  }
+}
+
+.revAuth {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0.2rem auto;
+
+  a {
+    text-decoration: none;
+    color: $titleGreen;
+  }
+
+  @include tablet {
+    font-size: 1.4rem;
+  }
+}
+.date {
+  font-size: 0.8rem;
+  @include tablet {
+    font-size: 1rem;
+  }
+}
+
+.revDesc {
+  font-size: 0.9rem;
+  width: 95%;
+  margin: 1rem auto;
+  @include tablet {
+    width: 80%;
+    margin: 1rem auto 2rem auto;
+  }
+}
+
+.revRating {
+  display: inline-grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 0.6rem;
+  align-items: center;
+}
+
+.busSection {
+  margin-bottom: 0.25rem;
+  a {
+    text-decoration: none;
+  }
+  span {
+    font-size: 0.9rem;
+  }
+}
+
+.busName {
+  a {
+    font-size: 1rem;
+    color: crimson;
+    @include tablet {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.location {
+  a {
+    font-size: 0.85rem;
+    color: $lightBlue;
+    font-style: italic;
+    @include tablet {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+

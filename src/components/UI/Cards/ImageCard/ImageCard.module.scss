@@ -1,0 +1,80 @@
+.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    position: relative;
+    img {
+        width: 100%;
+        height: auto;
+      }
+  }
+  
+  .gallery:hover {
+    border: 1px solid #777;
+  }
+  
+  .desc {
+    text-align: center; 
+    min-height: 4.4rem; 
+  }
+
+  .image{
+    cursor: pointer;
+  }
+
+  .textAreaDesc {
+    font-size: .9rem;
+    width: 100%;
+    height: 2.5rem;
+    resize: none;
+    box-sizing: border-box;
+    border: none;
+    text-align: center;
+    &:hover {
+      border: 1px solid lightblue;
+      font-size: .95rem;
+    }
+    &:focus {
+      text-align: left;
+    }
+    &:read-only {
+      &:hover {
+        border: none;
+      }
+    }
+    
+  }
+
+  .btnDesc{
+    font-size: .7rem;
+    padding: .05rem .3rem;
+    border-radius: 20%;
+    background-color: firebrick;
+    color: #fff;
+    cursor: pointer;
+    &:hover {
+      font-size: .8rem;
+    }
+  }
+
+  .errorDesc {
+    font-size: .7rem;
+    color: red;
+  }
+
+  .editDescBtn {
+    font-size: .85rem;
+    padding: .2rem 0.3rem; 
+    color: blue;
+    position: Absolute;
+    bottom: 0;
+    &:hover {
+      font-size: .9rem;
+      cursor: pointer;
+      background-color: lightblue;
+    }
+  }
+
+  .description {
+    font-size: .9rem;
+
+  }

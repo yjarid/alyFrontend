@@ -1,0 +1,60 @@
+@import "../../styles/variables";
+
+footer {
+  margin-top: 2rem;
+  background-color: #eee;
+  padding: 1px 0;
+  text-align: center;
+  ul,
+  li {
+    font-size: 0.8rem;
+    list-style-type: none;
+    list-style-position: inside;
+    margin: 0.5rem 0;
+    padding: 0;
+  }
+}
+
+// topdiv
+.top {
+  font-size: 0.9rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 0.6rem;
+  justify-items: start;
+  width: 80%;
+  margin: 1rem auto 2rem auto;
+
+  @include tablet {
+    width: 90%;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+  }
+}
+
+.socialMedia {
+  cursor: pointer;
+  margin: 1rem auto 0 auto;
+}
+
+// bottom div
+
+.bottom {
+  font-size: 0.9rem;
+
+  background-color: #ddd;
+  padding: 1rem;
+}
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  width: 80%;
+  margin: 0 auto;
+}
+.copyright {
+  justify-self: start;
+}
+.law {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

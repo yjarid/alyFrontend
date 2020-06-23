@@ -1,0 +1,26 @@
+.showFilterBtn {
+  width: 10rem;
+  padding: 1rem;
+  background-color: coral;
+  margin: 2rem auto;
+  color: #fff;
+  text-align: center;
+}
+
+.searchResContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 2rem;
+}
+
+.mapContainer {
+  margin: 4rem auto;
+  height: 500px;
+  position: relative;
+}
+
+.fixContainer {
+  position: fixed;
+  width: 33%;
+  right: 1rem;
+}

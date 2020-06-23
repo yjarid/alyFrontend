@@ -1,0 +1,35 @@
+@import "../../styles/variables";
+
+.searchResContainer {
+  margin-top: 1rem;
+  @include tablet {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    margin-top: 2rem;
+  }
+}
+
+.mapContainer {
+  height: 500px;
+  position: relative;
+}
+
+.fixContainer {
+  @include tablet {
+    position: fixed;
+    width: 38%;
+    right: 1rem;
+  }
+}
+
+.listMap {
+  text-align: center;
+  button {
+    padding: 0.3rem 1rem;
+    background-color: $lightBlue;
+    color: #fff;
+  }
+  @include tablet {
+    display: none;
+  }
+}

@@ -1,0 +1,27 @@
+@import "../../../styles/variables";
+
+.innerContainer {
+  width: 80%;
+  margin: 0 auto;
+  @include desktop {
+    width: 60%;
+  }
+}
+
+.topContainer {
+  height: 100%;
+}
+
+.title {
+  text-align: center;
+  color: $primaryBlue;
+}
+
+.note {
+  text-align: center;
+}
+
+.generalError {
+  text-align: center;
+  color: red;
+}

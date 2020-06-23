@@ -1,0 +1,24 @@
+@import "../../styles/variables";
+
+.reviewGrid {
+  @include tablet {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    align-items: start;
+  }
+}
+
+.imageGrid {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  align-items: start;
+  @include tablet {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @include desktop {
+    grid-gap: 1.5rem;
+  }
+}

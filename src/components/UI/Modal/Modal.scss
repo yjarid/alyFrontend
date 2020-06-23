@@ -1,0 +1,20 @@
+@import "../../../styles/variables";
+.Modal {
+  position: fixed;
+  z-index: 500;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px black;
+  padding: 10px;
+  width: 95%;
+  top: 20%;
+  box-sizing: border-box;
+  transition: all 0.3s ease-out;
+  max-height: 70vh;
+  overflow: auto;
+  @include tablet {
+    width: 70%;
+    left: 15%;
+    padding: 16px;
+  }
+}

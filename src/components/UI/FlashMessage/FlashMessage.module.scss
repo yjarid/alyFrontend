@@ -1,0 +1,70 @@
+@import "../../../styles/variables";
+
+.alertError,
+.alertSuccess {
+  font-size: 0.8rem;
+  padding: 0.8rem;
+  text-align: center;
+  margin: 0.8rem auto;
+
+  @include tablet {
+    padding: 1rem;
+    font-size: 1rem;
+    margin: 1rem auto;
+  }
+}
+
+.alertError {
+  color: #d8000c;
+  background-color: #ffd2d2;
+}
+
+.alertSuccess {
+  background-color: #4caf50;
+  color: white;
+}
+
+.floatingAlerts .floatingAlert:last-of-type {
+  display: block;
+}
+
+.floatingAlert {
+  display: none;
+  position: absolute;
+  z-index: 999;
+  top: 38px;
+  left: 50%;
+  padding: 0.8rem 1.2rem;
+  transform: translateX(-50%);
+  animation: floatingAlert ease-in 5s forwards;
+  animation-fill-mode: forwards;
+  @include tablet {
+    padding: 1rem 3rem;
+  }
+}
+
+@keyframes floatingAlert {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) scale(1.2);
+  }
+
+  9% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+  }
+
+  91% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) scale(1.2);
+  }
+}

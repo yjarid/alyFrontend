@@ -1,0 +1,16 @@
+@import "../../styles/variables";
+
+.error {
+  font-size: 0.8rem;
+  color: red;
+  margin-left: 1rem;
+}
+
+.dropZone {
+  text-align: center;
+  p {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 2px solid $lightBlue;
+  }
+}

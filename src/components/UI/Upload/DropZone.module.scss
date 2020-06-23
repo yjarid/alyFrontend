@@ -1,0 +1,31 @@
+@import "../../../styles/variables";
+
+.buzPicture {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.dropBox {
+  padding: 1rem;
+  border: 1px dashed $lightBlue;
+  font-size: 0.9rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.imgProfile {
+  max-width: 15rem;
+  max-height: 15rem;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  @include tablet {
+    max-width: 20rem;
+    max-height: 20rem;
+  }
+}

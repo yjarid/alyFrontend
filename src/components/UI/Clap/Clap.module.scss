@@ -1,0 +1,107 @@
+@import "../../../styles/variables";
+
+/* Clap button */
+.clapContainer {
+  max-width: 4rem;
+  margin: 0.7rem auto;
+}
+
+.clap {
+  position: relative;
+  outline: 1px solid transparent;
+  border-radius: 50%;
+  border: 1px solid #bdc3c7;
+  width: 2.6rem;
+  height: 2.6rem;
+  background: none;
+  user-select: none;
+}
+.clap:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 50%;
+  width: 2.59rem;
+  height: 2.59rem;
+}
+.clap:hover {
+  cursor: pointer;
+  border: 1px solid $lightBlue;
+  transition: border-color 0.3s ease-in;
+}
+.clap:hover:after {
+  animation: shockwave 1s ease-in infinite;
+}
+
+@keyframes shockwave {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 2px $lightBlue;
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+    box-shadow: 0 0 30px $primaryBlue, inset 0 0 10px $lightBlue;
+  }
+}
+
+/* Count */
+.count {
+  position: absolute;
+  top: -1.5rem;
+  left: 8px;
+  font-size: 0.7rem;
+  color: white;
+  background: $lightBlue;
+  border-radius: 50%;
+  height: 1.6rem;
+  width: 1.6rem;
+  line-height: 1.6rem;
+}
+
+/* Count total */
+.total {
+  position: absolute;
+  font-size: 0.8rem;
+  width: 2.8rem;
+  text-align: center;
+  left: 0;
+  top: -1rem;
+  color: $primaryGolden;
+}
+
+.initialTot {
+  width: 2.8rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: $primaryGolden;
+}
+
+/* Clap Icon */
+.icon {
+  width: 1.8rem;
+  fill: none;
+  stroke: $lightBlue;
+  stroke-width: 2px;
+}
+
+.icon.checked {
+  fill: $lightBlue;
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
+/* Clap Info */
+.info {
+  position: relative;
+  top: 27px;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+  text-align: center;
+}

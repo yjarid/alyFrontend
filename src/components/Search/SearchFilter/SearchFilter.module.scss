@@ -1,0 +1,66 @@
+@import "../../../styles/variables";
+
+.searchResults {
+  padding: 0.1rem 0.2rem;
+  margin: 0.1rem;
+  background-color: blue;
+  color: #fff;
+}
+
+.searchFormContainer {
+  @include tablet {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.3fr;
+    column-gap: 0.5rem;
+  }
+}
+
+.searchFormSection {
+  position: relative;
+}
+
+.searchInput {
+  margin-bottom: 0.3rem;
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1.2rem;
+  color: grey;
+
+  @include desktop {
+    margin: 0;
+  }
+}
+
+.searchInput2 {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 0.9rem;
+  color: grey;
+  @include desktop {
+    margin: 0;
+  }
+}
+
+button.searchInput,
+button.searchInput2 {
+  width: auto;
+  display: inline-block;
+  background-color: $primaryBlue;
+  color: #fff;
+}
+
+.inputError {
+  top: -2rem;
+  z-index: 1;
+  padding: 0.5rem 1rem;
+  font-size: 0.7rem;
+  color: #d8000c;
+  background-color: #ffd2d2;
+}

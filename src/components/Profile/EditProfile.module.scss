@@ -1,0 +1,23 @@
+@import "../../styles/variables";
+
+.innerContainer {
+  width: 80%;
+  margin: 2rem auto 2rem auto;
+  @include tablet {
+    margin-top: 4rem;
+  }
+}
+
+.link {
+  text-align: center;
+  margin-top: 1rem;
+  a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: $primaryBlue;
+    &:hover {
+      color: $orange;
+      font-weight: bold;
+    }
+  }
+}

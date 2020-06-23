@@ -1,0 +1,14 @@
+@import "../../../styles/variables";
+
+.selectedBus {
+  padding: 1rem;
+  border: 3px solid $lightBlue;
+  transform: scale(1.05);
+}
+
+.busCard {
+  margin-bottom: 1rem;
+  @include tablet {
+    padding: 1rem;
+  }
+}

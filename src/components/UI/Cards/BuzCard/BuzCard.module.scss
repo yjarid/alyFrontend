@@ -1,0 +1,102 @@
+@import "../../../../styles/variables";
+
+.paper {
+  border: 1px rgba(0, 0, 0, 0.2) solid;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.head {
+  padding-bottom: 1rem;
+}
+.headInner {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+  grid-gap: 0.6rem;
+}
+
+.profileImg {
+  height: 200px;
+}
+
+.title {
+  margin: 0.8rem auto 0.4rem auto;
+  a {
+    text-decoration: none;
+    color: $primaryBlue;
+    font-size: 1.3rem;
+    font-weight: 500;
+
+    &:hover {
+      font-size: 1.35rem;
+      color: crimson;
+    }
+  }
+}
+
+.imageContainer {
+  justify-self: center;
+  width: 4rem;
+  @include tablet {
+    width: 6rem;
+  }
+  img {
+    position: relative;
+    top: 20%;
+    width: 4rem;
+    @include tablet {
+      width: 6rem;
+    }
+  }
+}
+
+.subCat {
+  margin-bottom: 0.6rem;
+  a {
+    text-decoration: none;
+    color: crimson;
+    font-size: 1rem;
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}
+
+.location {
+  margin-bottom: 0.6rem;
+  a {
+    text-decoration: none;
+    color: $primaryBlue;
+    font-size: 1rem;
+    font-style: italic;
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}
+
+.price {
+  font-size: 0.8rem;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  color: $primaryGolden;
+  @include tablet {
+    font-size: 0.9rem;
+  }
+}
+
+.desc {
+  width: 80%;
+  padding: 1rem;
+  margin: 0.5rem auto 0 auto;
+  font-size: 0.8rem;
+  color: $lightBlue;
+  background-color: rgba(gray, 0.1);
+}
+
+.rating {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  column-gap: 0.8rem;
+  font-size: 0.9rem;
+}

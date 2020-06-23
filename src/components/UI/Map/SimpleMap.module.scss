@@ -1,0 +1,19 @@
+@import "../../../styles/variables";
+
+.rating {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  column-gap: 0.3rem;
+}
+
+.popUpTitle {
+  a {
+    font-size: 0.9rem;
+    color: $orange;
+    text-decoration: none;
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}

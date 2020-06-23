@@ -1,0 +1,40 @@
+@import "../../../../styles/variables";
+
+.btnSection {
+  text-align: center;
+  margin-top: 1rem auto;
+  a {
+    text-decoration: none;
+  }
+  @include desktop {
+    text-align: right;
+    margin-top: 0;
+  }
+}
+.btnSection2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  a {
+    text-decoration: none;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  background-color: $primaryGolden;
+  color: #fff;
+  margin-right: 2rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn2 {
+  padding: 0.5rem 1rem;
+  background-color: rgb(143, 173, 136);
+  color: #fff;
+  cursor: pointer;
+  margin-right: 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+}
