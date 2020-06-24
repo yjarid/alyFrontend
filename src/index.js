@@ -69,7 +69,7 @@ const Index = () => {
           }
         },
         fetchAccessToken: () => {
-          return fetch(`${process.env.REACT_APP_BACKENDURL || "http://104.248.135.187"}/refresh`, {
+          return fetch(`${process.env.REACT_APP_BACKENDURL || "https://104.248.135.187"}/refresh`, {
             method: "POST",
             credentials: "include"
           })
