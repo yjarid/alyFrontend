@@ -16,7 +16,18 @@ const App = () => {
     return console.log("unmouted")
   }, [])
 
-  return <>{loading ? <Spinner /> : <AppRouter />}</>
+  return (
+    <>
+      {loading ? (
+        <Spinner />
+      ) : (
+        // to maintain footer at the botom of the page
+        <div className="wraper">
+          <AppRouter />
+        </div>
+      )}
+    </>
+  )
 }
 
 export default App

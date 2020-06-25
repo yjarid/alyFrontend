@@ -2,9 +2,11 @@
 
 footer {
   margin-top: 2rem;
-  background-color: #eee;
-  padding: 1px 0;
+
+  padding-top: 1rem;
   text-align: center;
+  width: 100%;
+  background-color: #eee;
   ul,
   li {
     font-size: 0.8rem;
@@ -23,7 +25,8 @@ footer {
   grid-column-gap: 0.6rem;
   justify-items: start;
   width: 80%;
-  margin: 1rem auto 2rem auto;
+  margin: auto;
+  padding: 1rem auto 2rem auto;
 
   @include tablet {
     width: 90%;

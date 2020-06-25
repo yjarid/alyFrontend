@@ -4,7 +4,7 @@ import axios from "axios"
 import createAuthRefreshInterceptor from "axios-auth-refresh"
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_BACKENDURL || "https://104.248.135.187",
+  baseURL: process.env.REACT_APP_BACKENDURL || "https://alybackend.com",
   withCredentials: true
 })
 

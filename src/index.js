@@ -69,7 +69,7 @@ const Index = () => {
           }
         },
         fetchAccessToken: () => {
-          return fetch(`${process.env.REACT_APP_BACKENDURL || "https://104.248.135.187"}/refresh`, {
+          return fetch(`${process.env.REACT_APP_BACKENDURL || "https://alybackend.com"}/refresh`, {
             method: "POST",
             credentials: "include"
           })
@@ -90,7 +90,7 @@ const Index = () => {
 
       requestLink,
       new createUploadLink({
-        uri: process.env.REACT_APP_BACKENDURL || "http://104.248.135.187",
+        uri: process.env.REACT_APP_BACKENDURL || "https://alybackend.com",
         credentials: "include"
       })
     ]),
