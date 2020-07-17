@@ -8,11 +8,10 @@ import { GET_TOP_FEATURED_IMAGES } from "../../../qraphQl/imageType"
 import { upCaseFirstLetter } from "../../../utils/string"
 import { Link } from "react-router-dom"
 import { useMediaQuery } from "react-responsive"
-import { requiredFieldMessage } from "graphql/validation/rules/ValuesOfCorrectType"
 
 const FPHeader = () => {
   const [imageIndex, setImageIndex] = useState(null)
-  const { data } = useQuery(GET_TOP_FEATURED_IMAGES, { variables: { topFeatured: true, limit: 4 } })
+  const { data } = useQuery(GET_TOP_FEATURED_IMAGES, { variables: { featured: "ONE", limit: 4 } })
   const images = data ? data.images : null
 
   const isTablet = useMediaQuery({ query: "(min-device-width: 768px)" })

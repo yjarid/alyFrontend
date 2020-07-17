@@ -47,7 +47,7 @@ function BuzSinglePage(props) {
         <>
           <BuzSinglePic reviews={reviews} />
           <BuzSingleHead business={business} history={props.history} />
-          <BuzSingleDesc desc={business.desc} />
+          <BuzSingleDesc desc={business.desc} phone={business.phone} address={business.address} />
           <BuzSingleReviews reviews={reviews} />
         </>
       )}

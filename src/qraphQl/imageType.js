@@ -18,16 +18,17 @@ export const UPDATE_IMAGE_CLAPS = gql`
   }
 `
 
-export const UPDATE_IMAGE_DESC = gql`
-  mutation UpdateImage($id: ID!, $picture: String, $desc: String, $claps: Int) {
-    updateImage(id: $id, data: { picture: $picture, desc: $desc, claps: $claps }) {
+export const UPDATE_IMAGE = gql`
+  mutation UpdateImage($id: ID!, $picture: String, $desc: String, $claps: Int, $alyScore: Int) {
+    updateImage(id: $id, data: { picture: $picture, desc: $desc, claps: $claps, alyScore: $alyScore }) {
       desc
+      alyScore
     }
   }
 `
 
 export const GET_FEATURED_IMAGES = gql`
-  query Images($featured: Boolean, $limit: Int) {
+  query Images($featured: Featured, $limit: Int) {
     images(featured: $featured, limit: $limit) {
       _id
       picture
@@ -56,8 +57,8 @@ export const GET_FEATURED_IMAGES = gql`
 `
 
 export const GET_TOP_FEATURED_IMAGES = gql`
-  query Images($limit: Int, $topFeatured: Boolean) {
-    images(topFeatured: $topFeatured, limit: $limit) {
+  query Images($limit: Int, $featured: Featured) {
+    images(featured: $featured, limit: $limit) {
       _id
       picture
       desc

@@ -47,7 +47,7 @@ export default function AllBusiness() {
   }
 
   const fetchBus = () => {
-    let variab = {}
+    let variab = { limit: 50 }
 
     if (FilterValue) {
       variab = { ...variab, query: FilterValue }
@@ -63,8 +63,7 @@ export default function AllBusiness() {
     }
 
     // PART CATEGORY
-    console.log(subCat)
-    console.log(subCat.length)
+
     if (subCat.length > 0) {
       variab = { ...variab, subCat }
     }
@@ -77,6 +76,8 @@ export default function AllBusiness() {
 
     getBusiness({ variables: variab })
   }
+
+  console.log(data)
 
   return (
     <Fragment>
@@ -92,7 +93,7 @@ export default function AllBusiness() {
         )}
       </div>
 
-      <TablePaginat finData={data ? data.businesses.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) : []} />
+      <TablePaginat finData={data ? data.businesses.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)) : []} />
     </Fragment>
   )
 }

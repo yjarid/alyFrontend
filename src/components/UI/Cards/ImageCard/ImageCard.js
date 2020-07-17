@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react"
 import { useMutation } from "@apollo/react-hooks"
-import { UPDATE_IMAGE_DESC } from "../../../../qraphQl/imageType"
+import { UPDATE_IMAGE } from "../../../../qraphQl/imageType"
 import styles from "./ImageCard.module.scss"
 import Spinner from "../../Spinner/Spinner"
 
@@ -10,7 +10,7 @@ const ImageCard = ({ singleImg, isOwner }) => {
   const [displayedDesc, setDisplayedDesc] = useState(singleImg.desc)
   const [desc, setDesc] = useState("Add description")
   const [error, setError] = useState(null)
-  const [updateImage, { loading }] = useMutation(UPDATE_IMAGE_DESC, {
+  const [updateImage, { loading }] = useMutation(UPDATE_IMAGE, {
     onCompleted({ updateImage }) {
       setIsSubmiting(false)
       setDisplayedDesc(updateImage.desc)

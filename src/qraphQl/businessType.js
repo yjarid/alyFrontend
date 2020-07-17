@@ -33,6 +33,7 @@ export const GET_BUSINESS_WITH_REVIEWS = gql`
       desc
       excerpt
       address
+      phone
       city
       neighborhood
       cat
@@ -123,7 +124,7 @@ export const UPDATE_BUSINESS = gql`
 `
 
 export const CREATE_BUSINESS = gql`
-  mutation CreateBusiness($picture: Upload, $name: String!, $desc: String!, $excerpt: String, $address: String, $city: String!, $neighborhood: String!, $cat: String!, $subCat: [String!], $latitude: String, $longitude: String, $price: String, $phone: String) {
+  mutation CreateBusiness($picture: Upload, $name: String!, $desc: String, $excerpt: String, $address: String, $city: String!, $neighborhood: String!, $cat: String!, $subCat: [String!], $latitude: String, $longitude: String, $price: String, $phone: String) {
     createBusiness(data: { picture: $picture, name: $name, desc: $desc, excerpt: $excerpt, address: $address, city: $city, neighborhood: $neighborhood, cat: $cat, subCat: $subCat, latitude: $latitude, longitude: $longitude, price: $price, phone: $phone }) {
       _id
       name

@@ -36,7 +36,7 @@ const BuzCard = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className={styles.desc}>{data.desc ? truncate(data.desc, 30) : null}</div>
+        {data.desc && <div className={styles.desc}>{truncate(data.desc, 30)}</div>}
       </div>
     </div>
   )

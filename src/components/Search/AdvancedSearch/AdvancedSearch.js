@@ -10,8 +10,11 @@ import Page from "../../Page/Page"
 import { DispatchContext } from "../../../Context"
 import MapResultPage from "../../MapResultPage/MapResultPage"
 import TopBar from "../../TopBar/TopBar"
+import queryString from "query-string"
+import { Redirect } from "react-router-dom"
 
-export default function AdvancedSearch() {
+export default function AdvancedSearch(props) {
+  const { cityParam, categoryParam } = queryString.parse(props.location.search)
   const appDispatch = useContext(DispatchContext)
   const [showFilter, setShowFilter] = useState(false)
   const [zoom, setZoom] = useState(8)
@@ -20,15 +23,16 @@ export default function AdvancedSearch() {
   const [neighborhood, setNeighborhood] = useState(null)
   const [neighName, setNeighName] = useState(null)
   const [city, setCity] = useState(null)
-  const [cityName, setCityName] = useState(null)
+  const [cityName, setCityName] = useState(cityParam)
   const [subCat, setSubCat] = useState([])
-  const [cat, setCat] = useState("restaurant")
+  const [cat, setCat] = useState(categoryParam || "restaurant")
 
   let [getBusiness, { data, error, loading }] = useLazyQuery(GET_BUSINESSES, { fetchPolicy: "network-only" })
 
   const dataFinal = typeof data != "undefined" ? data.businesses : []
 
   useEffect(() => {
+    props.history.push(`/map?cityParam=${cityName}&categoryParam=${cat}`)
     fetchBus()
     setShowFilter(false)
   }, [bound[0], price, neighName, JSON.stringify(subCat), cityName, cat])
@@ -46,10 +50,12 @@ export default function AdvancedSearch() {
     setSubCat([])
     if (initNeighborhood) {
       let parseNeigh = JSON.parse(initNeighborhood)
+      console.log(parseNeigh)
       setNeighborhood(parseNeigh)
-      setNeighName(parseNeigh.name)
+      setNeighName(parseNeigh.neigh)
       setZoom(13)
-    } else {
+    }
+    if (initCity) {
       // if neigh is not defined filter with city
       let parseCity = JSON.parse(initCity)
       setCity(parseCity)
@@ -80,12 +86,12 @@ export default function AdvancedSearch() {
     }
 
     // PART LOCATION
-    if (neighborhood) {
-      variab = { ...variab, neighborhood: neighborhood.neigh }
+    if (neighName) {
+      variab = { ...variab, neighborhood: neighName }
     } else {
       // if neigh is not efine we will filter by city
-      if (city) {
-        variab = { ...variab, city: city.name }
+      if (cityName) {
+        variab = { ...variab, city: cityName }
       }
     }
 

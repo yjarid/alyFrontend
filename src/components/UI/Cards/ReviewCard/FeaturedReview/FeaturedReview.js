@@ -1,6 +1,4 @@
-import React from "react"
-import { useQuery } from "@apollo/react-hooks"
-import { GET_REVIEWS } from "../../../../../qraphQl/reviewType"
+import React, { useContext } from "react"
 import { upCaseFirstLetter } from "../../../../../utils/string"
 import Clap from "../../../Clap/Clap"
 import styles from "./FeaturedReview.module.scss"
@@ -11,16 +9,18 @@ import imageFromReviews from "../../../../../utils/imageFromReviews"
 import { BsFillPeopleFill, BsStarFill } from "react-icons/bs"
 import { AiFillCamera } from "react-icons/ai"
 import { FaUserCircle } from "react-icons/fa"
+import { StateContext, DispatchContext } from "../../../../../Context"
+import AlyScore from "../../../AlyScore/AlyScore"
 
-function FeaturedReview() {
-  const { data, error, loading } = useQuery(GET_REVIEWS, { variables: { featured: true, limit: 4 } })
-
-  let reviews = data ? data.reviews : []
+function FeaturedReview({ reviews }) {
+  // this par is only for admin rating of reviews
+  const appState = useContext(StateContext)
 
   return (
     <>
       {reviews.map(rev => {
         let modalInfo = imageFromReviews(rev)
+        console.log(modalInfo)
         return (
           <div className={styles.revContainer} id={rev._id} key={rev._id}>
             <div className={styles.revContainerInner}>
@@ -67,6 +67,7 @@ function FeaturedReview() {
             </div>
 
             <Clap claps={rev.claps || 0} id={rev._id} type="review" />
+            {appState.user.type == "ADMIN" && <AlyScore type="review" id={rev._id} initAlyScore={rev.alyScore} />}
           </div>
         )
       })}

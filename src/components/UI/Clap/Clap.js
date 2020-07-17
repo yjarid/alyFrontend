@@ -133,7 +133,6 @@ const ClapCount = ({ count, setRef }) => {
 }
 
 const CountTotal = ({ countTotal, setRef }) => {
-  console.log(countTotal)
   return (
     <span ref={setRef} data-refkey="clapTotalRef" className={styles.total}>
       {countTotal}

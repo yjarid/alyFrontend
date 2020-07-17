@@ -211,7 +211,7 @@ const BusinessForm = withFormik({
     }
   },
   validationSchema: Yup.object().shape({
-    name: Yup.string().required("Name is required").max(40, "should be at most 40 characters"),
+    name: Yup.string().required("Name is required").max(60, "should be at most 60 characters"),
     desc: Yup.string().max(500, "should be at most 500 characters"),
     excerpt: Yup.string().max(120, "should be at most 120 characters"),
     address: Yup.string().max(200, "should be at most 200 characters"),

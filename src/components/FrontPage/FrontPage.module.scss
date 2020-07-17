@@ -1,5 +1,39 @@
 @import "../../styles/variables";
 
+.mainCategory {
+  cursor: pointer;
+
+  @include tablet {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1rem;
+  }
+}
+
+.categoryItem {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 1rem;
+  &:hover {
+    border: 1px solid $lightBlue;
+  }
+  img {
+    width: 100%;
+    height: 12rem;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+
+.categoryItemName {
+  text-align: center;
+  color: $lightBlue;
+  margin-top: 0.5rem;
+  font-weight: 400;
+}
+
 .reviewGrid {
   @include tablet {
     display: grid;

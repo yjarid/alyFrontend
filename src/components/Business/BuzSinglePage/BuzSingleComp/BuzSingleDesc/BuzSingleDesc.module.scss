@@ -8,3 +8,31 @@
     padding: 2rem;
   }
 }
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-column-gap: 0.6rem;
+}
+
+.info {
+  padding: 1rem;
+  background-color: #eee;
+}
+
+.itemContainer {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-column-gap: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.infoName {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: $lightBlue;
+}
+
+.infoDetail {
+  font-size: 0.8rem;
+}

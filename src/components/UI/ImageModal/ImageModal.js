@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Link } from "react-router-dom"
 import { timeAgo } from "../../../utils/timeAgo"
 import styles from "./ImageModal.module.scss"
@@ -6,8 +6,13 @@ import { FaUserCircle } from "react-icons/fa"
 import { BsStarFill } from "react-icons/bs"
 import { AiFillCamera } from "react-icons/ai"
 import Clap from "../Clap/Clap"
+import AlyScore from "../AlyScore/AlyScore"
+import { StateContext } from "../../../Context"
 
 export default function ImageModal({ close, images, selectedImg, type }) {
+  // this par is only for admin rating of reviews
+  const appState = useContext(StateContext)
+
   let initialIndex = selectedImg ? selectedImg : 0
   const [index, setIndex] = useState(initialIndex)
 
@@ -47,6 +52,8 @@ export default function ImageModal({ close, images, selectedImg, type }) {
         <div className={styles.likebtn}>
           <Clap claps={images[index].picClaps} id={images[index].picId} />
         </div>
+
+        {appState.user.type == "ADMIN" && <AlyScore type="image" initAlyScore={images[index].picAlyScore} id={images[index].picId} />}
       </div>
       <div className={styles.image}>
         <span className={styles.close} onClick={close}>
