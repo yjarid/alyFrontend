@@ -29,8 +29,8 @@ export const GET_REVIEWS = gql`
         _id
         picture
         desc
-        alyScore
         claps
+        alyScore
       }
       author {
         userName

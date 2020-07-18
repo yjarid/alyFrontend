@@ -20,7 +20,7 @@ const FPHeader = () => {
   let ImageSize = isDesk ? "t_huge" : isTablet ? "t_large" : "t_meduim"
 
   useEffect(() => {
-    let index = Math.floor(Math.random() * 4)
+    let index = Math.round(Math.random() * 3)
     setImageIndex(index)
   }, [])
 

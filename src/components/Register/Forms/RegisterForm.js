@@ -4,9 +4,10 @@ import styles from "./Register.module.scss"
 import { withFormik, Form } from "formik"
 import { MyTextField, MyButton } from "../../UI/CustomFields/CustomField"
 import * as Yup from "yup"
+import Recaptcha from "react-recaptcha"
 
 const RegisterForm = ({ register, loading }) => {
-  const myForm = ({ values, errors, touched, isSubmitting }) => {
+  const myForm = ({ values, errors, touched, isSubmitting, setFieldValue }) => {
     return (
       <div className={styles.topContainer}>
         <div className="container">
@@ -24,7 +25,17 @@ const RegisterForm = ({ register, loading }) => {
               <div>
                 <MyTextField disabled={false} type="password" name="password" label="Password" />
               </div>
-
+              <Recaptcha
+                sitekey="6LcA27IZAAAAAONh09JBYrX0fcz_wOdELDvJ6T7k"
+                render="explicit"
+                theme="dark"
+                verifyCallback={response => {
+                  setFieldValue("recaptcha", response)
+                }}
+                onloadCallback={() => {
+                  console.log("done loading!")
+                }}
+              />
               <MyButton type="submit">Register</MyButton>
             </div>
           </Form>
