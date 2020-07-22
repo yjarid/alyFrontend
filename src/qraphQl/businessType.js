@@ -1,8 +1,8 @@
 import gql from "graphql-tag"
 
 export const GET_BUSINESS = gql`
-  query Business($id: ID!, $onlyAuthor: Boolean, $preview: Boolean) {
-    business(id: $id, onlyAuthor: $onlyAuthor, preview: $preview) {
+  query Business($id: ID!, $onlyAuthor: Boolean, $preview: Boolean, $published: Boolean) {
+    business(id: $id, onlyAuthor: $onlyAuthor, preview: $preview, published: $published) {
       name
       desc
       excerpt
@@ -26,8 +26,8 @@ export const GET_BUSINESS = gql`
 `
 
 export const GET_BUSINESS_WITH_REVIEWS = gql`
-  query Business($id: ID!, $onlyAuthor: Boolean) {
-    business(id: $id, onlyAuthor: $onlyAuthor) {
+  query Business($id: ID!, $onlyAuthor: Boolean, $published: Boolean) {
+    business(id: $id, onlyAuthor: $onlyAuthor, published: $published) {
       _id
       name
       desc
@@ -76,14 +76,15 @@ export const GET_BUSINESS_WITH_REVIEWS = gql`
 `
 
 export const GET_BUSINESSES = gql`
-  query Businesses($published: Boolean, $query: String, $limit: Int, $type: String, $cat: String, $subCat: [String], $city: String, $neighborhood: String, $price: String, $bound: [Float], $authorId: ID) {
-    businesses(published: $published, limit: $limit, query: $query, type: $type, cat: $cat, subCat: $subCat, city: $city, neighborhood: $neighborhood, price: $price, bound: $bound, authorId: $authorId) {
+  query Businesses($published: Boolean, $query: String, $limit: Int, $type: String, $cat: String, $subCat: [String], $city: String, $neighborhood: String, $price: String, $bound: [Float], $authorId: ID, $orderBy: ORDERBY) {
+    businesses(published: $published, limit: $limit, query: $query, type: $type, cat: $cat, subCat: $subCat, city: $city, neighborhood: $neighborhood, price: $price, bound: $bound, authorId: $authorId, orderBy: $orderBy) {
       _id
       name
       excerpt
       address
       city
       neighborhood
+      score
       location {
         coordinates
       }

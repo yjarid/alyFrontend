@@ -37,7 +37,7 @@ function TaxBizList(props) {
   }, [])
 
   useEffect(() => {
-    let variables = { limit: 20 }
+    let variables = { limit: 20, published: true }
     if (type == "location") {
       variables.cat = cat
       if (subTax) {

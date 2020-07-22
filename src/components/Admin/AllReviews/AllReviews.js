@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from "react"
 import { useQuery } from "@apollo/react-hooks"
-import { GET_BUSINESSES } from "../../../qraphQl/businessType"
 import { GET_REVIEWS } from "../../../qraphQl/reviewType"
 import styles from "./AllReviews.module.scss"
 import FeaturedReview from "../../UI/Cards/ReviewCard/FeaturedReview/FeaturedReview"

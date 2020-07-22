@@ -13,7 +13,7 @@ function BuzSinglePage(props) {
   const appDispatch = useContext(DispatchContext)
 
   const { loading, error, data } = useQuery(GET_BUSINESS_WITH_REVIEWS, {
-    variables: { id: props.match.params.id, onlyAuthor: false }
+    variables: { id: props.match.params.id, onlyAuthor: false, published: true }
   })
 
   useEffect(() => {

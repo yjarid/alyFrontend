@@ -77,7 +77,7 @@ export default function AdvancedSearch(props) {
   }
 
   const fetchBus = () => {
-    let variab = {}
+    let variab = { published: true }
     let limit = 20
 
     // PART PRICE
