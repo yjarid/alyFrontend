@@ -16,14 +16,15 @@ export const CREATE_REVIEW = gql`
   }
 `
 export const GET_REVIEWS = gql`
-  query Reviews($featured: Featured, $limit: Int) {
-    reviews(featured: $featured, limit: $limit) {
+  query Reviews($featured: Featured, $limit: Int, $published: Boolean) {
+    reviews(featured: $featured, limit: $limit, published: $published) {
       _id
       text
       rating
       claps
       clappers
       alyScore
+      published
       createdAt
       picture {
         _id
@@ -56,26 +57,12 @@ export const GET_REVIEWS = gql`
 `
 
 export const UPDATE_REVIEW = gql`
-  mutation UpdateReview($id: ID!, $claps: Int, $alyScore: Int) {
-    updateReview(id: $id, data: { claps: $claps, alyScore: $alyScore }) {
-      _id
-      author {
-        _id
-      }
-      business {
-        _id
-        name
-      }
-      claps
-    }
-  }
-`
-
-export const UPDATE_REVIEW_ALYSCORE = gql`
-  mutation UpdateReview($id: ID!, $alyScore: Int) {
-    updateReview(id: $id, data: { alyScore: $alyScore }) {
+  mutation UpdateReview($id: ID!, $claps: Int, $alyScore: Int, $published: Boolean) {
+    updateReview(id: $id, data: { claps: $claps, alyScore: $alyScore, published: $published }) {
       _id
       alyScore
+      published
+      claps
     }
   }
 `

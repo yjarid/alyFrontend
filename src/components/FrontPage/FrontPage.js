@@ -20,7 +20,7 @@ const CATEGORY = [
 ]
 
 function FrontPage() {
-  const { data, error, loading } = useQuery(GET_REVIEWS, { variables: { featured: "ONE", limit: 4 } })
+  const { data, error, loading } = useQuery(GET_REVIEWS, { variables: { featured: "ONE", limit: 4, published: true } })
 
   let reviews = data ? data.reviews : []
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { UPDATE_IMAGE } from "../../../qraphQl/imageType"
-import { UPDATE_REVIEW_ALYSCORE } from "../../../qraphQl/reviewType"
+import { UPDATE_REVIEW } from "../../../qraphQl/reviewType"
 import { useMutation } from "@apollo/react-hooks"
 import { useEffect } from "react"
 
@@ -12,7 +12,7 @@ function AlyScore({ type, id, initAlyScore }) {
     setAlyScore(initAlyScore)
   }, [initAlyScore])
 
-  const graphQlQuery = type == "review" ? UPDATE_REVIEW_ALYSCORE : UPDATE_IMAGE
+  const graphQlQuery = type == "review" ? UPDATE_REVIEW : UPDATE_IMAGE
 
   const [updateAlyScore, { data, error, loading }] = useMutation(graphQlQuery)
 

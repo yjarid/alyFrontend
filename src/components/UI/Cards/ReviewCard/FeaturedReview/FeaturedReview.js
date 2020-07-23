@@ -11,10 +11,14 @@ import { AiFillCamera } from "react-icons/ai"
 import { FaUserCircle } from "react-icons/fa"
 import { StateContext, DispatchContext } from "../../../../../Context"
 import AlyScore from "../../../AlyScore/AlyScore"
+import { useMutation } from "@apollo/react-hooks"
+import { UPDATE_REVIEW } from "../../../../../qraphQl/reviewType"
 
 function FeaturedReview({ reviews }) {
   // this par is only for admin rating of reviews
   const appState = useContext(StateContext)
+
+  const [updateReview, { data, error, loading }] = useMutation(UPDATE_REVIEW)
 
   return (
     <>
@@ -67,7 +71,12 @@ function FeaturedReview({ reviews }) {
             </div>
 
             <Clap claps={rev.claps || 0} id={rev._id} type="review" />
-            {appState.user.type == "ADMIN" && <AlyScore type="review" id={rev._id} initAlyScore={rev.alyScore} />}
+            {appState.user.type == "ADMIN" && (
+              <>
+                <AlyScore type="review" id={rev._id} initAlyScore={rev.alyScore} />
+                <button onClick={() => updateReview({ variables: { id: rev._id, published: !rev.published } })}>{rev.published ? "Unpublish" : "Publish"}</button>
+              </>
+            )}
           </div>
         )
       })}
