@@ -2,9 +2,9 @@ import React, { useState, useContext } from "react"
 import { Link } from "react-router-dom"
 import styles from "./TablePaginat.module.scss"
 import { useMutation } from "@apollo/react-hooks"
-import { DELETE_BUSINESS, UPDATE_BUSINESS } from "../../../../qraphQl/businessType"
-import { truncate } from "../../../../utils/string"
-import { DispatchContext } from "../../../../Context"
+import { DELETE_BUSINESS, UPDATE_BUSINESS } from "../../../qraphQl/businessType"
+import { truncate } from "../../../utils/string"
+import { DispatchContext } from "../../../Context"
 import PaginationAction from "./PaginationAction"
 import { makeStyles, Table, TableCell, TableHead, TableBody, TableContainer, TableFooter, TablePagination, TableRow, Paper, StylesProvider } from "@material-ui/core"
 
@@ -104,7 +104,7 @@ export default function TablePaginat({ finData }) {
                 <span className={styles.deleteBtn} onClick={() => handleDeleteBus(row._id)}>
                   delete
                 </span>
-                <button onClick={() => togglePublish(row._id, row.published)}> publish</button>
+                <button onClick={() => togglePublish(row._id, row.published)}> {row.published ? "Unpublish" : "Publish"}</button>
               </TableCell>
             </TableRow>
           ))}

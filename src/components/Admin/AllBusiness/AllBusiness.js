@@ -3,7 +3,7 @@ import AdvanceFilter from "../../UI/AdvanceFilter/AdvanceFilter"
 import { GET_BUSINESSES } from "../../../qraphQl/businessType"
 import { useLazyQuery } from "@apollo/react-hooks"
 import styles from "./AllBusiness.module.scss"
-import TablePaginat from "./TablePaginat/TablePaginat"
+import TablePaginat from "../TablePaginat/TablePaginat"
 
 export default function AllBusiness() {
   const [value, setValue] = useState(null)

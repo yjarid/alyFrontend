@@ -9,6 +9,7 @@ import AddNewBus from "./AddNewBus/AddNewBus"
 import AllBusiness from "./AllBusiness/AllBusiness"
 import Location from "./Location/Location"
 import Category from "./Category/Category"
+import BusNotPub from "./BusNotPub/BusNotPub"
 import { ME } from "../../qraphQl/userType"
 
 export default function AdminMain(props) {
@@ -29,6 +30,7 @@ export default function AdminMain(props) {
           <Route path={`/admin/claim`} render={() => <Claim />} />
           <Route path={`/admin/report`} render={() => <Report />} />
           <Route path={`/admin/all`} render={() => <AllBusiness />} />
+          <Route path={`/admin/busNPub`} render={() => <BusNotPub />} />
           <Route path={`/admin/location`} render={() => <Location />} />
           <Route path={`/admin/category`} render={() => <Category />} />
           <Route path={`/admin/add`} render={() => <AddNewBus />} />

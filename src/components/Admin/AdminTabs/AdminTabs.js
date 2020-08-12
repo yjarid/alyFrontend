@@ -19,6 +19,7 @@ const ProfileTabs = ({ history, tab }) => {
         <Tab label="RevClm" value="claim" />
         <Tab label="RevRep" value="report" />
         <Tab label="AllBus" value="all" />
+        <Tab label="Bus N Pub" value="busNPub" />
         <Tab label="Location" value="location" />
         <Tab label="Category" value="category" />
         <Tab label="ADD" value="add" />

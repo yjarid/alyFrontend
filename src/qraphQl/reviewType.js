@@ -63,6 +63,12 @@ export const UPDATE_REVIEW = gql`
       alyScore
       published
       claps
+      author {
+        _id
+      }
+      business {
+        _id
+      }
     }
   }
 `

@@ -9,6 +9,7 @@ function DropZone({ field, form }) {
 
   const onDrop = useCallback(acceptedFiles => {
     const file = acceptedFiles[0]
+
     const myFileReader = new FileReader()
     myFileReader.addEventListener(
       "load",

@@ -53,7 +53,7 @@ const ResetPassword = () => {
       instance
         .post("/reset-password", values)
         .then(res => {
-          appDispatch({ type: "flashMessage", value: { message: `hello ${res.data.userName} a link was sent to your email to reset your password`, type: "success" } })
+          appDispatch({ type: "flashMessage", value: { message: `hello ${res.data.name} a link was sent to your email to reset your password`, type: "success" } })
         })
         .catch(err => {
           appDispatch({ type: "flashMessage", value: { message: err.response.data.message, type: "error" } })

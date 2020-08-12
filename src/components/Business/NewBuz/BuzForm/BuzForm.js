@@ -224,6 +224,7 @@ const BusinessForm = withFormik({
 
   handleSubmit: (values, { props, resetForm }) => {
     let pictureId = values.picture
+    console.log(pictureId)
     if (typeof pictureId == "string") {
       pictureId = values.picture ? values.picture.split("/images/")[1] : null
     }
