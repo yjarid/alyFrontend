@@ -12,7 +12,7 @@ import { useQuery } from "@apollo/react-hooks"
 import { ME } from "../../../qraphQl/userType"
 
 const ProfileMain = ({ info, tab }) => {
-  let { recipient, followings, followers, business, reviews, ...user } = info
+  let { recipient, followings, followers, ownedBus, reviews, ...user } = info
   const { data } = useQuery(ME)
 
   // const tab = match.params.tab
@@ -28,7 +28,7 @@ const ProfileMain = ({ info, tab }) => {
       <div className={styles.mainArea}>
         <Switch>
           <Route path={`/profile/:id`} render={() => <ProfileFeed />} exact={true} />
-          <Route path={`/profile/:id/business`} render={() => <ProfileBusiness business={business} isOwner={isOwner} />} />
+          <Route path={`/profile/:id/business`} render={() => <ProfileBusiness ownedBus={ownedBus} isOwner={isOwner} />} />
           <Route path={`/profile/:id/photo`} render={() => <ProfilePhoto reviews={reviews} isOwner={isOwner} />} />
           <Route path={`/profile/:id/friend`} render={() => <ProfileFriend friend={followers} />} />
           <Route path={`/profile/:id/review`} render={() => <ProfileReview reviews={reviews} />} />

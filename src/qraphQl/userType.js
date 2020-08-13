@@ -82,7 +82,7 @@ export const PROFILE_INFO = gql`
       city
       nbrRev
       revPic
-      business {
+      ownedBus {
         _id
         name
         desc

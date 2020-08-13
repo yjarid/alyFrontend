@@ -18,7 +18,7 @@ const EditBuz = props => {
   const id = props.match.params.id
 
   const { loading, error, data } = useQuery(GET_BUSINESS, {
-    variables: { id, onlyAuthor: true }
+    variables: { id, onlyOwner: true }
   })
 
   useEffect(() => {
@@ -47,22 +47,22 @@ const EditBuz = props => {
     return <Spinner />
   }
 
-  if (error) {
-    window.scrollTo(0, 0)
-    appDispatch({ type: "flashMessage", value: { message: "Somethicng is wrong please try again later", type: "error" } })
-  }
-
   let finalData = updatedBus || (data ? data.business : null)
 
   return (
     <Page title="Edit Business" withTopBar={false}>
-      {appState.user.type == "ADMIN" && data.business.published && (
-        <div className={styles.unpublish} onClick={upublishBus}>
-          Unpublish
-        </div>
+      {finalData && (
+        <>
+          {appState.user.type == "ADMIN" && data.business.published && (
+            <div className={styles.unpublish} onClick={upublishBus}>
+              Unpublish
+            </div>
+          )}
+
+          <h3 className={styles.formTitle}>Edit {finalData.name}</h3>
+          <BuzForm onSubmit={updateBusiness} {...finalData} id={id} />
+        </>
       )}
-      <h3 className={styles.formTitle}>Edit {data.business.name}</h3>
-      <BuzForm onSubmit={updateBusiness} {...data.business} id={id} />
     </Page>
   )
 }

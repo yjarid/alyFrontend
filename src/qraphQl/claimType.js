@@ -1,8 +1,8 @@
 import gql from "graphql-tag"
 
 export const GET_CLAIMS = gql`
-  query Claims {
-    claims {
+  query Claims($status: String) {
+    claims(status: $status) {
       _id
       status
       createdAt

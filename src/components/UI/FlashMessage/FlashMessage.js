@@ -2,7 +2,6 @@ import React from "react"
 import styles from "./FlashMessage.module.scss"
 
 const FlashMessage = React.forwardRef((props, ref) => {
-  console.log(props)
   return (
     <div ref={ref} className={styles.floatingAlerts}>
       {props.messages.map((msg, index) => {

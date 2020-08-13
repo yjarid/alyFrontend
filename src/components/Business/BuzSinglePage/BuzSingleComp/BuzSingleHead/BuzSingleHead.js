@@ -11,7 +11,7 @@ import AddReview from "../../../../Review/AddReview"
 import { loginRequired } from "../../../../../AccessToken"
 import { StyledRating } from "../../../../UI/CustomFields/StyledRating"
 import { upCaseFirstLetter } from "../../../../../utils/string"
-import { DispatchContext } from "../../../../../Context"
+import { DispatchContext, StateContext } from "../../../../../Context"
 import { useMediaQuery } from "react-responsive"
 import { AiOutlineShop } from "react-icons/ai"
 
@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 function BuzSingleHead({ history, business }) {
   const classes = useStyles()
   const [buzStat, setBuzStat] = useState(null)
+  const appState = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
   const [modal, setModal] = useState(false)
   const isTablet = useMediaQuery({
@@ -37,19 +38,14 @@ function BuzSingleHead({ history, business }) {
   let { _id, name, neighborhood, city, picture, subCat, cat, nbrRev, totRev, owner, price } = business
   const [createClaim, { data, error, loading }] = useMutation(CREATE_CLAIM, {
     onCompleted() {
-      appDispatch({ type: "flashMessage", value: { message: `claim is sent, we will soon contact you via email`, type: "success" } })
+      appDispatch({ type: "flashMessage", value: { message: `claim is sent, we will contact you via email in the next 48 hours`, type: "success" } })
       window.scrollTo(0, 0)
     },
-    onError() {
-      appDispatch({ type: "flashMessage", value: { message: "Somethicng is wrong please try again later", type: "error" } })
+    onError(err) {
+      appDispatch({ type: "flashMessage", value: { message: err.message.replace("GraphQL error:", ""), type: "error" } })
       window.scrollTo(0, 0)
     }
   })
-
-  if (error) {
-    appDispatch({ type: "flashMessage", value: { message: "Somethicng is wrong please try again later", type: "error" } })
-    window.scrollTo(0, 0)
-  }
 
   if (buzStat != null) {
     nbrRev = buzStat.nbrRev
@@ -65,8 +61,6 @@ function BuzSingleHead({ history, business }) {
   const claimIt = () => {
     createClaim({ variables: { business: _id } })
   }
-
-  console.log(price)
 
   return (
     <Fragment>
@@ -100,7 +94,7 @@ function BuzSingleHead({ history, business }) {
         </div>
 
         <div className={styles.reviewClaim}>
-          <div>
+          <div className={styles.reviewBtn}>
             <Chip
               className={classes.chip}
               color="primary"
@@ -118,9 +112,9 @@ function BuzSingleHead({ history, business }) {
           </div>
 
           {!owner && (
-            <p className={styles.claim} onClick={claimIt}>
+            <div className={styles.claim} onClick={claimIt}>
               Claim it !
-            </p>
+            </div>
           )}
         </div>
       </div>

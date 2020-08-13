@@ -14,8 +14,6 @@ function Business(props) {
     setIndex(i)
   }
 
-  console.log(datRev)
-
   return (
     <div className={styles.container}>
       <div>

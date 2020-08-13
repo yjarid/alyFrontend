@@ -1,8 +1,8 @@
 import gql from "graphql-tag"
 
 export const GET_BUSINESS = gql`
-  query Business($id: ID!, $onlyAuthor: Boolean, $preview: Boolean, $published: Boolean) {
-    business(id: $id, onlyAuthor: $onlyAuthor, preview: $preview, published: $published) {
+  query Business($id: ID!, $onlyOwner: Boolean, $preview: Boolean, $published: Boolean) {
+    business(id: $id, onlyOwner: $onlyOwner, preview: $preview, published: $published) {
       name
       desc
       excerpt
@@ -26,8 +26,8 @@ export const GET_BUSINESS = gql`
 `
 
 export const GET_BUSINESS_WITH_REVIEWS = gql`
-  query Business($id: ID!, $onlyAuthor: Boolean, $published: Boolean) {
-    business(id: $id, onlyAuthor: $onlyAuthor, published: $published) {
+  query Business($id: ID!, $onlyOwner: Boolean, $published: Boolean) {
+    business(id: $id, onlyOwner: $onlyOwner, published: $published) {
       _id
       name
       desc

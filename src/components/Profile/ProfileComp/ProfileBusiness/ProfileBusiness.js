@@ -4,11 +4,11 @@ import BuzCard from "../../../UI/Cards/BuzCard/BuzCard"
 import { MyButton } from "../../../UI/CustomFields/CustomField"
 import styles from "./ProfileBusiness.module.scss"
 
-function ProfileBusiness({ business, isOwner }) {
+function ProfileBusiness({ ownedBus, isOwner }) {
   return (
     <section>
       <div className={styles.container}>
-        {business.map(buz => {
+        {ownedBus.map(buz => {
           const { _id } = buz
           return (
             <div key={_id} className={styles.OneBuz}>

@@ -19,8 +19,6 @@ const Profile = props => {
     }
   }, [error])
 
-  console.log(data)
-
   //  DISPLAY
   return (
     <Page title="Profile" withTopBar={true}>
