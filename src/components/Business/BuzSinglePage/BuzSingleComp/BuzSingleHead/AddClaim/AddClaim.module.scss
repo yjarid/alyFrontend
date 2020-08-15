@@ -1,0 +1,46 @@
+@import "../../../../../../styles/variables";
+
+.form {
+  padding: 1rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.6rem;
+  color: $orange;
+}
+
+.label {
+  color: $primaryBlue;
+  margin-bottom: 1.2rem;
+  margin-top: 1.2rem;
+  font-size: 1.2rem;
+}
+
+.btn {
+  background-color: salmon;
+  color: aliceblue;
+  padding: 0.4rem 0.8rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+input {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 0.5rem auto;
+  display: block;
+  border: 1px solid $lightBlue;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.sendBtn {
+  background-color: $lightBlue;
+  color: aliceblue;
+  font-size: 1.1rem;
+  padding: 0.4rem 1rem;
+  margin: 1rem auto;
+  cursor: pointer;
+  display: inline-block;
+}

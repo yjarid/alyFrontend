@@ -1,17 +1,15 @@
 import React, { useState, Fragment, useContext } from "react"
 import { Link } from "react-router-dom"
-import { useMutation } from "@apollo/react-hooks"
-import Spinner from "../../../../UI/Spinner/Spinner"
-import { CREATE_CLAIM } from "../../../../../qraphQl/businessType"
 import { Chip, makeStyles } from "@material-ui/core"
 import styles from "./BuzSingleHead.module.scss"
 import GradeIcon from "@material-ui/icons/Grade"
 import Modal from "../../../../UI/Modal/Modal"
 import AddReview from "../../../../Review/AddReview"
+import AddClaim from "./AddClaim/AddClaim"
 import { loginRequired } from "../../../../../AccessToken"
 import { StyledRating } from "../../../../UI/CustomFields/StyledRating"
 import { upCaseFirstLetter } from "../../../../../utils/string"
-import { DispatchContext, StateContext } from "../../../../../Context"
+import { DispatchContext } from "../../../../../Context"
 import { useMediaQuery } from "react-responsive"
 import { AiOutlineShop } from "react-icons/ai"
 
@@ -28,24 +26,14 @@ const useStyles = makeStyles(theme => ({
 function BuzSingleHead({ history, business }) {
   const classes = useStyles()
   const [buzStat, setBuzStat] = useState(null)
-  const appState = useContext(StateContext)
   const appDispatch = useContext(DispatchContext)
   const [modal, setModal] = useState(false)
+  const [modalContent, setModalContent] = useState("review")
   const isTablet = useMediaQuery({
     query: "(min-device-width: 768px)"
   })
 
   let { _id, name, neighborhood, city, picture, subCat, cat, nbrRev, totRev, owner, price } = business
-  const [createClaim, { data, error, loading }] = useMutation(CREATE_CLAIM, {
-    onCompleted() {
-      appDispatch({ type: "flashMessage", value: { message: `claim is sent, we will contact you via email in the next 48 hours`, type: "success" } })
-      window.scrollTo(0, 0)
-    },
-    onError(err) {
-      appDispatch({ type: "flashMessage", value: { message: err.message.replace("GraphQL error:", ""), type: "error" } })
-      window.scrollTo(0, 0)
-    }
-  })
 
   if (buzStat != null) {
     nbrRev = buzStat.nbrRev
@@ -58,14 +46,20 @@ function BuzSingleHead({ history, business }) {
     setModal(false)
   }
 
-  const claimIt = () => {
-    createClaim({ variables: { business: _id } })
+  const openModal = type => {
+    let login = loginRequired(history, appDispatch)
+
+    if (login) {
+      setModalContent(type)
+      setModal(true)
+    }
   }
 
   return (
     <Fragment>
       <Modal show={modal} modalClosed={modalClosed}>
-        <AddReview businessId={_id} setBuzStat={setBuzStat} modalClosed={modalClosed} />
+        {modalContent == "review" && <AddReview businessId={_id} setBuzStat={setBuzStat} modalClosed={modalClosed} />}
+        {modalContent == "claim" && <AddClaim businessId={_id} modalClosed={modalClosed} />}
       </Modal>
       <div className={styles.head}>
         <div className={styles.headInner}>
@@ -95,31 +89,16 @@ function BuzSingleHead({ history, business }) {
 
         <div className={styles.reviewClaim}>
           <div className={styles.reviewBtn}>
-            <Chip
-              className={classes.chip}
-              color="primary"
-              size={isTablet ? "medium" : "small"}
-              icon={<GradeIcon />}
-              label="Review Business"
-              clickable={true}
-              onClick={() => {
-                let login = loginRequired(history, appDispatch)
-                if (login) {
-                  setModal(true)
-                }
-              }}
-            />
+            <Chip className={classes.chip} color="primary" size={isTablet ? "medium" : "small"} icon={<GradeIcon />} label="Review Business" clickable={true} onClick={() => openModal("review")} />
           </div>
 
           {!owner && (
-            <div className={styles.claim} onClick={claimIt}>
+            <div className={styles.claim} onClick={() => openModal("claim")}>
               Claim it !
             </div>
           )}
         </div>
       </div>
-
-      {loading && <Spinner />}
     </Fragment>
   )
 }

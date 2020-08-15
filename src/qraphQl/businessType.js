@@ -141,11 +141,3 @@ export const DELETE_BUSINESS = gql`
     }
   }
 `
-
-export const CREATE_CLAIM = gql`
-  mutation CreateClaim($business: String!) {
-    createClaim(data: { business: $business }) {
-      _id
-    }
-  }
-`

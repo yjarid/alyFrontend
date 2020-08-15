@@ -83,10 +83,10 @@ const Index = () => {
           console.error(err)
         }
       }),
-      // onError(({ graphQLErrors, networkError }) => {
-      //   console.log(graphQLErrors);
-      //   console.log(networkError);
-      // }),
+      onError(({ graphQLErrors, networkError }) => {
+        console.log(graphQLErrors)
+        console.log(networkError)
+      }),
 
       requestLink,
       new createUploadLink({

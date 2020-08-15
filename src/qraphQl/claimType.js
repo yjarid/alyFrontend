@@ -5,6 +5,7 @@ export const GET_CLAIMS = gql`
     claims(status: $status) {
       _id
       status
+      phone
       createdAt
       user {
         _id
@@ -22,6 +23,15 @@ export const GET_CLAIMS = gql`
 export const UPDATE_CLAIM = gql`
   mutation UpdateClaim($id: ID!, $status: String, $user: String, $business: String) {
     updateClaim(id: $id, data: { status: $status, user: $user, business: $business }) {
+      _id
+      status
+    }
+  }
+`
+
+export const CREATE_CLAIM = gql`
+  mutation CreateClaim($business: String!, $code: String, $phone: String) {
+    createClaim(data: { business: $business, code: $code, phone: $phone }) {
       _id
       status
     }

@@ -25,7 +25,7 @@ export default function TablePaginat({ finData }) {
       appDispatch({ type: "flashMessage", value: { message: "response updated", type: "success" } })
     },
     onError(error) {
-      appDispatch({ type: "flashMessage", value: { message: "error", type: "error" } })
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
     }
   })
 
@@ -65,6 +65,7 @@ export default function TablePaginat({ finData }) {
             <TableRow>
               <TableCell align="left">business</TableCell>
               <TableCell align="left">claimer</TableCell>
+              <TableCell align="left">Phone</TableCell>
               <TableCell align="left">email</TableCell>
               <TableCell align="left">status</TableCell>
               <TableCell align="left">date</TableCell>
@@ -81,6 +82,7 @@ export default function TablePaginat({ finData }) {
                 <TableCell align="left">
                   <Link to={`/profile/${row.user._id}`}>{row.user.name}</Link>
                 </TableCell>
+                <TableCell align="left">{row.phone}</TableCell>
                 <TableCell align="left">{row.user.email}</TableCell>
                 <TableCell align="left">{row.status}</TableCell>
                 <TableCell align="left">{timeAgo(row.createdAt)}</TableCell>

@@ -36,7 +36,7 @@
   left: 50%;
   padding: 0.8rem 1.2rem;
   transform: translateX(-50%);
-  animation: floatingAlert ease-in 5s forwards;
+  animation: floatingAlert ease-in 10s forwards;
   animation-fill-mode: forwards;
   @include tablet {
     padding: 1rem 3rem;
