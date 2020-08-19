@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import styles from "./TablePaginat.module.scss"
 import { useMutation } from "@apollo/react-hooks"
 import { DELETE_BUSINESS, UPDATE_BUSINESS } from "../../../qraphQl/businessType"
-import { truncate } from "../../../utils/string"
 import { DispatchContext } from "../../../Context"
 import PaginationAction from "./PaginationAction"
 import { makeStyles, Table, TableCell, TableHead, TableBody, TableContainer, TableFooter, TablePagination, TableRow, Paper, StylesProvider } from "@material-ui/core"
@@ -18,7 +17,7 @@ export default function TablePaginat({ finData }) {
   const appDispatch = useContext(DispatchContext)
   const classes = useStyles2()
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(20)
+  const [rowsPerPage, setRowsPerPage] = useState(50)
 
   const [deleteBus, { error, loading }] = useMutation(DELETE_BUSINESS)
   const [publish] = useMutation(UPDATE_BUSINESS, {
@@ -74,7 +73,7 @@ export default function TablePaginat({ finData }) {
           <TableRow>
             <TableCell>Name</TableCell>
             <TableCell align="center">city</TableCell>
-            <TableCell align="center">desc</TableCell>
+            <TableCell align="center">claim</TableCell>
             <TableCell align="center">Neigh</TableCell>
             <TableCell align="center">Cat</TableCell>
             <TableCell align="center">subCat</TableCell>
@@ -92,7 +91,7 @@ export default function TablePaginat({ finData }) {
                 <Link to={`/business/edit/${row._id}`}>{row.name}</Link>
               </TableCell>
               <TableCell align="left">{row.city}</TableCell>
-              <TableCell align="left">{row.desc ? truncate(row.desc, 15) : ""}</TableCell>
+              <TableCell align="left">{row.claimCode}</TableCell>
               <TableCell align="left">{row.neighborhood}</TableCell>
               <TableCell align="left">{row.cat}</TableCell>
               <TableCell align="left">{row.subCat.map(c => c).join(", ")}</TableCell>

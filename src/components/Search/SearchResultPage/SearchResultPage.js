@@ -32,6 +32,7 @@ function SearchResultPage(props) {
 
   useEffect(() => {
     if (error) {
+      console.log(error)
       appDispatch({ type: "flashMessage", value: { message: "Something went wrong", type: "error" } })
     }
   }, [error])
@@ -39,6 +40,8 @@ function SearchResultPage(props) {
   const mapBounds2 = bounds => {
     setBound(bounds)
   }
+
+  console.log(data)
 
   return (
     <Page title="Search Results" withTopBar={true}>

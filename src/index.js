@@ -71,6 +71,7 @@ const Index = () => {
         fetchAccessToken: () => {
           return fetch(`${process.env.REACT_APP_BACKENDURL || "https://alybackend.com"}/refresh`, {
             method: "POST",
+            mode: "cors",
             credentials: "include"
           })
         },
@@ -91,6 +92,7 @@ const Index = () => {
       requestLink,
       new createUploadLink({
         uri: process.env.REACT_APP_BACKENDURL || "https://alybackend.com",
+        mode: "cors",
         credentials: "include"
       })
     ]),

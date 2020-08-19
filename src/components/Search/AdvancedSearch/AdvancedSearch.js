@@ -11,7 +11,6 @@ import { DispatchContext } from "../../../Context"
 import MapResultPage from "../../MapResultPage/MapResultPage"
 import TopBar from "../../TopBar/TopBar"
 import queryString from "query-string"
-import { Redirect } from "react-router-dom"
 
 export default function AdvancedSearch(props) {
   const { cityParam, categoryParam } = queryString.parse(props.location.search)

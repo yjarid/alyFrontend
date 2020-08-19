@@ -97,6 +97,7 @@ export const GET_BUSINESSES = gql`
       price
       phone
       published
+      claimCode
     }
   }
 `

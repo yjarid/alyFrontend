@@ -47,7 +47,7 @@ export default function AllBusiness() {
   }
 
   const fetchBus = () => {
-    let variab = { limit: 50 }
+    let variab = { limit: 100, orderBy: "CREATED" }
 
     if (FilterValue) {
       variab = { ...variab, query: FilterValue }
@@ -93,7 +93,7 @@ export default function AllBusiness() {
         )}
       </div>
 
-      <TablePaginat finData={data ? data.businesses.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)) : []} />
+      <TablePaginat finData={data ? data.businesses : []} />
     </Fragment>
   )
 }
