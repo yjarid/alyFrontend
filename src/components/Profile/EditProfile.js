@@ -95,7 +95,7 @@ const EditProfile = props => {
       if (typeof pictureId == "string") {
         pictureId = values.picture ? values.picture.split("/images/")[1] : null
       }
-
+      console.log(pictureId)
       updateUser({
         variables: {
           ...values,
