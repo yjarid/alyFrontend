@@ -75,7 +75,6 @@ const Index = () => {
           })
         },
         handleFetch: accessToken => {
-          console.log(accessToken)
           setAccessToken(accessToken)
         },
         handleError: err => {

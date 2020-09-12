@@ -4,12 +4,17 @@ import styles from "./DropZone.module.scss"
 
 function DropZone({ field, form }) {
   const { name, value } = field
-  const { setFieldValue } = form
+  const { setFieldValue, setFieldError } = form
   const [img, setImg] = useState(value)
+  const [imgError, setImgError] = useState(null)
 
   const onDrop = useCallback(acceptedFiles => {
+    setImgError(null)
     const file = acceptedFiles[0]
-
+    if (file.type != "image/jpeg" && file.type != "image/png") {
+      setImgError("please select images only")
+      return
+    }
     const myFileReader = new FileReader()
     myFileReader.addEventListener(
       "load",
@@ -30,6 +35,7 @@ function DropZone({ field, form }) {
       <div {...getRootProps({ className: "dropzone" })}>
         <input {...getInputProps()} />
         <p className={styles.dropBox}>Select new image</p>
+        {imgError && <p className={styles.error}>Error: {imgError}</p>}
       </div>
       {img && (
         <div className={styles.imgProfile}>

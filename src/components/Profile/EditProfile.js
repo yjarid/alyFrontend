@@ -43,12 +43,14 @@ const EditProfile = props => {
   }
 
   const form = props => {
+    console.log(props)
     return (
       <div className={styles.innerContainer}>
         <Form>
           <div>
             <div>
               <Field name="picture" component={DropZone}></Field>
+              {props.errors && props.errors.picture && <p>{props.errors.picture}</p>}
             </div>
             <div>
               <MyTextField disabled={false} name="userName" label="display Name" />

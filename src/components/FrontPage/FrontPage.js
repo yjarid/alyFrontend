@@ -9,8 +9,6 @@ import schoolImg from "../../static/image/school.jpg"
 import restImg from "../../static/image/rest.jpg"
 import doctorImg from "../../static/image/doctor.jpg"
 import { Link } from "react-router-dom"
-import { useQuery } from "@apollo/react-hooks"
-import { GET_REVIEWS } from "../../qraphQl/reviewType"
 
 const CATEGORY = [
   { name: "Beauty & Wellness", image: beautyImg, url: "beauty and wellness" },
@@ -20,10 +18,6 @@ const CATEGORY = [
 ]
 
 function FrontPage() {
-  const { data, error, loading } = useQuery(GET_REVIEWS, { variables: { featured: "ONE", limit: 4, published: true } })
-
-  let reviews = data ? data.reviews : []
-
   useEffect(() => {
     document.title = `Home | Aly`
     window.scrollTo(0, 0)
@@ -52,7 +46,7 @@ function FrontPage() {
         <div>
           <h1 className="sectionTitle">Reviews of the day</h1>
           <div className={styles.reviewGrid}>
-            <FeaturedReview reviews={reviews} />
+            <FeaturedReview />
           </div>
         </div>
         <div>

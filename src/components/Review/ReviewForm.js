@@ -8,6 +8,7 @@ import DropZoneMultiple from "../UI/Upload/DropZoneMultiple"
 
 const ReviewForm = ({ onSubmit, businessId }) => {
   const myForm = ({ values, errors, touched, setFieldValue }) => {
+    console.log(values.picture)
     return (
       <div className={styles.topContainer}>
         <div className={styles.container}>

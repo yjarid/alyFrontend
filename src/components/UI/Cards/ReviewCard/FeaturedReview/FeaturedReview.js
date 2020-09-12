@@ -13,18 +13,22 @@ import { StateContext, DispatchContext } from "../../../../../Context"
 import AlyScore from "../../../AlyScore/AlyScore"
 import { useMutation } from "@apollo/react-hooks"
 import { UPDATE_REVIEW } from "../../../../../qraphQl/reviewType"
+import { useQuery } from "@apollo/react-hooks"
+import { GET_REVIEWS } from "../../../../../qraphQl/reviewType"
 
-function FeaturedReview({ reviews }) {
+function FeaturedReview() {
   // this par is only for admin rating of reviews
   const appState = useContext(StateContext)
 
   const [updateReview, { data, error, loading }] = useMutation(UPDATE_REVIEW)
+  const { data: feateuredRev } = useQuery(GET_REVIEWS, { variables: { featured: "ONE", limit: 4, published: true } })
+
+  let reviews = feateuredRev ? feateuredRev.reviews : []
 
   return (
     <>
       {reviews.map(rev => {
         let modalInfo = imageFromReviews(rev)
-        console.log(modalInfo)
         return (
           <div className={styles.revContainer} id={rev._id} key={rev._id}>
             <div className={styles.revContainerInner}>
