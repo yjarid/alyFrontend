@@ -1,10 +1,9 @@
-@import "../../../../../styles/variables";
+@import "../../../../../../styles/variables";
 
 .revContainer {
-   margin-bottom: 1rem;
+  margin-bottom: 1rem;
   box-shadow: 0 2px 4px 0 rgba(gray, 0.4), 0 3px 10px 0 rgba(gray, 0.3);
 }
-
 
 .revContainerInner {
   padding: 0.3rem;
@@ -100,5 +99,3 @@
     }
   }
 }
-
-

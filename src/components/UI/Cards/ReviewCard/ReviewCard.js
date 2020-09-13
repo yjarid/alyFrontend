@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from "react"
 import { Link } from "react-router-dom"
-import ReviewReportForm from "./ReviewReportForm/ReviewReportForm"
 import Modal from "../../Modal/Modal"
 import styles from "./ReviewCard.module.scss"
 import ImageGrid from "../../../UI/ImageGrid/ImageGrid"
@@ -14,6 +13,7 @@ import { AiFillCamera } from "react-icons/ai"
 import { FaUserCircle } from "react-icons/fa"
 import { AiOutlineShop } from "react-icons/ai"
 import imageFromReviews from "../../../../utils/imageFromReviews"
+import ReportForm from "../../ReportForm/ReportForm"
 
 function ReviewCard({ review }) {
   const [showModal, setShowModal] = useState(false)
@@ -50,7 +50,7 @@ function ReviewCard({ review }) {
   return (
     <Fragment>
       <Modal show={showModal} modalClosed={modalClosed}>
-        <ReviewReportForm reviewId={review._id} />
+        <ReportForm id={review._id} type={"REV"} />
       </Modal>
 
       <div className={styles.revContainer} id={review._id} key={review._id}>

@@ -12,6 +12,7 @@ import { upCaseFirstLetter } from "../../../../../utils/string"
 import { DispatchContext } from "../../../../../Context"
 import { useMediaQuery } from "react-responsive"
 import { AiOutlineShop } from "react-icons/ai"
+import ReportForm from "../../../../UI/ReportForm/ReportForm"
 
 const useStyles = makeStyles(theme => ({
   chip: {
@@ -60,6 +61,7 @@ function BuzSingleHead({ history, business }) {
       <Modal show={modal} modalClosed={modalClosed}>
         {modalContent == "review" && <AddReview businessId={_id} setBuzStat={setBuzStat} modalClosed={modalClosed} />}
         {modalContent == "claim" && <AddClaim businessId={_id} modalClosed={modalClosed} />}
+        {modalContent == "report" && <ReportForm id={_id} type="BUS" modalClosed={modalClosed} />}
       </Modal>
       <div className={styles.head}>
         <div className={styles.headInner}>
@@ -99,6 +101,12 @@ function BuzSingleHead({ history, business }) {
           )}
         </div>
       </div>
+      <p className={styles.report}>
+        if review is inappropriate please
+        <span className={styles.reportbtn} onClick={() => openModal("report")}>
+          report it
+        </span>
+      </p>
     </Fragment>
   )
 }

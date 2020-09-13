@@ -22,22 +22,21 @@ function BuzSinglePage(props) {
     }
   }, [error])
 
-  let business = null
-  let reviews = null
+  let reviews = []
   let images = []
 
-  if (typeof data != "undefined") {
-    business = data ? data.business : null
-    reviews = business ? business.reviews : null
-    images = []
+  let business = data ? data.business : null
 
-    if (typeof reviews != "undefined") {
-      reviews.forEach(rev => {
-        if (Array.isArray(rev.picture)) {
-          images = [...images, ...rev.picture]
-        }
-      })
-    }
+  if (business && business.reviews) {
+    reviews = business.reviews
+  }
+
+  if (reviews.length > 0) {
+    reviews.forEach(rev => {
+      if (Array.isArray(rev.picture)) {
+        images = [...images, ...rev.picture]
+      }
+    })
   }
 
   return (

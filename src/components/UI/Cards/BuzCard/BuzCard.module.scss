@@ -3,12 +3,12 @@
 .paper {
   border: 1px rgba(0, 0, 0, 0.2) solid;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 1rem;
+  // margin-bottom: 1rem;
 }
 
-.head {
-  padding-bottom: 1rem;
-}
+// .head {
+//   padding-bottom: 1rem;
+// }
 .headInner {
   display: grid;
   grid-template-columns: 1fr 2.5fr;
@@ -17,6 +17,10 @@
 
 .profileImg {
   height: 200px;
+}
+
+.headInfo {
+  margin-bottom: 1rem;
 }
 
 .title {
@@ -97,13 +101,17 @@
   }
 }
 
-.desc {
+.excerpt {
   width: 80%;
   padding: 1rem;
-  margin: 0.5rem auto 0 auto;
   font-size: 0.8rem;
-  color: $lightBlue;
-  background-color: rgba(gray, 0.1);
+  line-height: 150%;
+  margin: 0 auto;
+  // color: $lightBlue;
+}
+
+.excerptContainer {
+  background-color: rgba($lightBlue, 0.08);
 }
 
 .rating {

@@ -48,20 +48,6 @@ code {
   margin: 0.6rem 0.4rem;
 }
 
-.searchTitle {
-  color: $lightBlue;
-  margin-top: 1.5rem;
-  margin-bottom: 1.1rem;
-  font-weight: 400;
-  font-size: 1.3rem;
-
-  @include desktop {
-    margin-top: 3rem;
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-  }
-}
-
 .sectionTitle {
   color: crimson;
   margin: 2rem 1rem;

@@ -16,8 +16,8 @@ export const CREATE_REVIEW = gql`
   }
 `
 export const GET_REVIEWS = gql`
-  query Reviews($featured: Featured, $limit: Int, $published: Boolean) {
-    reviews(featured: $featured, limit: $limit, published: $published) {
+  query Reviews($featured: Featured, $limit: Int, $published: Boolean, $appropriate: Boolean) {
+    reviews(featured: $featured, limit: $limit, published: $published, appropriate: $appropriate) {
       _id
       text
       rating
@@ -25,6 +25,7 @@ export const GET_REVIEWS = gql`
       clappers
       alyScore
       published
+      appropriate
       createdAt
       picture {
         _id
@@ -57,8 +58,8 @@ export const GET_REVIEWS = gql`
 `
 
 export const UPDATE_REVIEW = gql`
-  mutation UpdateReview($id: ID!, $claps: Int, $alyScore: Int, $published: Boolean) {
-    updateReview(id: $id, data: { claps: $claps, alyScore: $alyScore, published: $published }) {
+  mutation UpdateReview($id: ID!, $claps: Int, $alyScore: Int, $published: Boolean, $appropriate: Boolean) {
+    updateReview(id: $id, data: { claps: $claps, alyScore: $alyScore, published: $published, appropriate: $appropriate }) {
       _id
       alyScore
       published

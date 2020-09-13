@@ -1,16 +1,16 @@
 import gql from "graphql-tag"
 
-export const CREATE_REVREPORT = gql`
-  mutation CreateRevReport($id: ID!, $report: String!) {
-    createRevReport(data: { id: $id, report: $report }) {
+export const CREATE_REPORT = gql`
+  mutation CreateReport($id: ID!, $report: String!, $type: String!) {
+    createReport(data: { id: $id, report: $report, type: $type }) {
       _id
     }
   }
 `
 
-export const GET_REVREPORTS = gql`
-  query RevReports {
-    revReports {
+export const GET_REPORTS = gql`
+  query Reports {
+    Reports {
       _id
       createdAt
       report

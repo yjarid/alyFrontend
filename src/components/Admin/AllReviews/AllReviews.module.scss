@@ -1,11 +1,11 @@
 @import "../../../styles/variables";
 
-.container {
-  margin-top: 3rem;
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  column-gap: 3rem;
-}
+// .container {
+//   margin-top: 3rem;
+//   display: grid;
+//   grid-template-columns: 1fr 4fr;
+//   column-gap: 3rem;
+// }
 
 .busList {
   padding: 1rem;
@@ -27,7 +27,7 @@
 .reviewGrid {
   @include tablet {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 1rem;
     align-items: start;
   }

@@ -1,29 +1,28 @@
 import React, { useState, Fragment } from "react"
 import { useQuery } from "@apollo/react-hooks"
-import { GET_REVIEWS } from "../../../qraphQl/reviewType"
+import { GET_REVIEWS, UPDATE_REVIEW } from "../../../qraphQl/reviewType"
 import styles from "./AllReviews.module.scss"
-import FeaturedReview from "../../UI/Cards/ReviewCard/FeaturedReview/FeaturedReview"
+import { useMutation } from "@apollo/react-hooks"
+import FeaturedReviewTemplate from "../../UI/Cards/ReviewCard/FeaturedReview/FeaturedReviewTemplate/FeaturedReviewTemplate"
 
-function Business(props) {
-  const [index, setIndex] = useState(0)
-  const { data: datRev, error, loading } = useQuery(GET_REVIEWS, { variables: { limit: 20 } })
+function AllReviews() {
+  const [updateReview] = useMutation(UPDATE_REVIEW)
+  const { data: datRev, error, loading } = useQuery(GET_REVIEWS, { variables: { limit: 20, published: false, appropriate: true } })
 
   let reviews = datRev ? datRev.reviews : []
-
-  const setBusIndex = i => {
-    setIndex(i)
-  }
 
   return (
     <div className={styles.container}>
       <div>
         <h1 className="sectionTitle">Check this week Reviews </h1>
         <div className={styles.reviewGrid}>
-          <FeaturedReview reviews={reviews} />
+          {reviews.map(rev => (
+            <FeaturedReviewTemplate rev={rev} isAdmin={true} updateReview={updateReview} />
+          ))}
         </div>
       </div>
     </div>
   )
 }
 
-export default Business
+export default AllReviews

@@ -25,7 +25,9 @@ export default function Login(props) {
       setAccessToken(login.token)
       appDispatch({ type: "flashMessage", value: { message: "Login successful", type: "success" } })
       appDispatch({ type: "login", value: { userId: login.user._id, type: login.user.type } })
-      props.history.push("/")
+
+      let redirect = parsed.redirect || "/"
+      props.history.push(redirect)
     },
     onError(error) {
       const errMessage = error.message.replace("GraphQL error:", "")

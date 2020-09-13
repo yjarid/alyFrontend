@@ -11,8 +11,8 @@
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-column-gap: 0.6rem;
+  grid-template-columns: 1fr 2.5fr;
+  grid-column-gap: 4rem;
 }
 
 .info {
@@ -33,6 +33,15 @@
   color: $lightBlue;
 }
 
-.infoDetail {
-  font-size: 0.8rem;
+.infoAdress {
+  font-size: 0.9rem;
+}
+
+.infoPhone {
+  font-size: 1rem;
+}
+
+.desc {
+  font-size: 0.9rem;
+  line-height: 200%;
 }

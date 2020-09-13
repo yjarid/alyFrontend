@@ -14,7 +14,7 @@ export const loginRequired = (history, appDispatch) => {
   if (!getAccessToken()) {
     appDispatch({ type: "flashMessage", value: { message: "you need to login to perform this action", type: "error" } })
     if (history) {
-      history.push("/login")
+      history.push(`/login?redirect=${history.location.pathname}`)
     } else {
       window.scrollTo(0, 0)
       return false

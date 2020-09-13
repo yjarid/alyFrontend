@@ -1,7 +1,9 @@
+@import "../../../styles/variables";
+
 .showFilterBtn {
   width: 10rem;
   padding: 1rem;
-  background-color: coral;
+  background-color: $lightGolden;
   margin: 2rem auto;
   color: #fff;
   text-align: center;

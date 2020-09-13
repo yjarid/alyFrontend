@@ -54,6 +54,7 @@ export const GET_BUSINESS_WITH_REVIEWS = gql`
         createdAt
         claps
         clappers
+        published
         picture {
           _id
           picture

@@ -1,14 +1,12 @@
 @import "../../../../styles/variables";
 
 .innerResult {
-  background-color: bisque;
+  background-color: rgba($lightBlue, 0.7);
   width: 100%;
   max-height: 20rem;
-  z-index: 2;
   overflow-y: scroll;
-  @include tablet {
-    position: absolute;
-  }
+  position: absolute;
+  z-index: 2;
 
   // scrollbar
 
@@ -25,7 +23,7 @@
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: $lightBlue;
+    background: #fff;
     border-radius: 10px;
   }
 
@@ -40,8 +38,8 @@
 }
 
 .item {
-  color: #000;
-  background-color: rgba(grey, 0.3);
+  color: #fff;
+  background-color: rgba($lightBlue, 0.9);
   margin: 0.5rem auto;
   width: 70%;
   padding: 0.5rem;

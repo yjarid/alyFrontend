@@ -2,7 +2,6 @@
 
 footer {
   margin-top: 2rem;
-
   padding-top: 1rem;
   text-align: center;
   width: 100%;
@@ -23,7 +22,7 @@ footer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 0.6rem;
-  justify-items: start;
+  justify-items: center;
   width: 80%;
   margin: auto;
   padding: 1rem auto 2rem auto;
@@ -31,7 +30,6 @@ footer {
   @include tablet {
     width: 90%;
     grid-template-columns: repeat(5, 1fr);
-    justify-items: center;
   }
 }
 
