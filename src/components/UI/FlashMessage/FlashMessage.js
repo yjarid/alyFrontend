@@ -5,7 +5,7 @@ const FlashMessage = React.forwardRef((props, ref) => {
   return (
     <div ref={ref} className={styles.floatingAlerts}>
       {props.messages.map((msg, index) => {
-        const alertStyle = props.type == "success" ? styles.alertSuccess : styles.alertError
+        const alertStyle = props.type === "success" ? styles.alertSuccess : styles.alertError
 
         return (
           <div key={index} className={`${styles.floatingAlert} ${alertStyle}`}>

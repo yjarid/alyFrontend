@@ -11,6 +11,7 @@ import Footer from "../components/Footer/Footer"
 import { loggedInUser } from "../AccessToken"
 import { useImmerReducer } from "use-immer"
 import Spinner from "../components/UI/Spinner/Spinner"
+const SingleReviewPage = React.lazy(() => import("../components/Review/SingleReviewPage/SingleReviewPage"))
 const TaxBizList = React.lazy(() => import("../components/Business/TaxBizList/TaxBizList"))
 const Profile = React.lazy(() => import("../components/Profile/Profile"))
 const BuzSinglePage = React.lazy(() => import("../components/Business/BuzSinglePage/BuzSinglePage"))
@@ -67,10 +68,12 @@ const AppRouter = () => {
               <Route path="/business/create" component={Newbuz} />
               <Route path="/business/edit/:id" render={props => <Editbuz {...props} />} />
               <Route path="/business/:id" component={BuzSinglePage} />
+              <Route path="/review/:id" component={SingleReviewPage} />
               <Route path="/tax/:type/:tax/:subTax?" component={TaxBizList} />
               <Route path="/search" component={SearchResultPage} />
-              // admin
-              {state.user.type == "ADMIN" && <Route path="/admin/:tab?" component={AdminMain} />}
+              {/* admin */}
+              {state.user.type === "ADMIN" && <Route path="/admin/:tab?" component={AdminMain} />}
+              {/* 404 */}
               <Route component={NoPageFound} />
             </Switch>
           </Suspense>

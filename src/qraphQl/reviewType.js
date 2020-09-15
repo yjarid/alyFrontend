@@ -16,15 +16,57 @@ export const CREATE_REVIEW = gql`
   }
 `
 export const GET_REVIEWS = gql`
-  query Reviews($featured: Featured, $limit: Int, $published: Boolean, $appropriate: Boolean) {
-    reviews(featured: $featured, limit: $limit, published: $published, appropriate: $appropriate) {
+  query Reviews($featured: Featured, $limit: Int, $alyCheck: Boolean, $appropriate: Boolean) {
+    reviews(featured: $featured, limit: $limit, alyCheck: $alyCheck, appropriate: $appropriate) {
       _id
       text
       rating
       claps
       clappers
       alyScore
-      published
+      alyCheck
+      appropriate
+      createdAt
+      picture {
+        _id
+        picture
+        desc
+        claps
+        alyScore
+      }
+      author {
+        userName
+        picture
+        _id
+        nbrRev
+        revPic
+        followers {
+          _id
+        }
+      }
+      business {
+        _id
+        name
+        city
+        neighborhood
+        nbrRev
+        revPic
+        totRev
+      }
+    }
+  }
+`
+
+export const GET_REVIEW = gql`
+  query Review($id: ID!) {
+    review(id: $id) {
+      _id
+      text
+      rating
+      claps
+      clappers
+      alyScore
+      alyCheck
       appropriate
       createdAt
       picture {
@@ -58,11 +100,11 @@ export const GET_REVIEWS = gql`
 `
 
 export const UPDATE_REVIEW = gql`
-  mutation UpdateReview($id: ID!, $claps: Int, $alyScore: Int, $published: Boolean, $appropriate: Boolean) {
-    updateReview(id: $id, data: { claps: $claps, alyScore: $alyScore, published: $published, appropriate: $appropriate }) {
+  mutation UpdateReview($id: ID!, $claps: Int, $alyScore: Int, $alyCheck: Boolean, $appropriate: Boolean) {
+    updateReview(id: $id, data: { claps: $claps, alyScore: $alyScore, alyCheck: $alyCheck, appropriate: $appropriate }) {
       _id
       alyScore
-      published
+      alyCheck
       claps
       author {
         _id

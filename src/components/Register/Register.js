@@ -1,6 +1,5 @@
 import React, { useContext } from "react"
 import { useMutation } from "@apollo/react-hooks"
-import gql from "graphql-tag"
 import RegisterForm from "./Forms/RegisterForm"
 import Spinner from "../UI/Spinner/Spinner"
 import { REGISTER } from "../../qraphQl/userType"

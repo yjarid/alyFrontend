@@ -25,14 +25,14 @@ export default function ImageModal({ close, images, selectedImg, type }) {
       <div className={styles.imageMeta}>
         <div className={styles.user}>
           <div className={styles.imgContainer}>
-            <Link to={`/${type == "business" ? "business" : "profile"}/${images[index].id}`}>
-              <div className={styles.revContainerAvatar}>{images[index].profPic ? <img src={images[index].profPic} /> : <FaUserCircle size="90%" color="#0996e8" />}</div>
+            <Link to={`/${type === "business" ? "business" : "profile"}/${images[index].id}`}>
+              <div className={styles.revContainerAvatar}>{images[index].profPic ? <img src={images[index].profPic} alt="" /> : <FaUserCircle size="90%" color="#0996e8" />}</div>
             </Link>
           </div>
 
           <div>
             <h2 className={styles.userName}>
-              <Link to={`/${type == "business" ? "business" : "profile"}/${images[index].id}`}>{images[index].name}</Link>
+              <Link to={`/${type === "business" ? "business" : "profile"}/${images[index].id}`}>{images[index].name}</Link>
             </h2>
             <div className="chipsContainer">
               <div className="chip">
@@ -53,19 +53,19 @@ export default function ImageModal({ close, images, selectedImg, type }) {
           <Clap claps={images[index].picClaps} id={images[index].picId} />
         </div>
 
-        {appState.user.type == "ADMIN" && <AlyScore type="image" initAlyScore={images[index].picAlyScore} id={images[index].picId} />}
+        {appState.user.type === "ADMIN" && <AlyScore type="image" initAlyScore={images[index].picAlyScore} id={images[index].picId} />}
       </div>
       <div className={styles.image}>
         <span className={styles.close} onClick={close}>
           &times;
         </span>
         <img className={styles.modalContent} src={images[index].picture.replace("t_meduim", "t_large")} alt="Snow" />
-        {index != 0 && (
+        {index !== 0 && (
           <span className={styles.prev} onClick={() => moveImage(-1)}>
             &#10094;
           </span>
         )}
-        {index != images.length - 1 && (
+        {index !== images.length - 1 && (
           <span className={styles.next} onClick={() => moveImage(1)}>
             &#10095;
           </span>

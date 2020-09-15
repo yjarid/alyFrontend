@@ -4,7 +4,7 @@ import { DispatchContext } from "../../../Context"
 import { useQuery, useLazyQuery } from "@apollo/react-hooks"
 import { LOCATIONS, CATEGORIES } from "../../../qraphQl/taxonomyType"
 import styles from "./AdvanceFilter.module.scss"
-import { Checkbox, Radio, FormControl, FormGroup, RadioGroup, FormControlLabel, makeStyles, FormHelperText } from "@material-ui/core"
+import { Checkbox, Radio, FormControl, FormGroup, RadioGroup, FormControlLabel, makeStyles } from "@material-ui/core"
 
 const useStyles = makeStyles({
   root: {
@@ -41,8 +41,8 @@ export default function AdvanceFilter({ onFilter, parentCat }) {
   const handleCheckboxChange = e => {
     let name = e.target.name
 
-    if (e.target.checked == true) {
-      if (subCat.length == 2) {
+    if (e.target.checked === true) {
+      if (subCat.length === 2) {
         setSubCat(prev => prev.concat(name))
         setDisable(true)
         return
@@ -55,11 +55,11 @@ export default function AdvanceFilter({ onFilter, parentCat }) {
   }
 
   const setPriceRestaurant = e => {
-    if (cat == "restaurant") setPrice(e.target.value)
+    if (cat === "restaurant") setPrice(e.target.value)
   }
 
   const handleLevel = level => {
-    if (level == "two") {
+    if (level === "two") {
       if (!city || !cat) {
         appDispatch({ type: "flashMessage", value: { message: `you must select a city and business type`, type: "error" } })
         return
@@ -88,7 +88,7 @@ export default function AdvanceFilter({ onFilter, parentCat }) {
         </span>
       </div>
       <div className={styles.mainContainer}>
-        {level == "one" && (
+        {level === "one" && (
           <div className={styles.formGridTop}>
             <div className={styles.formGridItem}>
               <p className={styles.sectionTitle}> Select City</p>
@@ -120,7 +120,7 @@ export default function AdvanceFilter({ onFilter, parentCat }) {
           </div>
         )}
 
-        {level == "two" && (
+        {level === "two" && (
           <Fragment>
             <div className={styles.formGrid}>
               <div className={styles.formGridItem}>

@@ -13,7 +13,6 @@ export default function AddNewBus() {
       window.scrollTo(0, 0)
     },
     onError(err) {
-      console.log(err.message)
       appDispatch({ type: "flashMessage", value: { message: "Somethicng is wrong please try again later", type: "error" } })
       window.scrollTo(0, 0)
     }

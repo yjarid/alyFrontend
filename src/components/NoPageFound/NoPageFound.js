@@ -8,7 +8,7 @@ function NoPageFound() {
       <div className={styles.InnerContainer}>
         <Link to={"/"}>
           <div className={styles.logo}>
-            <img src={require("../../static/image/logoBig.png")} />
+            <img src={require("../../static/image/logoBig.png")} alt="Aly's Logo" />
           </div>
         </Link>
 

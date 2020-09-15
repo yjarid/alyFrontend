@@ -63,7 +63,7 @@ function FeaturedReviewTemplate({ rev, isAdmin, updateReview }) {
         {isAdmin && (
           <>
             <AlyScore type="review" id={rev._id} initAlyScore={rev.alyScore} />
-            <button onClick={() => updateReview({ variables: { id: rev._id, published: !rev.published } })}>{rev.published ? "Unpublish" : "Publish"}</button>
+            <button onClick={() => updateReview({ variables: { id: rev._id, alyCheck: !rev.alyCheck } })}>{rev.alyCheck ? "Uncheck" : "Check"}</button>
             <button onClick={() => updateReview({ variables: { id: rev._id, appropriate: !rev.appropriate } })}>{rev.appropriate ? "set as inappropriate" : "set as appropriate"}</button>
           </>
         )}

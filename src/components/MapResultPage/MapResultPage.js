@@ -30,9 +30,9 @@ function MapResultPage({ businesses, location, mapBounds2, zoom }) {
         </button>
       </div>
       <div className={styles.searchResContainer}>
-        {(!showMapMob || showMapMob == "list") && <MapResult data={businesses} selectedBus={selectedBus} selectedBusFunc={selectedBusFunc} scroll={scroll} />}
+        {(!showMapMob || showMapMob === "list") && <MapResult data={businesses} selectedBus={selectedBus} selectedBusFunc={selectedBusFunc} scroll={scroll} />}
         <div className={styles.fixContainer}>
-          <div className={styles.mapContainer}>{(!showMapMob || showMapMob == "map") && <SimpleMap data={businesses} area={location ? { lat: location.lat, lng: location.lng } : { lat: "33.573109", lng: "-7.617050" }} mapBounds={mapBounds} initZoom={zoom} selectedBusFunc={selectedBusFunc} selectedBusfromParent={selectedBus} />}</div>
+          <div className={styles.mapContainer}>{(!showMapMob || showMapMob === "map") && <SimpleMap data={businesses} area={location ? { lat: location.lat, lng: location.lng } : { lat: "33.573109", lng: "-7.617050" }} mapBounds={mapBounds} initZoom={zoom} selectedBusFunc={selectedBusFunc} selectedBusfromParent={selectedBus} />}</div>
         </div>
       </div>
     </>

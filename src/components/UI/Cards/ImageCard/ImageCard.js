@@ -23,7 +23,7 @@ const ImageCard = ({ singleImg, isOwner }) => {
   const descChange = e => {
     setError(null)
     let val = e.target.value
-    setDesc(e.target.value)
+    setDesc(val)
   }
 
   const submitDesc = () => {
@@ -33,7 +33,7 @@ const ImageCard = ({ singleImg, isOwner }) => {
     setIsSubmiting(true)
     let length = desc.length
 
-    if (length == 0) {
+    if (length === 0) {
       setError(`Add a description`)
       setIsSubmiting(false)
     } else if (desc && length > 80) {

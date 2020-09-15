@@ -53,7 +53,7 @@ const EditBuz = props => {
     <Page title="Edit Business" withTopBar={false}>
       {finalData && (
         <>
-          {appState.user.type == "ADMIN" && data.business.published && (
+          {appState.user.type === "ADMIN" && data.business.published && (
             <div className={styles.unpublish} onClick={upublishBus}>
               Unpublish
             </div>

@@ -21,8 +21,6 @@ function ReviewCard({ review }) {
     query: "(min-device-width: 768px)"
   })
 
-  console.log(review)
-
   let modalInfo = imageFromReviews(review)
 
   let data = null
@@ -55,7 +53,7 @@ function ReviewCard({ review }) {
 
       <div className={styles.revContainer} id={review._id} key={review._id}>
         <div className={styles.revContainerInner}>
-          <div className={styles.revContainerAvatar}>{data.picture ? <img src={data.picture} /> : isUser ? <FaUserCircle size="90%" color="#0996e8" /> : <AiOutlineShop size="90%" color="#0996e8" />}</div>
+          <div className={styles.revContainerAvatar}>{data.picture ? <img src={data.picture} alt="" /> : isUser ? <FaUserCircle size="90%" color="#0996e8" /> : <AiOutlineShop size="90%" color="#0996e8" />}</div>
           <div>
             <div className={styles.revAuth}>
               <Link to={url}>{upCaseFirstLetter(data.name)}</Link>

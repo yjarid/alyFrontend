@@ -20,7 +20,6 @@ const NewBuz = props => {
       props.history.push(`/profile/${appState.user.userId}`)
     },
     onError(err) {
-      console.log(err.message)
       appDispatch({ type: "flashMessage", value: { message: err.message.replace("GraphQL error:", ""), type: "error" } })
       window.scrollTo(0, 0)
     }

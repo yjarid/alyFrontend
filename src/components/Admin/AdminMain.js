@@ -2,7 +2,7 @@ import React from "react"
 import { Switch, Route } from "react-router-dom"
 import { useQuery } from "@apollo/react-hooks"
 import AdminTabs from "../Admin/AdminTabs/AdminTabs"
-import AllReviews from "./AllReviews/AllReviews"
+import UncheckedReviews from "./UncheckedReviews/UncheckedReviews"
 import Claim from "./Claim/Claim"
 import Report from "./Report/Report"
 import AddNewBus from "./AddNewBus/AddNewBus"
@@ -26,7 +26,7 @@ export default function AdminMain(props) {
       <AdminTabs tab={props.match.params.tab} />
       <div>
         <Switch>
-          <Route path={`/admin`} render={() => <AllReviews />} exact={true} />
+          <Route path={`/admin`} render={() => <UncheckedReviews />} exact={true} />
           <Route path={`/admin/claim`} render={() => <Claim />} />
           <Route path={`/admin/report`} render={() => <Report />} />
           <Route path={`/admin/all`} render={() => <AllBusiness />} />

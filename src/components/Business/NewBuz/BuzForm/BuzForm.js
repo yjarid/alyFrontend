@@ -20,8 +20,12 @@ const BuzForm = props => {
   const [errorForm, setError] = useState("")
 
   const [getLocation, { loading, error, data }] = useLazyQuery(LOCATIONS)
-  if (error) console.log(error.message)
-  const [getCategory, { data: dataC }] = useLazyQuery(CATEGORIES)
+  const [getCategory, { data: dataC, error: errorC }] = useLazyQuery(CATEGORIES)
+
+  if (error || errorC) {
+    appDispatch({ type: "flashMessage", value: { message: `you have to select a city`, type: "error" } })
+    window.scrollTo(0, 0)
+  }
 
   useEffect(() => {
     getLocation()
@@ -78,7 +82,6 @@ const BuzForm = props => {
         props.setFieldValue("subCat", "")
         break
       case "subCat":
-        console.log(val)
         props.setFieldValue("subCat", val)
         break
       default:
@@ -212,8 +215,8 @@ const BusinessForm = withFormik({
   },
   validationSchema: Yup.object().shape({
     name: Yup.string().required("Name is required").max(60, "should be at most 60 characters"),
-    desc: Yup.string().max(500, "should be at most 500 characters"),
-    excerpt: Yup.string().max(120, "should be at most 120 characters"),
+    desc: Yup.string().max(500, "should be at most 1000 characters"),
+    excerpt: Yup.string().max(120, "should be at most 200 characters"),
     address: Yup.string().max(200, "should be at most 200 characters"),
     city: Yup.string().required("City is required"),
     neighborhood: Yup.string().required("Neighborhood is required"),
@@ -224,7 +227,7 @@ const BusinessForm = withFormik({
 
   handleSubmit: (values, { props, resetForm }) => {
     let pictureId = values.picture
-    console.log(pictureId)
+
     if (typeof pictureId == "string") {
       pictureId = values.picture ? values.picture.split("/images/")[1] : null
     }

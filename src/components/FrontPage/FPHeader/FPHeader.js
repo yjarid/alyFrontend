@@ -30,7 +30,7 @@ const FPHeader = () => {
         <LoginBtn FP={true} />
       </div>
       <div className={styles.main}>
-        <img src={require("../../../static/image/logo.png")} />
+        <img src={require("../../../static/image/logo.png")} alt="" />
         <div className={styles.search}>
           <SearchFilter FP={true} />
         </div>

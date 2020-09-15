@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react"
 import BuzCard from "../../UI/Cards/BuzCard/BuzCard"
 import styles from "./MapResult.module.scss"
-import { upCaseFirstLetter } from "../../../utils/string"
 import { scrollToRef } from "../../../utils/preventManyReq"
 
 function MapResult({ data, selectedBus, selectedBusFunc, scroll }) {
@@ -19,7 +18,7 @@ function MapResult({ data, selectedBus, selectedBusFunc, scroll }) {
     <div>
       <div className={styles.gridContainer}>
         {data.map((item, i) => {
-          if (item._id == BusId) {
+          if (item._id === BusId) {
             return (
               <div key={i} ref={myRef} className={styles.selectedBus} onMouseEnter={() => selectedBusFunc(item)}>
                 <BuzCard data={item} />

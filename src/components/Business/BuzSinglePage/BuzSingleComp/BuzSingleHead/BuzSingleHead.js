@@ -59,13 +59,13 @@ function BuzSingleHead({ history, business }) {
   return (
     <Fragment>
       <Modal show={modal} modalClosed={modalClosed}>
-        {modalContent == "review" && <AddReview businessId={_id} setBuzStat={setBuzStat} modalClosed={modalClosed} />}
-        {modalContent == "claim" && <AddClaim businessId={_id} modalClosed={modalClosed} />}
-        {modalContent == "report" && <ReportForm id={_id} type="BUS" modalClosed={modalClosed} />}
+        {modalContent === "review" && <AddReview businessId={_id} setBuzStat={setBuzStat} modalClosed={modalClosed} />}
+        {modalContent === "claim" && <AddClaim businessId={_id} modalClosed={modalClosed} />}
+        {modalContent === "report" && <ReportForm id={_id} type="BUS" modalClosed={modalClosed} />}
       </Modal>
       <div className={styles.head}>
         <div className={styles.headInner}>
-          <div className={styles.imageContainer}>{picture ? <img src={picture} /> : <AiOutlineShop size="90%" color="#0996e8" />}</div>
+          <div className={styles.imageContainer}>{picture ? <img src={picture} alt="Business Profile" /> : <AiOutlineShop size="90%" color="#0996e8" />}</div>
           <div>
             <h2 className={styles.name}>{upCaseFirstLetter(name)}</h2>
             <div className={styles.price}>{price}</div>

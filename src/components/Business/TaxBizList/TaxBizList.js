@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom"
 import { GET_BUSINESSES } from "../../../qraphQl/businessType"
 import { LOCATION } from "../../../qraphQl/taxonomyType"
 import Spinner from "../../UI/Spinner/Spinner"
-import styles from "./TaxBizList.module.scss"
 import Page from "../../Page/Page"
 import { useLazyQuery } from "@apollo/react-hooks"
 import queryString from "query-string"
@@ -26,7 +25,7 @@ function TaxBizList(props) {
   const locationObj = typeof dataL != "undefined" ? dataL.location : null
 
   useEffect(() => {
-    if (type == "location") {
+    if (type === "location") {
       if (subTax) {
         location({ variables: { neigh: subTax } })
         setZoom(14)
@@ -38,13 +37,13 @@ function TaxBizList(props) {
 
   useEffect(() => {
     let variables = { limit: 20, published: true }
-    if (type == "location") {
+    if (type === "location") {
       variables.cat = cat
       if (subTax) {
         variables.neighborhood = subTax
       }
       variables.city = tax
-    } else if (type == "category") {
+    } else if (type === "category") {
       variables.city = city
       if (subTax) {
         // variables.limit = 200

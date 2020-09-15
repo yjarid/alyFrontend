@@ -64,31 +64,6 @@
   }
 }
 
-// review Modal
-
-.modalContainer {
-  position: fixed; /* Stay in place */
-  z-index: 2; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.85); /* Black w/ opacity */
-}
-
-.modalContent {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-
-  margin: 0 auto;
-  @include tablet {
-    width: 80%;
-  }
-}
-
 .review {
   background-color: #fff;
   padding: 1rem 0.5rem;

@@ -35,7 +35,7 @@ function ProfileCard({ user, me, followers }) {
     }
   })
   const meId = me ? me._id : null
-  let owner = meId == user._id
+  let owner = meId === user._id
 
   let areUFoll = false
   if (followings.length) {
@@ -70,7 +70,7 @@ function ProfileCard({ user, me, followers }) {
   return (
     <div className={styles.cardHeader}>
       <div className={styles.cardHeaderAvatar}>
-        <div className={styles.containerAvatar}>{user.picture ? <img src={user.picture} /> : <FaUserCircle size="90%" color="#0996e8" />}</div>
+        <div className={styles.containerAvatar}>{user.picture ? <img src={user.picture} alt="" /> : <FaUserCircle size="90%" color="#0996e8" />}</div>
         {displayFollowBtn()}
       </div>
 

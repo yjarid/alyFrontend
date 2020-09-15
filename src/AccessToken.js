@@ -26,7 +26,7 @@ export const loginRequired = (history, appDispatch) => {
 
 export const loggedInUser = () => {
   const token = getAccessToken()
-  if (typeof token != "string" || token == "") {
+  if (typeof token != "string" || token === "") {
     return {
       user: null,
       type: null

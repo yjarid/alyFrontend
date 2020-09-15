@@ -15,7 +15,6 @@ export default function AllBusiness() {
   const [cat, setCat] = useState(null)
 
   useEffect(() => {
-    console.log("sent")
     fetchBus()
     setShowFilter(false)
   }, [FilterValue, neighborhood, JSON.stringify(subCat), city, cat])
@@ -72,12 +71,8 @@ export default function AllBusiness() {
       variab = { ...variab, cat }
     }
 
-    console.log(variab)
-
     getBusiness({ variables: variab })
   }
-
-  console.log(data)
 
   return (
     <Fragment>

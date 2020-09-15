@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/react-hooks"
 import { DELETE_BUSINESS, UPDATE_BUSINESS } from "../../../qraphQl/businessType"
 import { DispatchContext } from "../../../Context"
 import PaginationAction from "./PaginationAction"
-import { makeStyles, Table, TableCell, TableHead, TableBody, TableContainer, TableFooter, TablePagination, TableRow, Paper, StylesProvider } from "@material-ui/core"
+import { makeStyles, Table, TableCell, TableHead, TableBody, TableContainer, TableFooter, TablePagination, TableRow, Paper } from "@material-ui/core"
 
 const useStyles2 = makeStyles({
   table: {
@@ -19,7 +19,7 @@ export default function TablePaginat({ finData }) {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(50)
 
-  const [deleteBus, { error, loading }] = useMutation(DELETE_BUSINESS)
+  const [deleteBus] = useMutation(DELETE_BUSINESS)
   const [publish] = useMutation(UPDATE_BUSINESS, {
     onCompleted() {
       appDispatch({ type: "flashMessage", value: { message: `Business is published`, type: "success" } })

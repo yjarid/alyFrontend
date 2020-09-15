@@ -155,15 +155,6 @@ export const PROFILE_FEED = gql`
             }
             review {
               _id
-              text
-              rating
-              claps
-              createdAt
-              picture {
-                _id
-                picture
-                desc
-              }
             }
             image {
               _id
@@ -190,15 +181,6 @@ export const PROFILE_FEED = gql`
         }
         review {
           _id
-          text
-          rating
-          claps
-          createdAt
-          picture {
-            _id
-            picture
-            desc
-          }
         }
         image {
           _id

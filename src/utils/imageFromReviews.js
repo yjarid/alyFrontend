@@ -1,11 +1,12 @@
 const useImageFromReviews = reviews => {
   let modalInfo = []
 
+  console.log(reviews)
+
   if (Array.isArray(reviews)) {
     reviews.forEach(review => {
       let entity = review.author ? review.author : review.business
       review.picture.forEach(pic => {
-        console.log(pic)
         let detailedInfo = {
           picId: pic._id,
           picture: pic.picture,
@@ -25,7 +26,6 @@ const useImageFromReviews = reviews => {
   } else {
     let entity = reviews.author ? reviews.author : reviews.business
     reviews.picture.forEach(pic => {
-      console.log(pic)
       let detailedInfo = {
         picId: pic._id,
         picture: pic.picture,

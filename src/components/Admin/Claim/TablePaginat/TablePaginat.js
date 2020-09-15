@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/react-hooks"
 import PaginationAction from "./PaginationAction"
 import { timeAgo } from "../../../../utils/timeAgo"
 import { DispatchContext } from "../../../../Context"
-import { makeStyles, Table, TableCell, TableHead, TableBody, TableContainer, TableFooter, TablePagination, TableRow, Paper, StylesProvider } from "@material-ui/core"
+import { makeStyles, Table, TableCell, TableHead, TableBody, TableContainer, TableFooter, TablePagination, TableRow, Paper } from "@material-ui/core"
 
 const useStyles2 = makeStyles({
   table: {

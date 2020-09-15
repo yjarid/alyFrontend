@@ -47,14 +47,14 @@ export const GET_BUSINESS_WITH_REVIEWS = gql`
       owner {
         _id
       }
-      reviews {
+      reviews(first: 20) {
         _id
         text
         rating
         createdAt
         claps
         clappers
-        published
+        appropriate
         picture {
           _id
           picture
@@ -104,8 +104,8 @@ export const GET_BUSINESSES = gql`
 `
 
 export const UPDATE_BUSINESS = gql`
-  mutation UpdateBusiness($id: ID!, $picture: Upload, $name: String, $desc: String, $excerpt: String, $address: String, $city: String, $neighborhood: String, $cat: String, $subCat: [String!], $published: Boolean, $latitude: String, $longitude: String, $price: String, $phone: String) {
-    updateBusiness(id: $id, data: { picture: $picture, name: $name, desc: $desc, excerpt: $excerpt, address: $address, city: $city, neighborhood: $neighborhood, cat: $cat, subCat: $subCat, published: $published, latitude: $latitude, longitude: $longitude, price: $price, phone: $phone }) {
+  mutation UpdateBusiness($id: ID!, $adminOnly: Boolean, $picture: Upload, $name: String, $desc: String, $excerpt: String, $address: String, $city: String, $neighborhood: String, $cat: String, $subCat: [String!], $published: Boolean, $latitude: String, $longitude: String, $price: String, $phone: String) {
+    updateBusiness(id: $id, adminOnly: $adminOnly, data: { picture: $picture, name: $name, desc: $desc, excerpt: $excerpt, address: $address, city: $city, neighborhood: $neighborhood, cat: $cat, subCat: $subCat, published: $published, latitude: $latitude, longitude: $longitude, price: $price, phone: $phone }) {
       name
       excerpt
       address

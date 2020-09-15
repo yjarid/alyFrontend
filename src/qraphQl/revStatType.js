@@ -10,11 +10,12 @@ export const CREATE_REPORT = gql`
 
 export const GET_REPORTS = gql`
   query Reports {
-    Reports {
+    reports(orderBy: createdAt_DESC) {
       _id
       createdAt
       report
       decision
+      type
       from {
         _id
         userName
@@ -23,17 +24,18 @@ export const GET_REPORTS = gql`
       review {
         _id
         text
-        business {
-          _id
-        }
+      }
+      business {
+        _id
+        name
       }
     }
   }
 `
 
-export const UPDATE_REVREPORT = gql`
-  mutation UpdateRevReport($id: ID!, $decision: String) {
-    updateRevReport(id: $id, data: { decision: $decision }) {
+export const UPDATE_REPORT = gql`
+  mutation UpdateReport($id: ID!, $decision: String) {
+    updateReport(id: $id, data: { decision: $decision }) {
       _id
     }
   }
