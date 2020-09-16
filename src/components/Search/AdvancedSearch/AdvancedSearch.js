@@ -77,7 +77,7 @@ export default function AdvancedSearch(props) {
 
   const fetchBus = () => {
     let variab = { published: true }
-    let limit = 20
+    let first = 20
 
     // PART PRICE
     if (price) {
@@ -111,7 +111,7 @@ export default function AdvancedSearch(props) {
       variab = { ...variab, cat }
     }
 
-    getBusiness({ variables: { ...variab, limit } })
+    getBusiness({ variables: { ...variab, first } })
   }
 
   const mapBounds2 = bounds => {

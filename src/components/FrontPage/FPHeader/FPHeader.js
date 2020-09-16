@@ -11,7 +11,7 @@ import { useMediaQuery } from "react-responsive"
 
 const FPHeader = () => {
   const [imageIndex, setImageIndex] = useState(null)
-  const { data } = useQuery(GET_TOP_FEATURED_IMAGES, { variables: { featured: "ONE", limit: 4 } })
+  const { data } = useQuery(GET_TOP_FEATURED_IMAGES, { variables: { featured: "ONE", first: 4 } })
   const images = data ? data.images : null
 
   const isTablet = useMediaQuery({ query: "(min-device-width: 768px)" })

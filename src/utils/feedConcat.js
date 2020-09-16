@@ -2,7 +2,7 @@ import { useRef } from "react"
 
 export const feedConcat = data => {
   const followingsFeed = data.followings
-  const yourFeed = data.recipient
+  const yourFeed = data.recipientFeeds
 
   let feeds = []
 

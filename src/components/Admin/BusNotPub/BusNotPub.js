@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/react-hooks"
 import TablePaginat from "../TablePaginat/TablePaginat"
 
 export default function AllBusiness() {
-  const { data } = useQuery(GET_BUSINESSES, { variables: { published: false, limit: 50 } })
+  const { data } = useQuery(GET_BUSINESSES, { variables: { published: false, first: 50 } })
 
   return (
     <>

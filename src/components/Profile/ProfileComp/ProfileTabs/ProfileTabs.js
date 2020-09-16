@@ -4,16 +4,13 @@ import Tabs from "@material-ui/core/Tabs"
 import Tab from "@material-ui/core/Tab"
 import style from "./ProfileTabs.module.scss"
 
-const ProfileTabs = ({ history, profile, tab, me }) => {
+const ProfileTabs = ({ history, isOwner, userId, tab }) => {
   const [value, setValue] = useState(tab ? tab : "")
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
-    history.push(`/profile/${profile}/${newValue}`)
+    history.push(`/profile/${userId}/${newValue}`)
   }
-
-  const meId = me ? me._id : null
-  let owner = meId == profile
 
   return (
     <div className={style.paper}>
@@ -22,7 +19,7 @@ const ProfileTabs = ({ history, profile, tab, me }) => {
         <Tab label="Reviews" value="review" />
         <Tab label="Followers" value="friend" />
         <Tab label="Photos" value="photo" />
-        {owner && <Tab label="Business" value="business" />}
+        {isOwner && <Tab label="Business" value="business" />}
       </Tabs>
     </div>
   )

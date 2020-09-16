@@ -71,8 +71,8 @@ export const ME = gql`
     }
   }
 `
-
-export const PROFILE_INFO = gql`
+// Profile Info Section
+export const PROFILE_INFO_WITH_FOLLOWERS = gql`
   query User($id: ID!) {
     user(id: $id) {
       _id
@@ -82,42 +82,6 @@ export const PROFILE_INFO = gql`
       city
       nbrRev
       revPic
-      ownedBus {
-        _id
-        name
-        desc
-        picture
-        neighborhood
-        city
-        cat
-        subCat
-        nbrRev
-        totRev
-        revPic
-      }
-      reviews {
-        _id
-        text
-        rating
-        createdAt
-        claps
-        clappers
-        picture {
-          _id
-          picture
-          desc
-          claps
-        }
-
-        business {
-          _id
-          name
-          picture
-          nbrRev
-          totRev
-          revPic
-        }
-      }
       followers {
         follower {
           _id
@@ -132,7 +96,7 @@ export const PROFILE_INFO = gql`
     }
   }
 `
-export const PROFILE_FEED = gql`
+export const PROFILE_INFO_FEED = gql`
   query User($id: ID!) {
     user(id: $id) {
       _id
@@ -141,7 +105,7 @@ export const PROFILE_FEED = gql`
           _id
           userName
           picture
-          performer(first: 10, orderBy: createdAt_DESC) {
+          performerFeeds(first: 10, orderBy: createdAt_DESC) {
             _id
             action
             createdAt
@@ -166,7 +130,7 @@ export const PROFILE_FEED = gql`
           }
         }
       }
-      recipient(first: 10, orderBy: createdAt_DESC) {
+      recipientFeeds(first: 10, orderBy: createdAt_DESC) {
         _id
         action
         createdAt
@@ -188,6 +152,80 @@ export const PROFILE_FEED = gql`
           claps
           desc
           createdAt
+        }
+      }
+    }
+  }
+`
+export const PROFILE_INFO_OWNEDBUSINESS = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      _id
+      ownedBus {
+        _id
+        name
+        desc
+        picture
+        neighborhood
+        city
+        cat
+        subCat
+        nbrRev
+        totRev
+        revPic
+      }
+    }
+  }
+`
+
+export const PROFILE_INFO_REVIEWS = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      _id
+      reviews {
+        _id
+        text
+        rating
+        createdAt
+        claps
+        clappers
+        picture {
+          _id
+          picture
+          desc
+          claps
+        }
+
+        business {
+          _id
+          name
+          picture
+          nbrRev
+          totRev
+          revPic
+        }
+      }
+    }
+  }
+`
+
+export const PROFILE_INFO_IMAGES = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      _id
+      revPictures {
+        _id
+        picture
+        desc
+        claps
+        alyScore
+        business {
+          _id
+          name
+          picture
+          nbrRev
+          totRev
+          revPic
         }
       }
     }

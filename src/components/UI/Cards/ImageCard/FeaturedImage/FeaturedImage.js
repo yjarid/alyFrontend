@@ -12,7 +12,7 @@ import styles from "./FeaturedImage.module.scss"
 function FeaturedImage() {
   const [selectedImgIndex, setSelectedImgIndex] = useState(0)
   const [showModal, setShowModal] = useState(false)
-  const { data, error, loading } = useQuery(GET_FEATURED_IMAGES, { variables: { featured: "TWO", limit: 4 } })
+  const { data, error, loading } = useQuery(GET_FEATURED_IMAGES, { variables: { featured: "TWO", first: 4 } })
 
   const modalClosed = () => {
     setShowModal(false)

@@ -5,7 +5,7 @@ import FrontPage from "../components/FrontPage/FrontPage"
 import NoPageFound from "../components/NoPageFound/NoPageFound"
 import ResetPassword from "../components/Register/ResetPassword"
 import ChangePassword from "../components/Register/ChangePassword"
-import EditProfile from "../components/Profile/EditProfile"
+import EditProfile from "../components/Profile/ProfileComp/ProfileCard/EditProfile/EditProfile"
 import { StateContext, DispatchContext } from "../Context"
 import Footer from "../components/Footer/Footer"
 import { loggedInUser } from "../AccessToken"
@@ -13,7 +13,7 @@ import { useImmerReducer } from "use-immer"
 import Spinner from "../components/UI/Spinner/Spinner"
 const SingleReviewPage = React.lazy(() => import("../components/Review/SingleReviewPage/SingleReviewPage"))
 const TaxBizList = React.lazy(() => import("../components/Business/TaxBizList/TaxBizList"))
-const Profile = React.lazy(() => import("../components/Profile/Profile"))
+const Profile = React.lazy(() => import("../components/Profile/ProfileMain"))
 const BuzSinglePage = React.lazy(() => import("../components/Business/BuzSinglePage/BuzSinglePage"))
 const SearchResultPage = React.lazy(() => import("../components/Search/SearchResultPage/SearchResultPage"))
 const AdminMain = React.lazy(() => import("../components/Admin/AdminMain"))

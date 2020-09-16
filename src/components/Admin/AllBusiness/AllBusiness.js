@@ -46,7 +46,7 @@ export default function AllBusiness() {
   }
 
   const fetchBus = () => {
-    let variab = { limit: 100, orderBy: "CREATED" }
+    let variab = { first: 100, orderBy: "createdAt_DESC" }
 
     if (FilterValue) {
       variab = { ...variab, query: FilterValue }

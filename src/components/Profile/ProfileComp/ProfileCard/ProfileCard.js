@@ -10,12 +10,11 @@ import { BsFillPeopleFill, BsStarFill } from "react-icons/bs"
 import { AiFillCamera } from "react-icons/ai"
 import { FaUserCircle } from "react-icons/fa"
 
-function ProfileCard({ user, me, followers }) {
-  const appDispatch = useContext(DispatchContext)
-  const followings = me ? me.followings.map(fol => fol.user._id) : []
+function ProfileCard({ user, loggedInUserID }) {
   const isTablet = useMediaQuery({
     query: "(min-device-width: 768px)"
   })
+  const appDispatch = useContext(DispatchContext)
 
   const [addFollow] = useMutation(CREATE_FOLLOW, {
     onCompleted() {
@@ -34,13 +33,9 @@ function ProfileCard({ user, me, followers }) {
       appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
     }
   })
-  const meId = me ? me._id : null
-  let owner = meId === user._id
 
-  let areUFoll = false
-  if (followings.length) {
-    areUFoll = followings.includes(user._id)
-  }
+  let owner = user._id === loggedInUserID
+  let areUFoll = user.followers.find(el => el.follower._id === loggedInUserID)
 
   const follow = () => {
     addFollow({ variables: { user: user._id } })
@@ -50,7 +45,7 @@ function ProfileCard({ user, me, followers }) {
   }
 
   const displayFollowBtn = () => {
-    if (owner || !meId) {
+    if (owner || !loggedInUserID) {
       return null
     } else if (areUFoll) {
       return (
@@ -92,7 +87,7 @@ function ProfileCard({ user, me, followers }) {
           <div className="chipsContainer">
             <div className="chip">
               <BsFillPeopleFill color="#0996e8" />
-              <div className="label">{`${followers.length} ${isTablet ? "Followers" : ""}`}</div>
+              <div className="label">{`${user.followers.length} ${isTablet ? "Followers" : ""}`}</div>
             </div>
             <div className="chip">
               <BsStarFill color="#0996e8" />

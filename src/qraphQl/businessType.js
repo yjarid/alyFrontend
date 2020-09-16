@@ -21,6 +21,9 @@ export const GET_BUSINESS = gql`
       }
       phone
       price
+      owner {
+        _id
+      }
     }
   }
 `
@@ -77,8 +80,8 @@ export const GET_BUSINESS_WITH_REVIEWS = gql`
 `
 
 export const GET_BUSINESSES = gql`
-  query Businesses($published: Boolean, $query: String, $limit: Int, $type: String, $cat: String, $subCat: [String], $city: String, $neighborhood: String, $price: String, $bound: [Float], $authorId: ID, $orderBy: ORDERBY) {
-    businesses(published: $published, limit: $limit, query: $query, type: $type, cat: $cat, subCat: $subCat, city: $city, neighborhood: $neighborhood, price: $price, bound: $bound, authorId: $authorId, orderBy: $orderBy) {
+  query Businesses($published: Boolean, $query: String, $first: Int, $type: String, $cat: String, $subCat: [String], $city: String, $neighborhood: String, $price: String, $bound: [Float], $authorId: ID, $orderBy: BusinessOrderByInput) {
+    businesses(published: $published, first: $first, query: $query, type: $type, cat: $cat, subCat: $subCat, city: $city, neighborhood: $neighborhood, price: $price, bound: $bound, authorId: $authorId, orderBy: $orderBy) {
       _id
       name
       excerpt

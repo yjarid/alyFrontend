@@ -7,7 +7,7 @@ import FeaturedReviewTemplate from "../../UI/Cards/ReviewCard/FeaturedReview/Fea
 
 function UncheckedReviews() {
   const [updateReview] = useMutation(UPDATE_REVIEW)
-  const { data } = useQuery(GET_REVIEWS, { variables: { limit: 20, alyCheck: false, appropriate: true } })
+  const { data } = useQuery(GET_REVIEWS, { variables: { first: 20, alyCheck: false, appropriate: true } })
 
   let reviews = data ? data.reviews : []
 

@@ -1,10 +1,20 @@
-import React, { useContext } from "react"
+import React from "react"
+import { useParams } from "react-router-dom"
+import { PROFILE_INFO_OWNEDBUSINESS } from "../../../../qraphQl/userType"
+import { useQuery } from "@apollo/react-hooks"
 import { Link } from "react-router-dom"
 import BuzCard from "../../../UI/Cards/BuzCard/BuzCard"
 import { MyButton } from "../../../UI/CustomFields/CustomField"
 import styles from "./ProfileBusiness.module.scss"
 
-function ProfileBusiness({ ownedBus, isOwner }) {
+function ProfileBusiness({ isOwner }) {
+  const { id } = useParams()
+  const { data, error, loading } = useQuery(PROFILE_INFO_OWNEDBUSINESS, { variables: { id } })
+
+  console.log(data)
+
+  let ownedBus = data ? data.user.ownedBus : []
+
   return (
     <section>
       <div className={styles.container}>

@@ -21,7 +21,7 @@ function SearchResultPage(props) {
   const locationObj = typeof dataL != "undefined" ? dataL.location : null
 
   useEffect(() => {
-    let variables = { query: name, bound, limit: 20, published: true }
+    let variables = { query: name, bound, first: 20, published: true }
     if (locCat == "city") {
       variables.city = location
     } else {

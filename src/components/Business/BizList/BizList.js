@@ -10,7 +10,7 @@ const BizList = () => {
   const [getBusiness, { loading, data, error }] = useLazyQuery(GET_BUSINESSES)
 
   useEffect(() => {
-    getBusiness({ variables: { published: true, authorID: null, limit: 8 } })
+    getBusiness({ variables: { published: true, authorID: null, first: 8 } })
   }, [])
 
   const display = () => {

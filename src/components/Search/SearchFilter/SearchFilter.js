@@ -63,7 +63,7 @@ const SearchFilter = ({ history, FP }) => {
 
   useEffect(() => {
     if (nameCount) {
-      getBusiness({ variables: { query: name, limit: 10, published: true } })
+      getBusiness({ variables: { query: name, first: 10, published: true } })
     }
   }, [nameCount])
 

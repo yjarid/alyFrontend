@@ -28,8 +28,8 @@ export const UPDATE_IMAGE = gql`
 `
 
 export const GET_FEATURED_IMAGES = gql`
-  query Images($featured: Featured, $limit: Int) {
-    images(featured: $featured, limit: $limit) {
+  query Images($featured: Featured, $first: Int) {
+    images(featured: $featured, first: $first) {
       _id
       picture
       desc
@@ -57,8 +57,8 @@ export const GET_FEATURED_IMAGES = gql`
 `
 
 export const GET_TOP_FEATURED_IMAGES = gql`
-  query Images($limit: Int, $featured: Featured) {
-    images(featured: $featured, limit: $limit) {
+  query Images($first: Int, $featured: Featured) {
+    images(featured: $featured, first: $first) {
       _id
       picture
       desc

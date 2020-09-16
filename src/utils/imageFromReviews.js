@@ -1,4 +1,4 @@
-const useImageFromReviews = reviews => {
+const imageFromReviews = reviews => {
   let modalInfo = []
 
   console.log(reviews)
@@ -46,4 +46,4 @@ const useImageFromReviews = reviews => {
   return modalInfo
 }
 
-export default useImageFromReviews
+export default imageFromReviews

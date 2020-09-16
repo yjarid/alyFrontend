@@ -102,7 +102,7 @@ function BuzSingleHead({ history, business }) {
         </div>
       </div>
       <p className={styles.report}>
-        if review is inappropriate please
+        if business is inappropriate please
         <span className={styles.reportbtn} onClick={() => openModal("report")}>
           report it
         </span>

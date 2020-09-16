@@ -10,7 +10,7 @@ function FeaturedReview() {
   const appState = useContext(StateContext)
 
   const [updateReview, { data, error, loading }] = useMutation(UPDATE_REVIEW)
-  const { data: feateuredRev } = useQuery(GET_REVIEWS, { variables: { featured: "ONE", limit: 4, appropriate: true } })
+  const { data: feateuredRev } = useQuery(GET_REVIEWS, { variables: { featured: "ONE", first: 4, appropriate: true } })
 
   let reviews = feateuredRev ? feateuredRev.reviews : []
 
