@@ -13,7 +13,7 @@ export default function AddNewBus() {
       window.scrollTo(0, 0)
     },
     onError(err) {
-      appDispatch({ type: "flashMessage", value: { message: "Somethicng is wrong please try again later", type: "error" } })
+      appDispatch({ type: "flashMessage", value: { message: err.message.replace("GraphQL error:", ""), type: "error" } })
       window.scrollTo(0, 0)
     }
   })

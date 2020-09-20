@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { useLazyQuery } from "@apollo/react-hooks"
 import SearchReslist from "./SearchResList/SearchReslist"
 import styles from "./SearchFilter.module.scss"
@@ -7,8 +7,10 @@ import { LOCATIONS } from "../../../qraphQl/taxonomyType"
 import { withRouter } from "react-router-dom"
 import inputError from "../../../cssTransition/inputError.module.scss"
 import { CSSTransition } from "react-transition-group"
+import { DispatchContext } from "../../../Context"
 
 const SearchFilter = ({ history, FP }) => {
+  const appDispatch = useContext(DispatchContext)
   const [nameErr, setNameErr] = useState({ message: "", status: false })
   const [locationErr, setLocationErr] = useState({ message: "", status: false })
   const [name, setName] = useState("")
@@ -27,14 +29,20 @@ const SearchFilter = ({ history, FP }) => {
       setNameErr({ message: "", status: false })
       setBusSug(() => businesses)
     },
-    onError(error) {}
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
+    }
   })
   const [getLocation] = useLazyQuery(LOCATIONS, {
     onCompleted({ locations }) {
       setLocationErr({ message: "", status: false })
       setLocSug(() => locations)
     },
-    onError(error) {}
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
+    }
   })
 
   // Name Filter

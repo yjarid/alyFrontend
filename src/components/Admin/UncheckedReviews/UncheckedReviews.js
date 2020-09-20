@@ -1,17 +1,34 @@
-import React from "react"
+import React, { useContext } from "react"
 import { useQuery } from "@apollo/react-hooks"
 import { GET_REVIEWS, UPDATE_REVIEW } from "../../../qraphQl/reviewType"
 import styles from "./UncheckedReviews.module.scss"
 import { useMutation } from "@apollo/react-hooks"
 import FeaturedReviewTemplate from "../../UI/Cards/ReviewCard/FeaturedReview/FeaturedReviewTemplate/FeaturedReviewTemplate"
+import { DispatchContext } from "../../../Context"
 
 function UncheckedReviews() {
-  const [updateReview] = useMutation(UPDATE_REVIEW)
-  const { data } = useQuery(GET_REVIEWS, { variables: { first: 20, alyCheck: false, appropriate: true } })
+  const appDispatch = useContext(DispatchContext)
+
+  const [updateReview] = useMutation(UPDATE_REVIEW, {
+    onCompleted() {
+      appDispatch({ type: "flashMessage", value: { message: `Review updated`, type: "success" } })
+      window.scrollTo(0, 0)
+    },
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message, type: "success" } })
+      window.scrollTo(0, 0)
+    }
+  })
+
+  const { data } = useQuery(GET_REVIEWS, {
+    variables: { first: 20, alyCheck: false, appropriate: true },
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message, type: "success" } })
+      window.scrollTo(0, 0)
+    }
+  })
 
   let reviews = data ? data.reviews : []
-
-  console.log(reviews)
 
   return (
     <div className={styles.container}>

@@ -1,10 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { UPDATE_IMAGE } from "../../../qraphQl/imageType"
 import { UPDATE_REVIEW } from "../../../qraphQl/reviewType"
 import { useMutation } from "@apollo/react-hooks"
-import { useEffect } from "react"
+import { DispatchContext } from "../../../Context"
 
 function AlyScore({ type, id, initAlyScore }) {
+  const appDispatch = useContext(DispatchContext)
   const [alyScore, setAlyScore] = useState("0")
 
   useEffect(() => {
@@ -14,7 +15,16 @@ function AlyScore({ type, id, initAlyScore }) {
 
   const graphQlQuery = type == "review" ? UPDATE_REVIEW : UPDATE_IMAGE
 
-  const [updateAlyScore, { data, error, loading }] = useMutation(graphQlQuery)
+  const [updateAlyScore] = useMutation(graphQlQuery, {
+    onCompleted() {
+      appDispatch({ type: "flashMessage", value: { message: "Score updated", type: "success" } })
+      window.scrollTo(0, 0)
+    },
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
+    }
+  })
 
   const handleChange = e => {
     setAlyScore(e.target.value)
@@ -28,7 +38,6 @@ function AlyScore({ type, id, initAlyScore }) {
       return
     }
 
-    console.log(score)
     updateAlyScore({ variables: { id, alyScore: score } })
   }
 

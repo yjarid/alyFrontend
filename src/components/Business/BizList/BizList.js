@@ -1,42 +1,33 @@
-import React, { useEffect } from "react"
+import React, { useContext } from "react"
 import styles from "./BizList.module.scss"
 import BuzCard from "../../UI/Cards/BuzCard/BuzCard"
 import { GET_BUSINESSES } from "../../../qraphQl/businessType"
-import { useLazyQuery } from "@apollo/react-hooks"
+import { useQuery } from "@apollo/react-hooks"
 import Spinner from "../../UI/Spinner/Spinner"
+import { DispatchContext } from "../../../Context"
 
 const BizList = () => {
+  const appDispatch = useContext(DispatchContext)
   // QUERIES
-  const [getBusiness, { loading, data, error }] = useLazyQuery(GET_BUSINESSES)
-
-  useEffect(() => {
-    getBusiness({ variables: { published: true, authorID: null, first: 8 } })
-  }, [])
-
-  const display = () => {
-    let body = null
-    if (loading) {
-      body = <Spinner />
-    } else if (error) {
-      body = null
-    } else if (typeof data !== "undefined") {
-      const { businesses } = data
-      body = (
-        <div className={styles.bizList}>
-          {businesses.map(item => (
-            <BuzCard key={item._id} data={item} />
-          ))}
-        </div>
-      )
+  const { loading, data } = useQuery(GET_BUSINESSES, {
+    variables: { published: true, authorID: null, first: 8 },
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
     }
-
-    return body
-  }
+  })
 
   return (
     <div>
       <h2 className="sectionTitle"> Popular this week</h2>
-      {display()}
+      {loading && <Spinner />}
+      {data && data.businesses && (
+        <div className={styles.bizList}>
+          {data.businesses.map(item => (
+            <BuzCard key={item._id} data={item} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

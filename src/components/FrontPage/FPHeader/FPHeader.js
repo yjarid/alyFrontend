@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import SearchFilter from "../../Search/SearchFilter/SearchFilter"
 import styles from "./FPHeader.module.scss"
 import LoginBtn from "../../Register/Forms/LoginBtn/LoginBtn"
@@ -8,10 +8,20 @@ import { GET_TOP_FEATURED_IMAGES } from "../../../qraphQl/imageType"
 import { upCaseFirstLetter } from "../../../utils/string"
 import { Link } from "react-router-dom"
 import { useMediaQuery } from "react-responsive"
+import { DispatchContext } from "../../../Context"
 
 const FPHeader = () => {
   const [imageIndex, setImageIndex] = useState(null)
-  const { data } = useQuery(GET_TOP_FEATURED_IMAGES, { variables: { featured: "ONE", first: 4 } })
+  const appDispatch = useContext(DispatchContext)
+
+  const { data } = useQuery(GET_TOP_FEATURED_IMAGES, {
+    variables: { featured: "ONE", first: 4 },
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "success" } })
+      window.scrollTo(0, 0)
+    }
+  })
+
   const images = data ? data.images : null
 
   const isTablet = useMediaQuery({ query: "(min-device-width: 768px)" })

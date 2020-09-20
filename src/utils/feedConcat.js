@@ -23,7 +23,7 @@ export const feedConcat = data => {
   })
 
   for (const ff of followingsFeed) {
-    for (const f of ff.user.performer) {
+    for (const f of ff.user.performerFeeds) {
       let feed = {
         performer: ff.user,
         type: "follow",

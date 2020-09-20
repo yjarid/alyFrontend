@@ -15,10 +15,10 @@ export default function ImageGrid({ images, top, showModalBtn, type, size }) {
         {images.map((image, i) => {
           let finalImage = null
           if (image.picture) {
-            finalImage = image.picture.replace("t_meduim", "t_small")
+            finalImage = image.picture
           } else if (image.name) {
             // pour le dropZone
-            finalImage = image.name.replace("t_meduim", "t_small")
+            finalImage = image.name
           }
           return (
             <div className={styles.singleImg} key={i} onClick={() => setShowModal(true)}>

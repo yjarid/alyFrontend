@@ -22,7 +22,8 @@ function LoginBtn(props) {
       return <Redirect to={"/"} />
     },
     onError(error) {
-      console.log(error)
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
     }
   })
 

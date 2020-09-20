@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { GET_BUSINESSES } from "../../../qraphQl/businessType"
 import { useLazyQuery } from "@apollo/react-hooks"
 import AdvanceFilter from "../../UI/AdvanceFilter/AdvanceFilter"
@@ -26,7 +26,13 @@ export default function AdvancedSearch(props) {
   const [subCat, setSubCat] = useState([])
   const [cat, setCat] = useState(categoryParam || "restaurant")
 
-  let [getBusiness, { data, error, loading }] = useLazyQuery(GET_BUSINESSES, { fetchPolicy: "network-only" })
+  let [getBusiness, { data, loading }] = useLazyQuery(GET_BUSINESSES, {
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
+    }
+    // fetchPolicy: "network-only"
+  })
 
   const dataFinal = typeof data != "undefined" ? data.businesses : []
 
@@ -36,12 +42,6 @@ export default function AdvancedSearch(props) {
     setShowFilter(false)
   }, [bound[0], price, neighName, JSON.stringify(subCat), cityName, cat])
 
-  useEffect(() => {
-    if (error) {
-      appDispatch({ type: "flashMessage", value: { message: "Something went wrong", type: "error" } })
-    }
-  }, [error])
-
   const onFilter = (initNeighborhood, initSubCat, initCity, initCat, initPrice) => {
     setBound([])
     setNeighName(null)
@@ -49,7 +49,7 @@ export default function AdvancedSearch(props) {
     setSubCat([])
     if (initNeighborhood) {
       let parseNeigh = JSON.parse(initNeighborhood)
-      console.log(parseNeigh)
+
       setNeighborhood(parseNeigh)
       setNeighName(parseNeigh.neigh)
       setZoom(13)
@@ -115,7 +115,6 @@ export default function AdvancedSearch(props) {
   }
 
   const mapBounds2 = bounds => {
-    console.log(bounds)
     setBound(bounds)
   }
 

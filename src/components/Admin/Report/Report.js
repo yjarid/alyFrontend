@@ -7,7 +7,6 @@ export default function Report() {
   const { data } = useQuery(GET_REPORTS)
 
   let finData = data ? data.reports : []
-  console.log(finData)
 
   return <TablePaginat finData={finData} />
 }

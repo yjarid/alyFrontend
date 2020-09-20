@@ -57,22 +57,8 @@ export const UPDATE_USER = gql`
   }
 `
 
-export const ME = gql`
-  query Me {
-    me {
-      _id
-      userName
-      type
-      followings {
-        user {
-          _id
-        }
-      }
-    }
-  }
-`
 // Profile Info Section
-export const PROFILE_INFO_WITH_FOLLOWERS = gql`
+export const PROFILE_INFO = gql`
   query User($id: ID!) {
     user(id: $id) {
       _id
@@ -82,20 +68,11 @@ export const PROFILE_INFO_WITH_FOLLOWERS = gql`
       city
       nbrRev
       revPic
-      followers {
-        follower {
-          _id
-          userName
-          picture
-          nbrRev
-          revPic
-          description
-          city
-        }
-      }
+      nbrFollowers
     }
   }
 `
+
 export const PROFILE_INFO_FEED = gql`
   query User($id: ID!) {
     user(id: $id) {
@@ -178,54 +155,22 @@ export const PROFILE_INFO_OWNEDBUSINESS = gql`
   }
 `
 
-export const PROFILE_INFO_REVIEWS = gql`
+// determine whether the logged in user is following the user of the rpofile page
+export const IS_FOLLOWING = gql`
   query User($id: ID!) {
-    user(id: $id) {
-      _id
-      reviews {
-        _id
-        text
-        rating
-        createdAt
-        claps
-        clappers
-        picture {
-          _id
-          picture
-          desc
-          claps
-        }
-
-        business {
-          _id
-          name
-          picture
-          nbrRev
-          totRev
-          revPic
-        }
-      }
-    }
+    isFollowing(id: $id)
   }
 `
 
-export const PROFILE_INFO_IMAGES = gql`
-  query User($id: ID!) {
-    user(id: $id) {
+export const ME = gql`
+  query Me {
+    me {
       _id
-      revPictures {
-        _id
-        picture
-        desc
-        claps
-        alyScore
-        business {
+      userName
+      type
+      followings {
+        user {
           _id
-          name
-          picture
-          nbrRev
-          totRev
-          revPic
         }
       }
     }

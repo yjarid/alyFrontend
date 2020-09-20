@@ -27,7 +27,6 @@ export default function SimpleMap({ data, area, initZoom, mapBounds, selectedBus
   const businesses = data ? data : []
   let initialCor = area ? [area.lat, area.lng] : [31.791702, -7.09262]
 
-  console.log(businesses)
   useEffect(() => {
     setSelectedBus(selectedBusfromParent)
   }, [idFromParent])
@@ -42,7 +41,7 @@ export default function SimpleMap({ data, area, initZoom, mapBounds, selectedBus
     const b = mapRef.current.leafletElement.getBounds()
     const zoomm = mapRef.current.leafletElement.getZoom()
     const initBound = [b.getSouthWest().lng, b.getSouthWest().lat, b.getNorthEast().lng, b.getNorthEast().lat]
-    console.log(initBound)
+
     setZoom(zoomm)
     setBound(initBound)
   }

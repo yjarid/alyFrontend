@@ -7,7 +7,7 @@ import Spinner from "../../../UI/Spinner/Spinner"
 import CategoryList from "./CategoryList/CategoryList"
 import { Button } from "@material-ui/core"
 import { MyTextField, MyTextArea, MyButton, MySelect } from "../../../UI/CustomFields/CustomField"
-import { useLazyQuery } from "@apollo/react-hooks"
+import { useQuery } from "@apollo/react-hooks"
 import { LOCATIONS, CATEGORIES } from "../../../../qraphQl/taxonomyType"
 import DropZone from "../../../UI/Upload/DropZone"
 import { DispatchContext } from "../../../../Context"
@@ -19,18 +19,18 @@ const BuzForm = props => {
   const [type, setType] = useState("")
   const [errorForm, setError] = useState("")
 
-  const [getLocation, { loading, error, data }] = useLazyQuery(LOCATIONS)
-  const [getCategory, { data: dataC, error: errorC }] = useLazyQuery(CATEGORIES)
-
-  if (error || errorC) {
-    appDispatch({ type: "flashMessage", value: { message: `you have to select a city`, type: "error" } })
-    window.scrollTo(0, 0)
-  }
-
-  useEffect(() => {
-    getLocation()
-    getCategory()
-  }, [])
+  const { loading, data } = useQuery(LOCATIONS, {
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
+    }
+  })
+  const { data: dataC } = useQuery(CATEGORIES, {
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
+    }
+  })
 
   const modalClosed = () => {
     setModal(() => false)

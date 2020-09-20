@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useContext } from "react"
 import useClapAnimation from "./useClapAnimation"
 import { useMutation } from "@apollo/react-hooks"
-import { UPDATE_IMAGE_CLAPS } from "../../../qraphQl/imageType"
+import { UPDATE_IMAGE } from "../../../qraphQl/imageType"
 import { UPDATE_REVIEW } from "../../../qraphQl/reviewType"
 import styles from "./Clap.module.scss"
 import { DispatchContext } from "../../../Context"
@@ -23,9 +23,22 @@ const MediumClap = ({ claps, id, type }) => {
 
   const [{ clapRef, clapCountRef, clapTotalRef }, setRefState] = useState({})
 
-  const graphQlQuery = type == "review" ? UPDATE_REVIEW : UPDATE_IMAGE_CLAPS
+  const graphQlQuery = type == "review" ? UPDATE_REVIEW : UPDATE_IMAGE
 
-  const [updateClaps, { data, error, loading }] = useMutation(graphQlQuery)
+  const [updateClaps, { data, error, loading }] = useMutation(graphQlQuery, {
+    onCompleted() {
+      appDispatch({ type: "flashMessage", value: { message: "Clap updated", type: "success" } })
+      window.scrollTo(0, 0)
+    },
+    onError(error) {
+      setStateError(`${error.message.replace("GraphQL error:", "")}`)
+      setClapState(prevState => ({
+        isClicked: false,
+        count: 0,
+        countTotal: claps
+      }))
+    }
+  })
   const [stateError, setStateError] = useState(null)
 
   useEffect(() => {
@@ -48,17 +61,6 @@ const MediumClap = ({ claps, id, type }) => {
       countTotal: claps
     })
   }, [id])
-
-  useEffect(() => {
-    if (error) {
-      setStateError(`${error.message.replace("GraphQL error:", "")}`)
-      setClapState(prevState => ({
-        isClicked: false,
-        count: 0,
-        countTotal: claps
-      }))
-    }
-  }, [error])
 
   useEffect(() => {
     if (sendDataCount) {

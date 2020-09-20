@@ -13,12 +13,12 @@ export default function Register() {
     onCompleted({ createUser }) {
       if (createUser) {
         appDispatch({ type: "flashMessage", value: { message: `hello ${createUser.userName} Check your email to activate your account`, type: "success" } })
+        window.scrollTo(0, 0)
       }
     },
     onError(error) {
-      console.log(error)
-      const errMessage = error.message.replace("GraphQL error:", "")
-      appDispatch({ type: "flashMessage", value: { message: errMessage, type: "error" } })
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
     }
   })
 

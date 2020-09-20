@@ -17,15 +17,13 @@ const EditBuz = props => {
 
   const id = props.match.params.id
 
-  const { loading, error, data } = useQuery(GET_BUSINESS, {
-    variables: { id, onlyOwner: true }
-  })
-
-  useEffect(() => {
-    if (error) {
-      appDispatch({ type: "flashMessage", value: { message: "Somethicng is wrong please try again later", type: "error" } })
+  const { loading, data } = useQuery(GET_BUSINESS, {
+    variables: { id, onlyOwner: true },
+    onError(err) {
+      appDispatch({ type: "flashMessage", value: { message: err.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
     }
-  }, [error])
+  })
 
   const [updateBusiness] = useMutation(UPDATE_BUSINESS, {
     onCompleted({ updateBusiness }) {
@@ -33,8 +31,8 @@ const EditBuz = props => {
       appDispatch({ type: "flashMessage", value: { message: `Business ${updateBusiness.name} is updated`, type: "success" } })
       window.scrollTo(0, 0)
     },
-    onError() {
-      appDispatch({ type: "flashMessage", value: { message: "Somethicng is wrong please try again later", type: "error" } })
+    onError(err) {
+      appDispatch({ type: "flashMessage", value: { message: err.message.replace("GraphQL error:", ""), type: "error" } })
       window.scrollTo(0, 0)
     }
   })

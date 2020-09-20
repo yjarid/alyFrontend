@@ -19,13 +19,24 @@ export default function TablePaginat({ finData }) {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(50)
 
-  const [deleteBus] = useMutation(DELETE_BUSINESS)
-  const [publish] = useMutation(UPDATE_BUSINESS, {
+  const [deleteBus] = useMutation(DELETE_BUSINESS, {
     onCompleted() {
-      appDispatch({ type: "flashMessage", value: { message: `Business is published`, type: "success" } })
+      appDispatch({ type: "flashMessage", value: { message: `Business is deleted`, type: "success" } })
+      window.scrollTo(0, 0)
     },
     onError(error) {
       appDispatch({ type: "flashMessage", value: { message: error.message, type: "success" } })
+      window.scrollTo(0, 0)
+    }
+  })
+  const [publish] = useMutation(UPDATE_BUSINESS, {
+    onCompleted() {
+      appDispatch({ type: "flashMessage", value: { message: `Business is published`, type: "success" } })
+      window.scrollTo(0, 0)
+    },
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message, type: "success" } })
+      window.scrollTo(0, 0)
     }
   })
 
@@ -42,9 +53,8 @@ export default function TablePaginat({ finData }) {
 
   const handleDeleteBus = id => {
     let decision = window.confirm("Are you sur you wanna delete IT?")
-    console.log(decision)
+
     if (decision) {
-      console.log(id)
       deleteBus({ variables: { id } })
     }
   }

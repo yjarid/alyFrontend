@@ -22,6 +22,7 @@ const Editbuz = React.lazy(() => import("../components/Business/NewBuz/Editbuz")
 const Register = React.lazy(() => import("../components/Register/Register"))
 const Login = React.lazy(() => import("../components/Register/Login"))
 const AdvancedSearch = React.lazy(() => import("../components/Search/AdvancedSearch/AdvancedSearch"))
+const BuzSingleImages = React.lazy(() => import("../components/Business/BuzSingleImages/BuzSingleImages"))
 
 const AppRouter = () => {
   const initialState = {
@@ -67,6 +68,7 @@ const AppRouter = () => {
               <Route path="/profile/:id/:tab?" component={Profile} />
               <Route path="/business/create" component={Newbuz} />
               <Route path="/business/edit/:id" render={props => <Editbuz {...props} />} />
+              <Route path="/business/images/:id" component={BuzSingleImages} />
               <Route path="/business/:id" component={BuzSinglePage} />
               <Route path="/review/:id" component={SingleReviewPage} />
               <Route path="/tax/:type/:tax/:subTax?" component={TaxBizList} />

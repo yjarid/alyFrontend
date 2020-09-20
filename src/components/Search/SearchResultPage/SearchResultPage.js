@@ -14,7 +14,13 @@ function SearchResultPage(props) {
   const [bound, setBound] = useState([])
   const { location, name, locCat } = queryString.parse(props.location.search)
 
-  const [getBusiness, { data, loading, error }] = useLazyQuery(GET_BUSINESSES)
+  const [getBusiness, { data, loading, error }] = useLazyQuery(GET_BUSINESSES, {
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
+    }
+  })
+
   const { data: dataL } = useQuery(LOCATION, { variables: { neigh: location } })
 
   const dataFinal = typeof data != "undefined" ? data.businesses : []
@@ -30,18 +36,9 @@ function SearchResultPage(props) {
     getBusiness({ variables })
   }, [bound[0], name, location])
 
-  useEffect(() => {
-    if (error) {
-      console.log(error)
-      appDispatch({ type: "flashMessage", value: { message: "Something went wrong", type: "error" } })
-    }
-  }, [error])
-
   const mapBounds2 = bounds => {
     setBound(bounds)
   }
-
-  console.log(data)
 
   return (
     <Page title="Search Results" withTopBar={true}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Link, useParams } from "react-router-dom"
 import { feedConcat } from "../../../../utils/feedConcat"
 import { timeAgo } from "../../../../utils/timeAgo"
@@ -9,10 +9,19 @@ import styles from "./ProfileFeed.module.scss"
 import ImageModal from "../../../UI/ImageModal/ImageModal"
 import { FaUserCircle } from "react-icons/fa"
 import imageFromFeed from "../../../../utils/imageFromFeed"
+import { DispatchContext } from "../../../../Context"
 
 function ProfileFeed() {
   const { id } = useParams()
-  const { data, error, loading } = useQuery(PROFILE_INFO_FEED, { variables: { id } })
+  const appDispatch = useContext(DispatchContext)
+
+  const { data } = useQuery(PROFILE_INFO_FEED, {
+    variables: { id },
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message, type: "success" } })
+      window.scrollTo(0, 0)
+    }
+  })
   const [imageInfo, setImageInfo] = useState([])
   const [showImageModal, setShowImageModal] = useState(false)
 

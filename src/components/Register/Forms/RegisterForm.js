@@ -66,7 +66,6 @@ const RegisterForm = ({ register, loading }) => {
       password: Yup.string().min(6, "Password must be 6 characters or longer").max(30, "name should be at most 30 characters").required("Password is required")
     }),
     handleSubmit: values => {
-      console.log(values)
       register({ variables: values })
     }
   })(myForm)

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import { useParams } from "react-router-dom"
 import { PROFILE_INFO_OWNEDBUSINESS } from "../../../../qraphQl/userType"
 import { useQuery } from "@apollo/react-hooks"
@@ -6,12 +6,18 @@ import { Link } from "react-router-dom"
 import BuzCard from "../../../UI/Cards/BuzCard/BuzCard"
 import { MyButton } from "../../../UI/CustomFields/CustomField"
 import styles from "./ProfileBusiness.module.scss"
+import { DispatchContext } from "../../../../Context"
 
 function ProfileBusiness({ isOwner }) {
+  const appDispatch = useContext(DispatchContext)
   const { id } = useParams()
-  const { data, error, loading } = useQuery(PROFILE_INFO_OWNEDBUSINESS, { variables: { id } })
-
-  console.log(data)
+  const { data } = useQuery(PROFILE_INFO_OWNEDBUSINESS, {
+    variables: { id },
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message, type: "success" } })
+      window.scrollTo(0, 0)
+    }
+  })
 
   let ownedBus = data ? data.user.ownedBus : []
 

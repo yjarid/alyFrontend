@@ -16,7 +16,7 @@ const AddReview = ({ businessId, setBuzStat, modalClosed }) => {
       window.scrollTo(0, 0)
     },
     onError(error) {
-      appDispatch({ type: "flashMessage", value: { message: `Review Not Added: ${error.message.replace("GraphQL error:", "")}`, type: "error" } })
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
       modalClosed()
       window.scrollTo(0, 0)
     }

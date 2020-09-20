@@ -20,8 +20,12 @@ const EditProfile = props => {
 
   loginRequired(props.history, appDispatch)
 
-  const { loading, error, data } = useQuery(GET_USER, {
-    variables: { id: userId }
+  const { loading, data } = useQuery(GET_USER, {
+    variables: { id: userId },
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
+    }
   })
 
   const [updateUser, { loading: loadingU }] = useMutation(UPDATE_USER, {
@@ -30,20 +34,15 @@ const EditProfile = props => {
       appDispatch({ type: "flashMessage", value: { message: `Profile updated`, type: "success" } })
       window.scrollTo(0, 0)
     },
-    onError() {
-      appDispatch({ type: "flashMessage", value: { message: "Somethicng is wrong please try again later", type: "error" } })
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
       window.scrollTo(0, 0)
     }
   })
 
   let finalData = updatedProfile || (data ? data.user : null)
 
-  if (error) {
-    appDispatch({ type: "flashMessage", value: { message: "Somethicng is wrong please try again later", type: "error" } })
-  }
-
   const form = props => {
-    console.log(props)
     return (
       <div className={styles.innerContainer}>
         <Form>
@@ -97,7 +96,7 @@ const EditProfile = props => {
       if (typeof pictureId == "string") {
         pictureId = values.picture ? values.picture.split("/images/")[1] : null
       }
-      console.log(pictureId)
+
       updateUser({
         variables: {
           ...values,

@@ -21,11 +21,13 @@ export default function TablePaginat({ finData }) {
   const [rowsPerPage, setRowsPerPage] = useState(20)
 
   const [updateClaim] = useMutation(UPDATE_CLAIM, {
-    onCompleted({ claims }) {
+    onCompleted() {
       appDispatch({ type: "flashMessage", value: { message: "response updated", type: "success" } })
+      window.scrollTo(0, 0)
     },
     onError(error) {
       appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
     }
   })
 

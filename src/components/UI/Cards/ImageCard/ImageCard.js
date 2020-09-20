@@ -4,12 +4,13 @@ import { UPDATE_IMAGE } from "../../../../qraphQl/imageType"
 import styles from "./ImageCard.module.scss"
 import Spinner from "../../Spinner/Spinner"
 
-const ImageCard = ({ singleImg, isOwner }) => {
+const ImageCard = ({ singleImg, isOwner, selectImg }) => {
   const myRef = useRef(null)
   const [isSubmiting, setIsSubmiting] = useState(false)
-  const [displayedDesc, setDisplayedDesc] = useState(singleImg.desc)
+  const [displayedDesc, setDisplayedDesc] = useState(singleImg.picDesc)
   const [desc, setDesc] = useState("Add description")
   const [error, setError] = useState(null)
+
   const [updateImage, { loading }] = useMutation(UPDATE_IMAGE, {
     onCompleted({ updateImage }) {
       setIsSubmiting(false)
@@ -96,7 +97,7 @@ const ImageCard = ({ singleImg, isOwner }) => {
 
   return (
     <div className={styles.gallery}>
-      <div className={styles.image}>
+      <div className={styles.image} onClick={selectImg}>
         <img src={singleImg.picture} alt="" width="600" height="400" />
       </div>
 

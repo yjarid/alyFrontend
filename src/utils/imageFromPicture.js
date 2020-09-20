@@ -1,4 +1,4 @@
-const imageFromPictures = pictures => {
+const imageFromPicture = pictures => {
   let modalInfo = []
 
   pictures.forEach(pic => {
@@ -22,4 +22,4 @@ const imageFromPictures = pictures => {
   return modalInfo
 }
 
-export default imageFromPictures
+export default imageFromPicture

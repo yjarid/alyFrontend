@@ -53,7 +53,7 @@ function ReviewCard({ review }) {
 
       <div className={styles.revContainer} id={review._id} key={review._id}>
         <div className={styles.revContainerInner}>
-          <div className={styles.revContainerAvatar}>{data.picture ? <img src={data.picture} alt="" /> : isUser ? <FaUserCircle size="90%" color="#0996e8" /> : <AiOutlineShop size="90%" color="#0996e8" />}</div>
+          <div className={styles.revContainerAvatar}>{data.picture ? <img src={data.picture.replace("t_meduim", "t_small")} alt="" /> : isUser ? <FaUserCircle size="90%" color="#0996e8" /> : <AiOutlineShop size="90%" color="#0996e8" />}</div>
           <div>
             <div className={styles.revAuth}>
               <Link to={url}>{upCaseFirstLetter(data.name)}</Link>
@@ -63,7 +63,7 @@ function ReviewCard({ review }) {
                 {isUser && (
                   <div className="chip">
                     <BsFillPeopleFill color="#0996e8" />
-                    <div className="label">{`${data.followers.length} ${isTablet ? "Followers" : ""}`}</div>
+                    <div className="label">{`${data.nbrFollowers || 0} ${isTablet ? "Followers" : ""}`}</div>
                   </div>
                 )}
                 <div className="chip">

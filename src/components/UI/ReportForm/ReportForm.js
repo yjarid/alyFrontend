@@ -16,8 +16,7 @@ const ReportForm = ({ id, type }) => {
       window.scrollTo(0, 0)
     },
     onError(error) {
-      let errMsg = error.message.replace("GraphQL error:", "")
-      appDispatch({ type: "flashMessage", value: { message: errMsg, type: "error" } })
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
       window.scrollTo(0, 0)
     }
   })

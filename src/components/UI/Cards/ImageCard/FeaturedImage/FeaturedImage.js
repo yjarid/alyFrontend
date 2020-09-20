@@ -25,7 +25,7 @@ function FeaturedImage() {
 
   let images = data ? data.images : []
   let modalInfo = []
-  console.log(images)
+
   if (images.length) {
     images.forEach(pic => {
       let detailedInfo = {

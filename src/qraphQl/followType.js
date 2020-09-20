@@ -31,3 +31,20 @@ export const DELETE_FOLLOW = gql`
     }
   }
 `
+
+// Profile Info Section
+export const FOLLOWERS_USER = gql`
+  query Followers($userID: String) {
+    followers(first: 40, userID: $userID) {
+      follower {
+        _id
+        userName
+        picture
+        nbrRev
+        revPic
+        description
+        city
+      }
+    }
+  }
+`

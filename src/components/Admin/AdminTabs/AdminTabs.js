@@ -16,8 +16,8 @@ const ProfileTabs = ({ history, tab }) => {
     <div className={style.tabs}>
       <Tabs value={value} indicatorColor="primary" textColor="primary" onChange={handleChange} centered>
         <Tab label="UncheckRev" value="" />
-        <Tab label="RevClm" value="claim" />
-        <Tab label="RevRep" value="report" />
+        <Tab label="BusClm" value="claim" />
+        <Tab label="Reports" value="report" />
         <Tab label="AllBus" value="all" />
         <Tab label="Bus N Pub" value="busNPub" />
         <Tab label="Location" value="location" />

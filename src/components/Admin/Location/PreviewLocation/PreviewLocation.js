@@ -13,27 +13,33 @@ export default function PreviewLocation({ location = {}, type, cities }) {
   const [updateLocation, { loading }] = useMutation(UPDATE_LOCATION, {
     onCompleted() {
       appDispatch({ type: "flashMessage", value: { message: "Location updated ", type: "success" } })
+      window.scrollTo(0, 0)
     },
     onError(error) {
-      appDispatch({ type: "flashMessage", value: { message: "error", type: "error" } })
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
     }
   })
 
   const [createLocation] = useMutation(CREATE_LOCATION, {
     onCompleted() {
       appDispatch({ type: "flashMessage", value: { message: "Location created ", type: "success" } })
+      window.scrollTo(0, 0)
     },
     onError(error) {
       appDispatch({ type: "flashMessage", value: { message: "error", type: "error" } })
+      window.scrollTo(0, 0)
     }
   })
 
   const [deleteLocation, { loading: loadingDel }] = useMutation(DELETE_LOCATION, {
     onCompleted() {
       appDispatch({ type: "flashMessage", value: { message: "Location Deleted ", type: "success" } })
+      window.scrollTo(0, 0)
     },
     onError(error) {
       appDispatch({ type: "flashMessage", value: { message: "error", type: "error" } })
+      window.scrollTo(0, 0)
     }
   })
 

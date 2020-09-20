@@ -13,28 +13,34 @@ export default function PreviewCategory({ subCat = {}, type, categories }) {
 
   const [updateCategory, { loading }] = useMutation(UPDATE_CATEGORY, {
     onCompleted() {
-      appDispatch({ type: "flashMessage", value: { message: "Category updated ", type: "success" } })
+      appDispatch({ type: "flashMessage", value: { message: `Category created`, type: "success" } })
+      window.scrollTo(0, 0)
     },
-    onError(error) {
-      appDispatch({ type: "flashMessage", value: { message: "error", type: "error" } })
+    onError(err) {
+      appDispatch({ type: "flashMessage", value: { message: err.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
     }
   })
 
   const [createCategory] = useMutation(CREATE_CATEGORY, {
     onCompleted() {
       appDispatch({ type: "flashMessage", value: { message: "Category created ", type: "success" } })
+      window.scrollTo(0, 0)
     },
     onError(error) {
       appDispatch({ type: "flashMessage", value: { message: "error", type: "error" } })
+      window.scrollTo(0, 0)
     }
   })
 
   const [deleteCategory, { loading: loadingDel }] = useMutation(DELETE_CATEGORY, {
     onCompleted() {
       appDispatch({ type: "flashMessage", value: { message: "Category deleted ", type: "success" } })
+      window.scrollTo(0, 0)
     },
     onError(error) {
       appDispatch({ type: "flashMessage", value: { message: "error", type: "error" } })
+      window.scrollTo(0, 0)
     }
   })
 

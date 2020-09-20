@@ -17,9 +17,19 @@ function TaxBizList(props) {
   const { type, tax, subTax } = useParams()
   const { city, cat } = queryString.parse(props.location.search)
 
-  const [getBusiness, { loading, data, error }] = useLazyQuery(GET_BUSINESSES)
+  const [getBusiness, { loading, data }] = useLazyQuery(GET_BUSINESSES, {
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
+    }
+  })
 
-  const [location, { data: dataL }] = useLazyQuery(LOCATION)
+  const [location, { data: dataL }] = useLazyQuery(LOCATION, {
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
+    }
+  })
 
   const dataFinal = typeof data != "undefined" ? data.businesses : []
   const locationObj = typeof dataL != "undefined" ? dataL.location : null
@@ -33,7 +43,7 @@ function TaxBizList(props) {
         location({ variables: { neigh: tax } })
       }
     }
-  }, [])
+  }, [type, subTax])
 
   useEffect(() => {
     let variables = { first: 20, published: true }
@@ -52,12 +62,6 @@ function TaxBizList(props) {
     }
     getBusiness({ variables: { ...variables, bound } })
   }, [bound[0], tax, subTax, city, cat])
-
-  useEffect(() => {
-    if (error) {
-      appDispatch({ type: "flashMessage", value: { message: "Something went wrong", type: "error" } })
-    }
-  }, [error])
 
   const mapBounds2 = bounds => {
     setBound(bounds)

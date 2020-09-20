@@ -24,6 +24,10 @@ export default function TablePaginat({ finData }) {
     onCompleted() {
       appDispatch({ type: "flashMessage", value: { message: `success`, type: "success" } })
       window.scrollTo(0, 0)
+    },
+    onError(error) {
+      appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
+      window.scrollTo(0, 0)
     }
   })
 

@@ -19,7 +19,7 @@ export default function AllBusiness() {
     setShowFilter(false)
   }, [FilterValue, neighborhood, JSON.stringify(subCat), city, cat])
 
-  const [getBusiness, { data, error, loading }] = useLazyQuery(GET_BUSINESSES)
+  const [getBusiness, { data }] = useLazyQuery(GET_BUSINESSES)
 
   const onFilter = (initNeighborhood, initSubCat, initCity, initCat) => {
     setNeighborhood(null)
