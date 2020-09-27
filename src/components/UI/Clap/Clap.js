@@ -20,16 +20,13 @@ const MediumClap = ({ claps, id, type }) => {
 
   const [disableBtn, setDisableBtn] = useState(false)
   const [sendDataCount, setSendDataCount] = useState(0)
+  const [stateError, setStateError] = useState(null)
 
   const [{ clapRef, clapCountRef, clapTotalRef }, setRefState] = useState({})
 
   const graphQlQuery = type == "review" ? UPDATE_REVIEW : UPDATE_IMAGE
 
   const [updateClaps, { data, error, loading }] = useMutation(graphQlQuery, {
-    onCompleted() {
-      appDispatch({ type: "flashMessage", value: { message: "Clap updated", type: "success" } })
-      window.scrollTo(0, 0)
-    },
     onError(error) {
       setStateError(`${error.message.replace("GraphQL error:", "")}`)
       setClapState(prevState => ({
@@ -39,7 +36,6 @@ const MediumClap = ({ claps, id, type }) => {
       }))
     }
   })
-  const [stateError, setStateError] = useState(null)
 
   useEffect(() => {
     if (data) {

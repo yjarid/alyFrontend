@@ -22,7 +22,7 @@ export default function AdvancedSearch(props) {
   const [neighborhood, setNeighborhood] = useState(null)
   const [neighName, setNeighName] = useState(null)
   const [city, setCity] = useState(null)
-  const [cityName, setCityName] = useState(cityParam)
+  const [cityName, setCityName] = useState(cityParam || "casablanca")
   const [subCat, setSubCat] = useState([])
   const [cat, setCat] = useState(categoryParam || "restaurant")
 

@@ -1,21 +1,31 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import styles from "./BizList.module.scss"
 import BuzCard from "../../UI/Cards/BuzCard/BuzCard"
 import { GET_BUSINESSES } from "../../../qraphQl/businessType"
-import { useQuery } from "@apollo/react-hooks"
+import { useLazyQuery } from "@apollo/react-hooks"
 import Spinner from "../../UI/Spinner/Spinner"
 import { DispatchContext } from "../../../Context"
+import useDefinePage from "../../../useFuction/useDefinePage"
 
 const BizList = () => {
   const appDispatch = useContext(DispatchContext)
+
+  const PER_PAGE = 6
+  let page = useDefinePage() * 0
+
   // QUERIES
-  const { loading, data } = useQuery(GET_BUSINESSES, {
-    variables: { published: true, authorID: null, first: 8 },
+  const [getBusinesses, { loading, data }] = useLazyQuery(GET_BUSINESSES, {
     onError(error) {
       appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "error" } })
       window.scrollTo(0, 0)
     }
   })
+
+  useEffect(() => {
+    if (page >= 0) {
+      getBusinesses({ variables: { first: PER_PAGE, skip: PER_PAGE * page, orderBy: "score_DESC", published: true, authorID: null } })
+    }
+  }, [page])
 
   return (
     <div>

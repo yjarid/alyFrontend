@@ -37,8 +37,8 @@ export const UPDATE_REVIEW = gql`
 `
 
 export const GET_REVIEWS = gql`
-  query Reviews($featured: Featured, $first: Int, $alyCheck: Boolean, $appropriate: Boolean) {
-    reviews(featured: $featured, first: $first, alyCheck: $alyCheck, appropriate: $appropriate) {
+  query Reviews($first: Int, $skip: Int, $orderBy: ReviewOrderByInput, $alyCheck: Boolean, $appropriate: Boolean) {
+    reviews(first: $first, skip: $skip, orderBy: $orderBy, alyCheck: $alyCheck, appropriate: $appropriate) {
       _id
       text
       rating

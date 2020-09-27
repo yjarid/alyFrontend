@@ -44,8 +44,8 @@ export const UPDATE_BUSINESS = gql`
 // GET Queries
 
 export const GET_BUSINESSES = gql`
-  query Businesses($published: Boolean, $query: String, $first: Int, $type: String, $cat: String, $subCat: [String], $city: String, $neighborhood: String, $price: String, $bound: [Float], $authorId: ID, $orderBy: BusinessOrderByInput) {
-    businesses(published: $published, first: $first, query: $query, type: $type, cat: $cat, subCat: $subCat, city: $city, neighborhood: $neighborhood, price: $price, bound: $bound, authorId: $authorId, orderBy: $orderBy) {
+  query Businesses($published: Boolean, $query: String, $first: Int, $skip: Int, $type: String, $cat: String, $subCat: [String], $city: String, $neighborhood: String, $price: String, $bound: [Float], $authorId: ID, $orderBy: BusinessOrderByInput) {
+    businesses(published: $published, first: $first, skip: $skip, query: $query, type: $type, cat: $cat, subCat: $subCat, city: $city, neighborhood: $neighborhood, price: $price, bound: $bound, authorId: $authorId, orderBy: $orderBy) {
       _id
       name
       excerpt
@@ -65,7 +65,6 @@ export const GET_BUSINESSES = gql`
       price
       phone
       published
-      claimCode
     }
   }
 `

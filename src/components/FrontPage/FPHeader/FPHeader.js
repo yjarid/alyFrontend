@@ -1,9 +1,8 @@
-import React, { useState, useContext } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import SearchFilter from "../../Search/SearchFilter/SearchFilter"
 import styles from "./FPHeader.module.scss"
 import LoginBtn from "../../Register/Forms/LoginBtn/LoginBtn"
-import { useEffect } from "react"
-import { useQuery } from "@apollo/react-hooks"
+import { useLazyQuery } from "@apollo/react-hooks"
 import { GET_TOP_FEATURED_IMAGES } from "../../../qraphQl/imageType"
 import { upCaseFirstLetter } from "../../../utils/string"
 import { Link } from "react-router-dom"
@@ -11,16 +10,20 @@ import { useMediaQuery } from "react-responsive"
 import { DispatchContext } from "../../../Context"
 
 const FPHeader = () => {
-  const [imageIndex, setImageIndex] = useState(null)
   const appDispatch = useContext(DispatchContext)
+  let skip
 
-  const { data } = useQuery(GET_TOP_FEATURED_IMAGES, {
-    variables: { featured: "ONE", first: 4 },
+  const [getImages, { data }] = useLazyQuery(GET_TOP_FEATURED_IMAGES, {
     onError(error) {
       appDispatch({ type: "flashMessage", value: { message: error.message.replace("GraphQL error:", ""), type: "success" } })
       window.scrollTo(0, 0)
     }
   })
+
+  useEffect(() => {
+    skip = Math.round(Math.random() * 8)
+    getImages({ variables: { first: 1, skip, orderby: "score_DESC" } })
+  }, [])
 
   const images = data ? data.images : null
 
@@ -29,13 +32,8 @@ const FPHeader = () => {
 
   let ImageSize = isDesk ? "t_huge" : isTablet ? "t_large" : "t_meduim"
 
-  useEffect(() => {
-    let index = Math.round(Math.random() * 3)
-    setImageIndex(index)
-  }, [])
-
   return (
-    <div className={styles.bgImage} style={{ backgroundImage: `url(${images && images[imageIndex] ? images[imageIndex].picture.replace("t_meduim", ImageSize) : null})` }}>
+    <div className={styles.bgImage} style={{ backgroundImage: `url(${images && images[0] ? images[0].picture.replace("t_meduim", ImageSize) : null})` }}>
       <div className={styles.navigation}>
         <LoginBtn FP={true} />
       </div>
@@ -46,9 +44,9 @@ const FPHeader = () => {
         </div>
       </div>
 
-      {images && images[imageIndex] && (
+      {images && images[0] && (
         <div className={styles.imageInfo}>
-          by <span>{images ? <Link to={`/profile/${images[imageIndex].review.author._id}`}>{upCaseFirstLetter(images[imageIndex].review.author.userName)}</Link> : null}</span> for <span>{images ? <Link to={`/business/${images[imageIndex].review.business._id}`}>{upCaseFirstLetter(images[imageIndex].review.business.name)}</Link> : null}</span>
+          by <span>{images ? <Link to={`/profile/${images[0].author._id}`}>{upCaseFirstLetter(images[0].author.userName)}</Link> : null}</span> for <span>{images ? <Link to={`/business/${images[0].business._id}`}>{upCaseFirstLetter(images[0].business.name)}</Link> : null}</span>
         </div>
       )}
     </div>
