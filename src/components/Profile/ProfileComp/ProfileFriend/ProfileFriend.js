@@ -14,7 +14,7 @@ function ProfileFriend() {
   return (
     <div className={styles.gridContainer}>
       {friend.map((fr, i) => (
-        <UserCard friend={fr.follower} key={i} />
+        <UserCard user={fr.follower} key={i} />
       ))}
     </div>
   )

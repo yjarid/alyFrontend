@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from "react"
 import { Link, useParams } from "react-router-dom"
 import styles from "./ProfileCard.module.scss"
-import { useMutation, useQuery } from "@apollo/react-hooks"
+import { useMutation, useLazyQuery, useQuery } from "@apollo/react-hooks"
 import { CREATE_FOLLOW, DELETE_FOLLOW } from "../../../../qraphQl/followType"
 import { useMediaQuery } from "react-responsive"
-import { DispatchContext } from "../../../../Context"
+import { DispatchContext, StateContext } from "../../../../Context"
 import { upCaseFirstLetter } from "../../../../utils/string"
 import { BsFillPeopleFill, BsStarFill } from "react-icons/bs"
 import { AiFillCamera } from "react-icons/ai"
@@ -17,6 +17,7 @@ function ProfileCard({ loggedInUserID }) {
   })
 
   const appDispatch = useContext(DispatchContext)
+  const appState = useContext(StateContext)
 
   const { id } = useParams()
 
@@ -27,7 +28,14 @@ function ProfileCard({ loggedInUserID }) {
       window.scrollTo(0, 0)
     }
   })
-  const { data: dataIsFollow, error: errorisFollow } = useQuery(IS_FOLLOWING, { variables: { id } })
+  const [isFollowing, { data: dataIsFollow }] = useLazyQuery(IS_FOLLOWING)
+
+  useEffect(() => {
+    // send to check if the user is following only if it is logged in
+    if (appState.user.user) {
+      isFollowing({ variables: { id } })
+    }
+  }, [])
 
   let user = data ? data.user : null
 

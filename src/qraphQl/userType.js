@@ -8,16 +8,6 @@ export const REGISTER = gql`
   }
 `
 
-export const GET_USER = gql`
-  query User($id: ID!) {
-    user(id: $id) {
-      userName
-      description
-      city
-      picture
-    }
-  }
-`
 export const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
     login(data: { email: $email, password: $password }) {
@@ -53,6 +43,32 @@ export const UPDATE_USER = gql`
       picture
       description
       city
+    }
+  }
+`
+
+//QUERY
+
+export const GET_USER = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      userName
+      description
+      city
+      picture
+    }
+  }
+`
+
+export const GET_USERS = gql`
+  query Users($first: Int, $skip: Int, $orderBy: UserOrderByInput) {
+    users(first: $first, skip: $skip, orderBy: $orderBy) {
+      userName
+      city
+      picture
+      nbrRev
+      revPic
+      nbrFollowers
     }
   }
 `

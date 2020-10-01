@@ -70,15 +70,15 @@ function FeaturedImage() {
                 <div className="chipsContainer">
                   <div className="chip">
                     <BsFillPeopleFill color="#0996e8" />
-                    <div className="label">{img.author.nbrFollowers}</div>
+                    <div className="label">{img.author.nbrFollowers || 0}</div>
                   </div>
                   <div className="chip">
                     <BsStarFill color="#0996e8" />
-                    <div className="label">{img.author.nbrRev} </div>
+                    <div className="label">{img.author.nbrRev || 0} </div>
                   </div>
                   <div className="chip">
                     <AiFillCamera color="#0996e8" />
-                    <div className="label">{img.author.revPic}</div>
+                    <div className="label">{img.author.revPic || 0}</div>
                   </div>
                 </div>
 

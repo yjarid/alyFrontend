@@ -42,7 +42,7 @@ function FeaturedReview() {
   return (
     <>
       {reviews.map(rev => (
-        <FeaturedReviewTemplate rev={rev} isAdmin={appState.user.type == "ADMIN"} updateReview={updateReview} />
+        <FeaturedReviewTemplate rev={rev} isAdmin={appState.user.type == "ADMIN"} updateReview={updateReview} key={rev._id} />
       ))}
     </>
   )

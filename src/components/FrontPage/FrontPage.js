@@ -3,6 +3,7 @@ import FPHeader from "./FPHeader/FPHeader"
 import BizList from "../Business/BizList/BizList"
 import FeaturedReview from "../UI/Cards/ReviewCard/FeaturedReview/FeaturedReview"
 import FeaturedImage from "../UI/Cards/ImageCard/FeaturedImage/FeaturedImage"
+import FeaturedUser from "../UI/Cards/UserCard/FeaturedUser/FeaturedUser"
 import styles from "./FrontPage.module.scss"
 import beautyImg from "../../static/image/beauty.jpg"
 import schoolImg from "../../static/image/school.jpg"
@@ -53,6 +54,12 @@ function FrontPage() {
           <h1 className="sectionTitle">Picture of the day</h1>
           <div className={styles.imageGrid}>
             <FeaturedImage />
+          </div>
+        </div>
+        <div>
+          <h1 className="sectionTitle">Users of the day</h1>
+          <div className={styles.imageGrid}>
+            <FeaturedUser />
           </div>
         </div>
       </div>

@@ -19,6 +19,8 @@
 .revContainerAvatar {
   justify-self: center;
   align-self: center;
+  border-radius: 40%;
+  overflow: hidden;
   width: 3rem;
   @include tablet {
     width: 5rem;

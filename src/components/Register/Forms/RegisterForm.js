@@ -1,12 +1,15 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link } from "react-router-dom"
 import styles from "./Register.module.scss"
 import { withFormik, Form } from "formik"
 import { MyTextField, MyButton } from "../../UI/CustomFields/CustomField"
 import * as Yup from "yup"
 import Recaptcha from "react-recaptcha"
+import { DispatchContext } from "../../../Context"
 
 const RegisterForm = ({ register, loading }) => {
+  const appDispatch = useContext(DispatchContext)
+
   const myForm = ({ values, errors, touched, isSubmitting, setFieldValue }) => {
     return (
       <div className={styles.topContainer}>
@@ -28,7 +31,7 @@ const RegisterForm = ({ register, loading }) => {
               <Recaptcha
                 sitekey="6LcA27IZAAAAAONh09JBYrX0fcz_wOdELDvJ6T7k"
                 render="explicit"
-                theme="dark"
+                theme="light"
                 verifyCallback={response => {
                   setFieldValue("recaptcha", response)
                 }}
@@ -66,7 +69,11 @@ const RegisterForm = ({ register, loading }) => {
       password: Yup.string().min(6, "Password must be 6 characters or longer").max(30, "name should be at most 30 characters").required("Password is required")
     }),
     handleSubmit: values => {
-      register({ variables: values })
+      if (!values.recaptcha || typeof values.recaptcha != "string") {
+        appDispatch({ type: "flashMessage", value: { message: "Are you a robot :-) ?", type: "error" } })
+      } else {
+        register({ variables: values })
+      }
     }
   })(myForm)
 
