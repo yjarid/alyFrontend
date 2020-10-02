@@ -4,6 +4,7 @@ import styles from "./UserCard.module.scss"
 import { BsFillPeopleFill, BsStarFill } from "react-icons/bs"
 import { AiFillCamera } from "react-icons/ai"
 import { FaUserCircle } from "react-icons/fa"
+import { upCaseFirstLetter } from "../../../../utils/string"
 
 const UserCard = ({ user }) => {
   return (
@@ -14,7 +15,7 @@ const UserCard = ({ user }) => {
       <div className={styles.userMeta}>
         <div className={styles.name}>
           {" "}
-          <Link to={`/profile/${user._id}`}> {user.userName}</Link>
+          <Link to={`/profile/${user._id}`}> {upCaseFirstLetter(user.userName)}</Link>
         </div>
 
         <div>

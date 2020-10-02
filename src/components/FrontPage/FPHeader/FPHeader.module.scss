@@ -9,6 +9,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.3);
 
   @include desktop {
     height: 500px;
@@ -41,7 +42,7 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(#000000, 0.3);
+  background-color: rgba(#000, 0.5);
   color: #fff;
   padding: 1rem 2rem;
   font-size: 0.8rem;
@@ -57,4 +58,8 @@
       }
     }
   }
+}
+
+.navigation {
+  z-index: 2;
 }

@@ -45,6 +45,8 @@
   justify-self: center;
   align-self: center;
   width: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
   @include tablet {
     width: 4rem;
   }

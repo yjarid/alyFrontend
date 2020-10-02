@@ -43,10 +43,11 @@ function SearchResultPage(props) {
   return (
     <Page title="Search Results" withTopBar={true}>
       {loading && <Spinner />}
-      <h2 className="searchTitle">
+      <h2 className="sectionTitle">
         Results for {upCaseFirstLetter(name)} in {upCaseFirstLetter(location)}
       </h2>
-      <MapResultPage businesses={dataFinal} location={locationObj} mapBounds2={mapBounds2} zoom={12} />
+      {dataFinal.length === 0 && <p>No results found, please modify your search</p>}
+      {dataFinal.length > 0 && <MapResultPage businesses={dataFinal} location={locationObj} mapBounds2={mapBounds2} zoom={12} />}
     </Page>
   )
 }
