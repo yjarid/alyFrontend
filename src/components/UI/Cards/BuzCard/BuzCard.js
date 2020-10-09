@@ -12,7 +12,7 @@ const BuzCard = ({ data }) => {
     <div className={styles.paper}>
       <div className={styles.head}>
         <div className={styles.headInner}>
-          <div className={styles.imageContainer}>{data.picture ? <img src={data.picture} /> : <AiOutlineShop size="75%" color="#0996e8" />}</div>
+          <div className={styles.imageContainer}>{data.picture ? <img src={data.picture} /> : <AiOutlineShop size="70%" color="#0996e8" />}</div>
           <div>
             <h2 className={styles.title}>
               <Link to={`/business/${data._id}`}>{upCaseFirstLetter(data.name)} </Link>{" "}

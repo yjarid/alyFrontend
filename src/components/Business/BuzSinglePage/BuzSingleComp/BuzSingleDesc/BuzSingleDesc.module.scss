@@ -4,8 +4,9 @@
   padding: 0.5rem;
   border: 1px rgba(0, 0, 0, 0.2) solid;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 2rem;
   @include desktop {
-    padding: 2rem;
+    padding: 2rem 3rem;
   }
 }
 
@@ -33,15 +34,13 @@
   color: $lightBlue;
 }
 
-.infoAdress {
+.infoDetail {
   font-size: 0.9rem;
-}
-
-.infoPhone {
-  font-size: 1rem;
+  color: #778899;
 }
 
 .desc {
   font-size: 0.9rem;
   line-height: 200%;
+  color: #808080;
 }

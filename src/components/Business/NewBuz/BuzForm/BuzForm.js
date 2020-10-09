@@ -17,7 +17,6 @@ const BuzForm = props => {
   const appDispatch = useContext(DispatchContext)
   const [modal, setModal] = useState(false)
   const [type, setType] = useState("")
-  const [errorForm, setError] = useState("")
 
   const { loading, data } = useQuery(LOCATIONS, {
     onError(error) {
@@ -34,7 +33,6 @@ const BuzForm = props => {
 
   const modalClosed = () => {
     setModal(() => false)
-    setError(null)
   }
 
   const selectCity = () => {
@@ -215,8 +213,8 @@ const BusinessForm = withFormik({
   },
   validationSchema: Yup.object().shape({
     name: Yup.string().required("Name is required").max(60, "should be at most 60 characters"),
-    desc: Yup.string().max(500, "should be at most 1000 characters"),
-    excerpt: Yup.string().max(120, "should be at most 200 characters"),
+    desc: Yup.string().max(800, "should be at most 800 characters"),
+    excerpt: Yup.string().max(200, "should be at most 200 characters"),
     address: Yup.string().max(200, "should be at most 200 characters"),
     city: Yup.string().required("City is required"),
     neighborhood: Yup.string().required("Neighborhood is required"),
@@ -226,23 +224,24 @@ const BusinessForm = withFormik({
   }),
 
   handleSubmit: (values, { props, resetForm }) => {
+    // handle the image in both case new upload then it is an object it will directly be submitted or if it is already submitted then the format is String. both cases are dealt with in the server
     let pictureId = values.picture
-
     if (typeof pictureId == "string") {
       pictureId = values.picture ? values.picture.split("/images/")[1] : null
     }
-    let descLenght = values.desc.length
-    let excerpt = values.excerpt
 
-    if (!excerpt && descLenght) {
-      if (descLenght >= 120) {
-        excerpt = values.desc.substring(0, 115).concat("...")
-      } else {
-        excerpt = values.desc
-      }
+    // in case the user on ly enter just one of the field excertp or description the other field is set automatically
+    let excerpt = values.excerpt
+    let desc = values.desc
+
+    if (!excerpt && desc) {
+      excerpt = values.desc.substring(0, 197).concat("...")
+    } else if (excerpt && !desc) {
+      desc = excerpt
     }
 
-    props.onSubmit({ variables: { ...values, name: values.name.toLowerCase(), picture: pictureId, id: props.id, excerpt } })
+    // submit the form
+    props.onSubmit({ variables: { ...values, name: values.name.toLowerCase(), picture: pictureId, id: props.id, excerpt, desc } })
   }
 })(BuzForm)
 

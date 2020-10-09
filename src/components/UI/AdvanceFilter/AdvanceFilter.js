@@ -79,45 +79,47 @@ export default function AdvanceFilter({ onFilter, parentCat }) {
 
   return (
     <div>
-      <div className={styles.levelContainer}>
-        <span className={styles.level} onClick={() => handleLevel("one")}>
-          Step 1
-        </span>
-        <span className={styles.level} onClick={() => handleLevel("two")}>
-          Step 2
-        </span>
-      </div>
+      <div className={styles.levelContainer}></div>
       <div className={styles.mainContainer}>
         {level === "one" && (
-          <div className={styles.formGridTop}>
-            <div className={styles.formGridItem}>
-              <p className={styles.sectionTitle}> Select City</p>
-              <FormControl component="fieldset" className={classes.root}>
-                <RadioGroup name="city" value={city} onChange={e => setCity(e.target.value)}>
-                  <div className={styles.neighContainer}>
-                    {locations.map((cat, i) => {
-                      let catName = upCaseFirstLetter(cat.name) // to captalize values
-                      return <FormControlLabel key={i} value={JSON.stringify(cat)} control={<Radio size="small" />} label={catName} />
-                    })}
-                  </div>
-                </RadioGroup>
-              </FormControl>
-            </div>
+          <>
+            <div className={styles.formGridTop}>
+              <div className={styles.formGridItem}>
+                <p className={styles.sectionTitle}> Select City</p>
+                <FormControl component="fieldset" className={classes.root}>
+                  <RadioGroup name="city" value={city} onChange={e => setCity(e.target.value)}>
+                    <div className={styles.neighContainer}>
+                      {locations.map((cat, i) => {
+                        let catName = upCaseFirstLetter(cat.name) // to captalize values
+                        return <FormControlLabel key={i} value={JSON.stringify(cat)} control={<Radio size="small" />} label={catName} />
+                      })}
+                    </div>
+                  </RadioGroup>
+                </FormControl>
+              </div>
 
-            <div className={styles.formGridItem}>
-              <p className={styles.sectionTitle}> Select Business Type</p>
-              <FormControl component="fieldset" className={classes.root}>
-                <RadioGroup name="subCat" value={cat} onChange={e => setCat(e.target.value)}>
-                  <div className={styles.neighContainer}>
-                    {categories.map((cat, i) => {
-                      let catName = upCaseFirstLetter(cat.name) // to captalize values
-                      return <FormControlLabel key={i} value={cat.name.toLowerCase()} control={<Radio size="small" />} label={catName} />
-                    })}
-                  </div>
-                </RadioGroup>
-              </FormControl>
+              <div className={styles.formGridItem}>
+                <p className={styles.sectionTitle}> Select Business Type</p>
+                <FormControl component="fieldset" className={classes.root}>
+                  <RadioGroup name="subCat" value={cat} onChange={e => setCat(e.target.value)}>
+                    <div className={styles.neighContainer}>
+                      {categories.map((cat, i) => {
+                        let catName = upCaseFirstLetter(cat.name) // to captalize values
+                        return <FormControlLabel key={i} value={cat.name.toLowerCase()} control={<Radio size="small" />} label={catName} />
+                      })}
+                    </div>
+                  </RadioGroup>
+                </FormControl>
+              </div>
             </div>
-          </div>
+            {cat && city && (
+              <div className={styles.btn}>
+                <span className={styles.level} onClick={() => handleLevel("two")}>
+                  Next Step
+                </span>
+              </div>
+            )}
+          </>
         )}
 
         {level === "two" && (
@@ -181,9 +183,14 @@ export default function AdvanceFilter({ onFilter, parentCat }) {
                 </FormControl>
               </div>
             </div>
-            <span className={styles.submit} onClick={submitFilter}>
-              Submit
-            </span>
+            <div className={styles.btn}>
+              <span className={styles.level} onClick={() => handleLevel("one")}>
+                Back
+              </span>
+              <span className={styles.submit} onClick={submitFilter}>
+                Submit
+              </span>
+            </div>
           </Fragment>
         )}
       </div>

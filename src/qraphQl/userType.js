@@ -52,6 +52,7 @@ export const UPDATE_USER = gql`
 export const GET_USER = gql`
   query User($id: ID!) {
     user(id: $id) {
+      _id
       userName
       description
       city
@@ -63,6 +64,7 @@ export const GET_USER = gql`
 export const GET_USERS = gql`
   query Users($first: Int, $skip: Int, $orderBy: UserOrderByInput) {
     users(first: $first, skip: $skip, orderBy: $orderBy) {
+      _id
       userName
       city
       picture

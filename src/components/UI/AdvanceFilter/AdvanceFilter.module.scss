@@ -3,6 +3,8 @@
 .mainContainer {
   width: 100%;
   text-align: center;
+  padding: 1px;
+
   @include tablet {
     width: 80%;
     margin: 1rem auto;
@@ -87,12 +89,16 @@
   font-size: 0.8rem;
 }
 
+.btn {
+  margin-bottom: 1rem;
+}
+
 .submit {
   display: inline-block;
   padding: 0.6rem 1rem;
   background-color: $primaryBlue;
   color: #fff;
-  margin-bottom: 1rem;
+  cursor: pointer;
 }
 
 .levelContainer {

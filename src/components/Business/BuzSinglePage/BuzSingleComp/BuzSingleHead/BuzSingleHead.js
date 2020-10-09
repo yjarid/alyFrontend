@@ -77,7 +77,6 @@ function BuzSingleHead({ history, business }) {
             </div>
             <div className={styles.location}>
               <Link to={`/tax/location/${city}/${neighborhood}?cat=${cat}`}>{neighborhood}, </Link>
-              <Link to={`/tax/location/${city}?cat=${cat}`}>{city} </Link>
             </div>
             <div className={styles.subCat}>
               {subCat.map((subCat, i) => (

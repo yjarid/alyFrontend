@@ -16,7 +16,7 @@ function BuzSingleReviews() {
   const [sort, setSort] = useState("createdAt_DESC")
   const [page, setPage] = useState(0)
   const { id } = useParams()
-  const REV_PER_PAGE = 20
+  const REV_PER_PAGE = 10
 
   const [getReviews, { loading, data }] = useLazyQuery(REVIEWS_BUSINESS, {
     onCompleted({ reviews }) {

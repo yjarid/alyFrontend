@@ -23,7 +23,7 @@ function BuzSingleDesc({ address, desc, phone }) {
               <div className={styles.infoDetail}>{phone}</div>
             </div>
           </div>
-          <div>{desc}</div>
+          <div className={styles.desc}>{desc}</div>
         </div>
       </div>
     </div>
